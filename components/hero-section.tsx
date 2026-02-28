@@ -52,9 +52,9 @@ export default function HeroSection() {
             </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-[3rem] leading-[0.95] font-black text-black tracking-tight">
-             Build Champions. <br/>
+             Star Chess Academy <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-600 relative">
-                 Think Like a Grandmaster.
+                 Where Champions Are Built.
                 <div className="absolute -top-6 -right-8 opacity-20 hidden lg:block">
                     <Crown size={60} className="text-black rotate-12" />
                 </div>
