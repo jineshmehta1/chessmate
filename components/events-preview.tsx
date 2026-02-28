@@ -12,7 +12,7 @@ import {
   Star
 } from "lucide-react";
 import { motion } from "framer-motion";
-
+import Link from "next/link";
 const COURSES = [
   {
     level: "Phase 01",
@@ -120,14 +120,18 @@ export default function CourseCurriculum() {
               </div>
 
               {/* CTA Button */}
-              <button className={`w-full py-3 rounded-xl border-2 border-black font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all
-                ${idx === 2 
-                  ? 'bg-yellow-400 text-black hover:bg-white shadow-[3px_3px_0px_0px_rgba(255,255,255,1)]' 
-                  : 'bg-black text-white hover:bg-yellow-400 hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none'}`}>
-                Join Course
-                <ChevronRight size={14} />
-              </button>
-
+              <Link
+  href="/courses" // change if needed
+  className={`w-full py-3 rounded-xl border-2 border-black font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all text-center
+    ${
+      idx === 2
+        ? "bg-yellow-400 text-black hover:bg-white shadow-[3px_3px_0px_0px_rgba(255,255,255,1)]"
+        : "bg-black text-white hover:bg-yellow-400 hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none"
+    }`}
+>
+  Join Course
+  <ChevronRight size={14} />
+</Link>
               {/* Decorative Corner Star */}
               <Star size={14} className="absolute top-6 right-6 opacity-10 group-hover:opacity-100" />
             </motion.div>

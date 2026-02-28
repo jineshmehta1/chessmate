@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import React from "react";
 import { 
   Zap, 
@@ -115,13 +115,18 @@ export default function CourseCurriculum() {
               </div>
 
               {/* CTA Button */}
-              <button className={`w-full py-4 rounded-xl border-2 border-black font-black text-[11px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all active:translate-y-1 active:shadow-none
-                ${idx === 2 
-                  ? 'bg-yellow-400 text-black hover:bg-white shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]' 
-                  : 'bg-black text-white hover:bg-yellow-400 hover:text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]'}`}>
-                Join Course
-                <ChevronRight size={16} />
-              </button>
+              <Link
+  href="/courses"
+  className={`w-full py-4 rounded-xl border-2 border-black font-black text-[11px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all active:translate-y-1 active:shadow-none
+  ${
+    idx === 2
+      ? "bg-yellow-400 text-black hover:bg-white shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]"
+      : "bg-black text-white hover:bg-yellow-400 hover:text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+  }`}
+>
+  Join Course
+  <ChevronRight size={16} />
+</Link>
 
               {/* Decorative Corner Star */}
               <Star size={16} className="absolute top-6 right-6 opacity-10 group-hover:opacity-100 transition-opacity" />

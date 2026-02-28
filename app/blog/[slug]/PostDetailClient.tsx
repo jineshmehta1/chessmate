@@ -84,7 +84,7 @@ export default function PostDetailClient({ post }: { post: any }) {
              {/* Pro Tip Callout Box */}
              <div className="bg-black text-white p-6 md:p-10 rounded-[2rem] border-4 border-black shadow-[8px_8px_0px_0px_rgba(253,224,71,1)] my-12 relative overflow-hidden group">
                 <Zap className="text-yellow-400 mb-4 w-8 h-8 md:w-10 md:h-10 animate-pulse" fill="currentColor" />
-                <h4 className="text-lg md:text-xl font-black uppercase italic mb-2">Sensei's Pro Tip</h4>
+                <h4 className="text-lg md:text-xl font-black uppercase italic mb-2">Star's Pro Tip</h4>
                 <p className="text-gray-300 text-sm md:text-base italic leading-relaxed">
                   "Don't just look for the best move—look for your opponent's best response. Chess is a conversation, and you must listen to what the other side is trying to say."
                 </p>

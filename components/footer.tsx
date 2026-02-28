@@ -61,7 +61,7 @@ export function Footer() {
               </div>
               <div>
                 <h3 className="text-xl md:text-2xl font-black uppercase italic leading-none">Star Chess<br/>Academy</h3>
-                <p className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-yellow-400 mt-1">Limitless Learning</p>
+                <p className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-yellow-400 mt-1">Learn - play - Think smart</p>
               </div>
             </div>
 

@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import { 
@@ -122,10 +122,17 @@ export default function CoachesPage() {
                   {coach.bio}
                 </p>
 
-                <button className={`w-full py-4 rounded-xl border-[3px] border-black font-black text-[10px] md:text-xs uppercase tracking-widest transition-all active:translate-y-1 active:shadow-none
-                  ${idx === 2 ? 'bg-yellow-400 text-black shadow-[4px_4px_0px_0px_white]' : 'bg-white text-black shadow-[4px_4px_0px_0px_black]'}`}>
-                  View Profile
-                </button>
+               <Link
+  href="/bookdemo"
+  className={`w-full py-4 rounded-xl border-[3px] border-black font-black text-[10px] md:text-xs uppercase tracking-widest transition-all active:translate-y-1 active:shadow-none text-center
+  ${
+    idx === 2
+      ? "bg-yellow-400 text-black shadow-[4px_4px_0px_0px_white]"
+      : "bg-white text-black shadow-[4px_4px_0px_0px_black]"
+  }`}
+>
+  Book Demo
+</Link>
               </motion.div>
             ))}
           </div>
@@ -192,9 +199,12 @@ export default function CoachesPage() {
           <h2 className="text-2xl md:text-5xl font-black uppercase italic mb-8 leading-tight tracking-tighter">
             Ready to learn from <br /> the <span className="bg-yellow-400 px-2 border-2 border-black">best?</span>
           </h2>
-          <button className="w-full sm:w-auto px-10 md:px-12 py-5 md:py-6 bg-black text-white border-[3px] md:border-4 border-black rounded-2xl font-black uppercase tracking-widest text-xs md:text-lg shadow-[6px_6px_0px_0px_rgba(253,224,71,1)] md:shadow-[10px_10px_0px_0px_rgba(253,224,71,1)] transition-all hover:translate-x-2 hover:translate-y-2 hover:shadow-none active:scale-95">
-            Book a Demo Class
-          </button>
+          <Link
+  href="/bookdemo"
+  className="inline-flex items-center justify-center px-10 md:px-12 py-5 md:py-6 bg-black text-white border-[3px] md:border-4 border-black rounded-2xl font-black uppercase tracking-widest text-xs md:text-lg shadow-[6px_6px_0px_0px_rgba(253,224,71,1)] md:shadow-[10px_10px_0px_0px_rgba(253,224,71,1)] transition-all hover:translate-x-2 hover:translate-y-2 hover:shadow-none active:scale-95"
+>
+  Book a Demo Class
+</Link>
         </div>
       </section>
 

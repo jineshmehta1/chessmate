@@ -11,7 +11,7 @@ import BookDemoModal from "@/components/BookDemoModal"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Star Chess Academy | Professional Chess Coaching for Kids",
+  title: "Star Chess Academy | Where Champions Are Build",
   description: "Nurturing young minds through strategic chess training. Founded by International Rated Coach Raghava M.. Expert-led 1:1 and group classes for ages 6-16.",
   keywords: ["Chess Academy Indirapuram", "Online Chess Classes", "Raghava M. Chess", "Star Chess", "FIDE Rated Coaches"],
   openGraph: {

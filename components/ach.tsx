@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { 
   Trophy, 
   User, 
@@ -200,12 +201,17 @@ export default function AchievementGallery() {
         {/* --- FINAL CALL TO ACTION --- */}
         <div className="mt-24 md:mt-40 text-center">
              <h4 className="text-xl md:text-2xl font-black uppercase italic mb-8">Ready to write your own success story?</h4>
-             <button className="relative group active:scale-95 transition-transform">
-                <div className="absolute inset-0 bg-yellow-400 rounded-2xl translate-x-1.5 translate-y-1.5 border-[3px] md:border-4 border-black group-hover:translate-x-0 group-hover:translate-y-0 transition-all"></div>
-                <div className="relative bg-black text-white px-8 md:px-12 py-4 md:py-5 border-[3px] md:border-4 border-black rounded-2xl font-black uppercase italic text-lg md:text-xl flex items-center gap-3 md:gap-4">
-                    Enroll Now <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
-                </div>
-             </button>
+            <Link
+  href="/contact"   // change to your actual route
+  className="relative inline-block group active:scale-95 transition-transform"
+>
+  <div className="absolute inset-0 bg-yellow-400 rounded-2xl translate-x-1.5 translate-y-1.5 border-[3px] md:border-4 border-black group-hover:translate-x-0 group-hover:translate-y-0 transition-all"></div>
+
+  <div className="relative inline-flex items-center gap-3 md:gap-4 bg-black text-white px-8 md:px-12 py-4 md:py-5 border-[3px] md:border-4 border-black rounded-2xl font-black uppercase italic text-lg md:text-xl whitespace-nowrap">
+    Enroll Now
+    <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+  </div>
+</Link>
         </div>
 
       </div>

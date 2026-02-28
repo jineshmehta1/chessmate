@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useDemoModal } from "@/context/DemoContext";
+import Link from "next/link";
 
 export default function BookDemoPage() {
   const { openDemoModal } = useDemoModal();
@@ -162,10 +163,13 @@ export default function BookDemoPage() {
               <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform" />
             </button>
             
-            <button className="w-full sm:w-auto group border-[3px] md:border-4 border-white text-white font-black uppercase italic py-5 md:py-6 px-10 md:px-12 rounded-2xl text-base md:text-lg flex items-center justify-center gap-3 hover:bg-white hover:text-black transition-all active:scale-95">
-              <span>View Programs</span>
-              <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
-            </button>
+            <Link
+  href="/courses"   // change to your actual route
+  className="w-full sm:w-auto inline-flex group border-[3px] md:border-4 border-white text-white font-black uppercase italic py-5 md:py-6 px-10 md:px-12 rounded-2xl text-base md:text-lg items-center justify-center gap-3 hover:bg-white hover:text-black transition-all active:scale-95 text-center"
+>
+  <span>View Programs</span>
+  <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+</Link>
           </div>
         </div>
       </section>

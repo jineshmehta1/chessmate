@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { 
   ArrowRight, 
@@ -84,21 +84,28 @@ Online & Offline Coaching | Personalized Growth | Proven Results
 
             {/* --- CTA BUTTONS --- */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button 
-                onClick={openDemoModal}
-                className="group relative px-10 py-5 bg-black text-white rounded-full font-black text-sm uppercase tracking-[0.2em] shadow-2xl hover:bg-yellow-400 hover:text-black transition-all duration-500 overflow-hidden"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-3">
-                  Book Free Demo
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                </span>
-              </button>
-              
-              <button className="flex items-center justify-center gap-2 px-8 py-5 rounded-full font-bold text-black border-2 border-black/5 hover:bg-gray-50 transition-all text-sm uppercase tracking-widest">
-                Explore Courses
-                <ChevronRight size={18} />
-              </button>
-            </div>
+
+  {/* Book Free Demo */}
+  <Link
+    href="/bookdemo"
+    className="group relative px-10 py-5 bg-black text-white rounded-full font-black text-sm uppercase tracking-[0.2em] shadow-2xl hover:bg-yellow-400 hover:text-black transition-all duration-500 overflow-hidden text-center"
+  >
+    <span className="relative z-10 flex items-center justify-center gap-3">
+      Book Free Demo
+      <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+    </span>
+  </Link>
+
+  {/* Explore Courses */}
+  <Link
+    href="/courses"
+    className="flex items-center justify-center gap-2 px-8 py-5 rounded-full font-bold text-black border-2 border-black/5 hover:bg-gray-50 transition-all text-sm uppercase tracking-widest text-center"
+  >
+    Explore Courses
+    <ChevronRight size={18} />
+  </Link>
+
+</div>
 
             {/* Trust Pilot Style */}
             <div className="flex items-center gap-6 pt-6 border-t border-gray-100">
