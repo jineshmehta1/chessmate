@@ -1,281 +1,203 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Trophy,
-  Star,
-  Users,
-  Calendar,
-  Medal,
-  Target,
-  Sparkles,
-  TrophyIcon,
-  Crown,
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+import { 
+  ChevronRight, 
+  Star, 
+  Users, 
+  Zap, 
+  CheckCircle2,
   Award,
-  Zap,
+  Trophy,
+  Target,
+  Rocket
 } from "lucide-react";
-import Link from "next/link";
+import TeamSection from "@/components/ui/team-section";
+
+// --- DATA ---
+const MAIN_COACHES = [
+  {
+    name: "Hariharan N",
+    role: "Kids & Beginner Friendly Coach",
+    specialty: "Foundations & Engagement",
+    bio: "Makes chess fun and accessible for young minds, focusing on building a rock-solid foundation of confidence.",
+    color: "bg-white",
+    shadow: "shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+  },
+  {
+    name: "Veeramani U",
+    role: "Intermediate Coach",
+    specialty: "Tactics & Opening Strategy",
+    bio: "Bridging the gap to competitive play by sharpening tactical vision and developing a professional opening repertoire.",
+    color: "bg-yellow-400",
+    shadow: "shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]"
+  },
+  {
+    name: "Barani",
+    role: "Advanced Coach",
+    specialty: "Endgames & Elite Analysis",
+    bio: "High-tier training for tournament players. Master deep positional play and professional endgame execution.",
+    color: "bg-black",
+    textColor: "text-white",
+    shadow: "shadow-[6px_6px_0px_0px_rgba(253,224,71,1)] md:shadow-[8px_8px_0px_0px_rgba(253,224,71,1)]"
+  }
+];
+
+const WHY_US = [
+  { title: "Personalized Feedback", icon: Users },
+  { title: "Progress Tracking", icon: Target },
+  { title: "Motivational Support", icon: Zap },
+  { title: "Tournament Guidance", icon: Trophy },
+  { title: "Modern Methods", icon: Rocket },
+];
 
 export default function CoachesPage() {
-  const coaches = [
-    {
-      name: "Tejavath Naresh",
-      title: "Head Coach & Founder",
-      image: "/naresh.jpg",
-      specialization: ["Opening Theory", "Endgame Mastery", "Tournament Preparation"],
-      achievements: ["FIDE Arbiter", "FIDE Rated Player", "Chess Coach"],
-      experience: "15+ Years",
-      students: "200+",
-      bio: "Tejavath Naresh is the visionary founder of our academy with over 15 years of coaching excellence.",
-      color: "from-blue-500 to-cyan-500",
-      bgColor: "bg-gradient-to-br from-blue-50 to-cyan-50",
-      accentColor: "text-blue-600",
-    },
-    {
-      name: "Tejavath Aruna",
-      title: "Senior Coach",
-      rating: "2450",
-      image: "/coach.png",
-      specialization: ["Tactical Training", "Youth Development", "Women's Chess"],
-      achievements: ["FIDE Rated Player", "Chess Coach"],
-      experience: "12+ Years",
-      students: "150+",
-      bio: "Tejavath Aruna specializes in developing young talent and has coached multiple national champions.",
-      color: "from-emerald-500 to-green-500",
-      bgColor: "bg-gradient-to-br from-emerald-50 to-green-50",
-      accentColor: "text-emerald-600",
-    },
-    {
-      name: "Ranghanathan K S",
-      title: "Junior Coach",
-      rating: "2400",
-      image: "/coach.png",
-      specialization: ["Beginner Training", "School Programs", "Online Coaching"],
-      achievements: ["International FIDE Rated"],
-      experience: "8+ Years",
-      students: "100+",
-      bio: "Ranghanathan K S brings innovative teaching methods and excels in online chess education.",
-      color: "from-purple-500 to-pink-500",
-      bgColor: "bg-gradient-to-br from-purple-50 to-pink-50",
-      accentColor: "text-purple-600",
-    },
-    {
-      name: "Kethavath Lokesh",
-      title: "Assistant Coach",
-      rating: "2300",
-      image: "/coach.png",
-      specialization: ["Puzzle Solving", "Pattern Recognition", "Rapid Chess"],
-      achievements: ["International FIDE Rated"],
-      experience: "6+ Years",
-      students: "80+",
-      bio: "Kethavath Lokesh is known for her expertise in tactical training and rapid chess improvement.",
-      color: "from-rose-500 to-orange-500",
-      bgColor: "bg-gradient-to-br from-rose-50 to-orange-50",
-      accentColor: "text-rose-600",
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50">
-      {/* Animated Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
-      </div>
+    <div className="min-h-screen bg-white font-sans selection:bg-yellow-400">
+      
+      {/* --- HERO BANNER --- */}
+      <section className="relative w-full bg-white overflow-hidden pt-28 md:pt-36 pb-16 md:pb-20 border-b-4 border-black">
+        {/* Animated Background Doodles */}
+        <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 5, repeat: Infinity }} className="absolute top-10 left-[8%] w-12 h-12 md:w-20 md:h-20 rounded-full bg-yellow-400 border-[3px] md:border-4 border-black z-0 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" />
+        <motion.div animate={{ rotate: 360 }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} className="absolute top-12 right-[12%] w-24 h-24 md:w-32 md:h-32 rounded-full border-2 md:border-4 border-dashed border-black/10 z-0" />
+        
+        {/* Responsive Ghost Text */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[6rem] md:text-[15rem] font-black text-gray-50 leading-none select-none -z-10 tracking-tighter uppercase italic">
+          MENTORS
+        </div>
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <Badge className="mb-6 bg-white/80 backdrop-blur-sm border border-gray-200 text-gray-700 px-6 py-2 text-lg shadow-lg">
-            <Sparkles className="w-4 h-4 mr-2" />
-            Meet Our Master Coaches
-          </Badge>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">
-            Expert Coaches
+        <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+          <div className="flex items-center gap-2 mb-6">
+            <div className="h-[2px] w-6 md:w-8 bg-yellow-400"></div>
+            <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] text-black italic">Expert Faculty</span>
+            <div className="h-[2px] w-6 md:w-8 bg-yellow-400"></div>
+          </div>
+
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-black leading-tight uppercase italic mb-8 tracking-tighter">
+            Meet Our <span className="text-white [-webkit-text-stroke:1.5px_black] md:[-webkit-text-stroke:2px_black] drop-shadow-[4px_4px_0px_rgba(253,224,71,1)]">Coaches.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Learn from internationally recognized chess masters and certified coaches dedicated to transforming your game
+
+          <p className="max-w-2xl text-base md:text-lg font-bold text-gray-600 mb-10">
+            At Star Chess Academy, our coaches are passionate mentors committed to turning every student into a Grandmaster in the making.
           </p>
-        </div>
-      </section>
-
-      {/* Coaches Grid */}
-      <section className="relative py-12 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {coaches.map((coach, index) => (
-              <Card
-                key={index}
-                className={`relative ${coach.bgColor} border-2 border-gray-200/50 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden group`}
-              >
-                {/* Gradient Accent */}
-                <div className={`h-2 bg-gradient-to-r ${coach.color}`}></div>
-                
-                <CardContent className="p-0">
-                  <div className="flex flex-col md:flex-row">
-                    {/* Coach Image */}
-                    <div className="md:w-2/5 relative">
-                      <div className="relative h-64 md:h-full overflow-hidden">
-                        <img
-                          src={coach.image || "/placeholder.svg"}
-                          alt={coach.name}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent md:bg-gradient-to-r md:from-black/40 md:to-transparent"></div>
-                        
-                        {/* Floating Badge */}
-                        <div className="absolute top-4 left-4">
-                          <Badge className={`bg-gradient-to-r ${coach.color} text-white px-3 py-1 rounded-full shadow-lg`}>
-                            {coach.title}
-                          </Badge>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Coach Info */}
-                    <div className="md:w-3/5 p-6">
-                      <div className="mb-4">
-                        <h3 className="text-2xl font-bold text-gray-800 mb-2">{coach.name}</h3>
-                        <p className="text-gray-600 text-sm leading-relaxed">{coach.bio}</p>
-                      </div>
-
-                      {/* Stats */}
-                      <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="text-center p-3 bg-white/50 backdrop-blur-sm rounded-2xl border border-gray-200">
-                          <Calendar className="w-5 h-5 mx-auto mb-2 text-gray-600" />
-                          <div className="text-xs font-semibold text-gray-600">Experience</div>
-                          <div className="text-sm font-bold text-gray-800">{coach.experience}</div>
-                        </div>
-                        <div className="text-center p-3 bg-white/50 backdrop-blur-sm rounded-2xl border border-gray-200">
-                          <Users className="w-5 h-5 mx-auto mb-2 text-gray-600" />
-                          <div className="text-xs font-semibold text-gray-600">Students</div>
-                          <div className="text-sm font-bold text-gray-800">{coach.students}</div>
-                        </div>
-                      </div>
-
-                      {/* Specializations */}
-                      <div className="mb-6">
-                        <h4 className="text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                          <Target className="w-4 h-4" />
-                          Specializations
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {coach.specialization.map((spec, specIndex) => (
-                            <Badge
-                              key={specIndex}
-                              variant="outline"
-                              className="border-gray-300 bg-white/80 text-gray-700 hover:bg-white text-xs px-3 py-1"
-                            >
-                              {spec}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Achievements */}
-                      <div className="mb-6">
-                        <h4 className="text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                          <Medal className="w-4 h-4" />
-                          Key Achievements
-                        </h4>
-                        <div className="space-y-2">
-                          {coach.achievements.map((achievement, achIndex) => (
-                            <div key={achIndex} className="flex items-center gap-2">
-                              <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${coach.color}`}></div>
-                              <span className="text-sm text-gray-600">{achievement}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* CTA Button */}
-                      <Link href="/contact" className="block">
-                        <Button className={`w-full bg-gradient-to-r ${coach.color} hover:opacity-90 text-white py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300`}>
-                          Book Session with {coach.name.split(' ')[0]}
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Our Coaches */}
-      <section className="relative py-20 px-4 bg-white/80 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-              Why Train With Our Coaches?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Our coaching methodology combines traditional chess wisdom with modern teaching techniques
-            </p>
-          </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Crown,
-                title: "Master-Level Expertise",
-                description: "All coaches are FIDE certified with extensive tournament experience and proven teaching methodologies.",
-                color: "from-blue-400 to-cyan-400"
-              },
-              {
-                icon: Zap,
-                title: "Personalized Training",
-                description: "Customized learning paths tailored to your skill level, goals, and learning style for maximum progress.",
-                color: "from-emerald-400 to-green-400"
-              },
-              {
-                icon: TrophyIcon,
-                title: "Proven Results",
-                description: "Track record of transforming beginners into tournament champions with measurable rating improvements.",
-                color: "from-purple-400 to-pink-400"
-              }
-            ].map((feature, index) => (
-              <div key={index} className="text-center p-8 bg-gradient-to-br from-gray-50 to-white rounded-3xl border-2 border-gray-100 hover:border-blue-200 transition-all duration-300 transform hover:-translate-y-2">
-                <div className={`w-20 h-20 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg`}>
-                  <feature.icon className="w-10 h-10 text-white" />
+          <nav className="inline-flex items-center gap-3 bg-black text-white px-6 md:px-8 py-3 md:py-4 rounded-2xl border-[3px] md:border-4 border-black shadow-[5px_5px_0px_0px_rgba(253,224,71,1)] md:shadow-[8px_8px_0px_0px_rgba(253,224,71,1)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none">
+            <a href="/" className="text-[10px] md:text-xs font-black uppercase tracking-widest hover:text-yellow-400">Home</a>
+            <ChevronRight className="w-4 h-4 text-yellow-400" strokeWidth={4} />
+            <span className="text-[10px] md:text-xs font-black uppercase tracking-widest text-yellow-400">Our Team</span>
+          </nav>
+        </div>
+      </section>
+
+      {/* FOUNDER SECTION */}
+      <TeamSection/>
+
+      {/* --- MAIN COACHES GRID --- */}
+      <section className="py-16 md:py-24 bg-gray-50">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+            {MAIN_COACHES.map((coach, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ y: -10 }}
+                className={`relative p-6 md:p-8 border-[3px] md:border-[4px] border-black rounded-[2rem] md:rounded-[2.5rem] flex flex-col transition-all ${coach.color} ${coach.textColor || 'text-black'} ${coach.shadow}`}
+              >
+                {/* Photo Placeholder */}
+                <div className="aspect-square mb-6 border-[3px] md:border-4 border-black rounded-3xl bg-gray-200 flex items-center justify-center relative overflow-hidden group">
+                  <Users className="w-12 h-12 md:w-16 md:h-16 opacity-20" />
+                  <div className="absolute inset-0 bg-yellow-400/0 group-hover:bg-yellow-400/10 transition-colors" />
+                  <div className="absolute bottom-4 right-4 bg-white border-2 border-black p-2 rounded-xl transform rotate-12">
+                    <Star className="w-5 h-5 text-black" fill="currentColor" />
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-              </div>
+
+                <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] mb-2 opacity-60 italic">{coach.specialty}</p>
+                <h3 className="text-2xl md:text-3xl font-black uppercase italic leading-none mb-2">{coach.name}</h3>
+                <div className={`self-start px-3 py-1 rounded-lg border-2 border-black text-[9px] md:text-[11px] font-black uppercase mb-6 ${idx === 2 ? 'bg-yellow-400 text-black' : 'bg-black text-white'}`}>
+                  {coach.role}
+                </div>
+                
+                <p className="text-sm md:text-[15px] font-bold leading-relaxed opacity-80 mb-8 flex-grow">
+                  {coach.bio}
+                </p>
+
+                <button className={`w-full py-4 rounded-xl border-[3px] border-black font-black text-[10px] md:text-xs uppercase tracking-widest transition-all active:translate-y-1 active:shadow-none
+                  ${idx === 2 ? 'bg-yellow-400 text-black shadow-[4px_4px_0px_0px_white]' : 'bg-white text-black shadow-[4px_4px_0px_0px_black]'}`}>
+                  View Profile
+                </button>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative py-10 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-3xl p-12 shadow-2xl">
-            <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <Award className="w-10 h-10 text-white" />
+      {/* --- ASSISTANT COACH SECTION --- */}
+      <section className="py-16 md:py-20 border-y-4 border-black bg-white">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="bg-yellow-400 border-[3px] md:border-[4px] border-black p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+            <div className="w-24 h-24 md:w-48 md:h-48 shrink-0 rounded-full border-[3px] md:border-4 border-black bg-white flex items-center justify-center shadow-[4px_4px_0px_0px_black]">
+              <Award className="w-10 h-10 md:w-16 md:h-16" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Start Your Chess Journey
-            </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Book a complimentary trial session with any of our expert coaches and experience our proven teaching methods
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                  Book Free Trial Session
-                </Button>
-              </Link>
-              <Link href="/courses">
-                <Button variant="outline" className="border-2 border-white text-white hover:bg-white/10 px-8 py-4 text-lg rounded-2xl font-semibold backdrop-blur-sm">
-                  View All Courses
-                </Button>
-              </Link>
+            <div>
+              <div className="inline-block px-3 py-1 bg-black text-white text-[9px] md:text-[10px] font-black uppercase rounded-full mb-4">Support Team</div>
+              <h2 className="text-2xl md:text-4xl font-black uppercase italic mb-6 leading-tight tracking-tighter">♟️ Assistant Coach – <br/><span className="bg-white px-2 border-2 border-black">Join Our Team</span></h2>
+              <ul className="space-y-3 md:space-y-4">
+                {["Experience in beginner & intermediate training", "Patient and engaging teaching method", "Focus on fundamentals & confidence building"].map((text, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-black shrink-0 mt-0.5" />
+                    <span className="text-sm md:text-lg font-black uppercase tracking-tight">{text}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
       </section>
+
+      {/* --- WHY OUR COACHES STAND OUT --- */}
+      <section className="py-16 md:py-24 bg-black text-white overflow-hidden relative">
+        <div className="absolute top-0 right-0 p-10 opacity-10 pointer-events-none">
+          <Trophy className="w-48 h-48 md:w-[300px] md:h-[300px]" strokeWidth={1} />
+        </div>
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-5xl font-black uppercase italic mb-4 tracking-tighter">
+              Why Our Coaches <span className="text-yellow-400 block md:inline">Stand Out.</span>
+            </h2>
+            <div className="h-1 w-16 md:w-24 bg-yellow-400 mx-auto"></div>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
+            {WHY_US.map((item, i) => (
+              <motion.div 
+                key={i}
+                whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 2 : -2 }}
+                className="bg-white text-black border-[3px] md:border-4 border-yellow-400 p-5 md:p-6 rounded-2xl flex flex-col items-center text-center shadow-[4px_4px_0px_0px_white] md:shadow-[6px_6px_0px_0px_white]"
+              >
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-yellow-400 border-2 border-black rounded-xl flex items-center justify-center mb-4 transform -rotate-6">
+                  <item.icon className="w-5 h-5 md:w-6 md:h-6" />
+                </div>
+                <p className="text-[10px] md:text-xs font-black uppercase tracking-tight leading-tight">{item.title}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- FINAL CTA --- */}
+      <section className="py-16 md:py-24 bg-white text-center">
+        <div className="container mx-auto px-6">
+          <h2 className="text-2xl md:text-5xl font-black uppercase italic mb-8 leading-tight tracking-tighter">
+            Ready to learn from <br /> the <span className="bg-yellow-400 px-2 border-2 border-black">best?</span>
+          </h2>
+          <button className="w-full sm:w-auto px-10 md:px-12 py-5 md:py-6 bg-black text-white border-[3px] md:border-4 border-black rounded-2xl font-black uppercase tracking-widest text-xs md:text-lg shadow-[6px_6px_0px_0px_rgba(253,224,71,1)] md:shadow-[10px_10px_0px_0px_rgba(253,224,71,1)] transition-all hover:translate-x-2 hover:translate-y-2 hover:shadow-none active:scale-95">
+            Book a Demo Class
+          </button>
+        </div>
+      </section>
+
     </div>
   );
 }

@@ -1,7 +1,9 @@
 "use client";
+
 import React, { useState } from "react";
-import { X, CheckCircle, Loader2 } from "lucide-react";
+import { X, CheckCircle, Loader2, Zap, Star, Send } from "lucide-react";
 import { useDemoModal } from "@/context/DemoContext";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function BookDemoModal() {
   const { isOpen, closeDemoModal } = useDemoModal();
@@ -22,8 +24,7 @@ export default function BookDemoModal() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // 1. Prepare the WhatsApp Message
-    const whatsappMessage = `*New Demo Booking - Checkmate Sensei Academy*%0A` +
+    const whatsappMessage = `*New Demo Booking - Star Chess Academy*%0A` +
       `-------------------------------------------%0A` +
       `*Student Name:* ${formData.studentName}%0A` +
       `*Parent Name:* ${formData.parentName}%0A` +
@@ -33,10 +34,9 @@ export default function BookDemoModal() {
       `*Email:* ${formData.email}%0A` +
       `-------------------------------------------`;
 
-    const whatsappUrl = `https://wa.me/918130627389?text=${whatsappMessage}`;
+    const whatsappUrl = `https://wa.me/918056082286?text=${whatsappMessage}`;
 
     try {
-      // 2. Optional: Still send to Google Sheets for your records
       await fetch("https://script.google.com/macros/s/AKfycbwPBxWXpnQ4ywqrdfmKvfFi7g5Uu6hjmaTFVDE5EiMI0YEyqjRNTCxionf65Q5Zqlg/exec", {
         method: "POST",
         mode: "no-cors",
@@ -45,8 +45,6 @@ export default function BookDemoModal() {
       });
 
       setSubmitStatus("success");
-
-      // 3. Open WhatsApp in a new tab
       window.open(whatsappUrl, "_blank");
 
       setTimeout(() => {
@@ -62,74 +60,79 @@ export default function BookDemoModal() {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] p-4">
-      <div className="bg-white rounded-3xl w-full max-w-lg relative animate-in fade-in zoom-in duration-300 shadow-2xl flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-[100] p-4 selection:bg-black selection:text-yellow-400">
+      <motion.div 
+        initial={{ scale: 0.9, y: 20, opacity: 0 }}
+        animate={{ scale: 1, y: 0, opacity: 1 }}
+        className="bg-white border-4 border-black rounded-[2.5rem] w-full max-w-lg relative shadow-[15px_15px_0px_0px_rgba(0,0,0,1)] flex flex-col max-h-[95vh] overflow-hidden"
+      >
         
         {/* Header */}
-        <div className="p-6 border-b border-gray-100 flex items-center justify-between shrink-0">
+        <div className="p-8 border-b-4 border-black bg-yellow-400 flex items-center justify-between shrink-0">
           <div>
-            <h3 className="text-2xl font-bold text-gray-900">Book Free Demo</h3>
-            <p className="text-gray-500 text-sm">We'll contact you within 24 hours</p>
+            <div className="flex items-center gap-2 mb-1">
+                <Zap size={16} fill="black" />
+                <span className="text-[10px] font-black uppercase tracking-widest">Free Entry</span>
+            </div>
+            <h3 className="text-3xl font-black text-black uppercase italic leading-none">Book Your Demo</h3>
           </div>
-          <button onClick={closeDemoModal} className="p-2 bg-gray-100 rounded-full text-gray-400 hover:text-gray-600">
-            <X className="w-5 h-5" />
+          <button 
+            onClick={closeDemoModal} 
+            className="w-12 h-12 border-4 border-black bg-white rounded-xl flex items-center justify-center hover:bg-black hover:text-white transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-1 active:translate-y-1"
+          >
+            <X size={24} strokeWidth={3} />
           </button>
         </div>
 
         {/* Form Body */}
-        <div className="p-6 overflow-y-auto">
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="p-8 overflow-y-auto no-scrollbar bg-white">
+          <form onSubmit={handleSubmit} className="space-y-6">
             
             {/* Student & Parent Name */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input 
-                placeholder="Student Name" 
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <NeubrutalistInput 
+                placeholder="STUDENT NAME *" 
                 required 
-                className="w-full px-4 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-purple-500"
                 value={formData.studentName}
-                onChange={(e) => setFormData({...formData, studentName: e.target.value})}
+                onChange={(e: any) => setFormData({...formData, studentName: e.target.value})}
               />
-              <input 
-                placeholder="Parent Name" 
+              <NeubrutalistInput 
+                placeholder="PARENT NAME *" 
                 required 
-                className="w-full px-4 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-purple-500"
                 value={formData.parentName}
-                onChange={(e) => setFormData({...formData, parentName: e.target.value})}
+                onChange={(e: any) => setFormData({...formData, parentName: e.target.value})}
               />
             </div>
 
-            {/* Email & Phone (Crucial for WhatsApp) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <input 
+            {/* Email & Phone */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <NeubrutalistInput 
                 type="email"
-                placeholder="Email Address" 
+                placeholder="EMAIL ADDRESS *" 
                 required 
-                className="w-full px-4 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-purple-500"
                 value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                onChange={(e: any) => setFormData({...formData, email: e.target.value})}
               />
-              <input 
+              <NeubrutalistInput 
                 type="tel"
-                placeholder="Phone Number" 
+                placeholder="PHONE NUMBER *" 
                 required 
-                className="w-full px-4 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-purple-500"
                 value={formData.phone}
-                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                onChange={(e: any) => setFormData({...formData, phone: e.target.value})}
               />
             </div>
             
             {/* Age & Level */}
-            <div className="grid grid-cols-2 gap-4">
-               <input 
+            <div className="grid grid-cols-2 gap-5">
+               <NeubrutalistInput 
                 type="number" 
-                placeholder="Age" 
+                placeholder="AGE *" 
                 required
-                className="w-full px-4 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-purple-500"
                 value={formData.age}
-                onChange={(e) => setFormData({...formData, age: e.target.value})}
+                onChange={(e: any) => setFormData({...formData, age: e.target.value})}
               />
               <select 
-                className="w-full px-4 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-purple-500 bg-white"
+                className="w-full px-5 py-4 border-4 border-black rounded-2xl font-black text-xs uppercase tracking-widest outline-none bg-white focus:bg-yellow-400 transition-all appearance-none cursor-pointer"
                 value={formData.experience}
                 onChange={(e) => setFormData({...formData, experience: e.target.value})}
               >
@@ -140,37 +143,44 @@ export default function BookDemoModal() {
             </div>
 
             {submitStatus === "success" && (
-              <div className="p-3 bg-emerald-50 text-emerald-700 rounded-xl flex items-center gap-2 border border-emerald-100">
-                <CheckCircle className="w-4 h-4" /> Redirecting to WhatsApp...
-              </div>
-            )}
-
-            {submitStatus === "error" && (
-              <div className="p-3 bg-red-50 text-red-700 rounded-xl flex items-center gap-2 border border-red-100">
-                Error! Please try again.
-              </div>
+              <motion.div initial={{ x: -10 }} animate={{ x: 0 }} className="p-4 bg-black text-yellow-400 border-4 border-black rounded-2xl flex items-center gap-3 font-black uppercase text-[10px] italic">
+                <CheckCircle size={18} /> Redirecting to WhatsApp...
+              </motion.div>
             )}
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3.5 rounded-xl transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+              className="w-full bg-black text-white border-4 border-black font-black uppercase italic py-5 rounded-2xl transition-all shadow-[8px_8px_0px_0px_rgba(253,224,71,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 flex items-center justify-center gap-3 active:scale-95"
             >
               {isSubmitting ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  Processing...
-                </>
+                <Loader2 className="w-6 h-6 animate-spin" />
               ) : (
-                "Confirm & Send on WhatsApp"
+                <>
+                  <Send size={20} />
+                  Confirm & WhatsApp
+                </>
               )}
             </button>
-            <p className="text-center text-[10px] text-gray-400">
-              Note: This will open WhatsApp to confirm your booking.
-            </p>
+            
+            <div className="flex items-center justify-center gap-2 pt-2">
+                <Star size={12} fill="black" />
+                <p className="text-[10px] font-black uppercase text-gray-400 tracking-tighter">
+                  Master the game with Star Chess Academy
+                </p>
+                <Star size={12} fill="black" />
+            </div>
           </form>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
+
+// Helper Sub-component for inputs
+const NeubrutalistInput = (props: any) => (
+  <input 
+    {...props}
+    className="w-full px-5 py-4 border-4 border-black rounded-2xl font-black text-xs uppercase tracking-widest outline-none bg-gray-50 focus:bg-yellow-400 transition-all placeholder:text-gray-400"
+  />
+);

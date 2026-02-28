@@ -1,175 +1,93 @@
 "use client";
 
-import React from 'react';
-import { 
-  BookOpenIcon, 
-  ClockIcon, 
-  StarIcon, 
-  UsersIcon, 
-  PhoneIcon, 
-  ArrowRightIcon, 
-  SparklesIcon
-} from './ui/BannerIcon';
+import React from "react";
+import { motion } from "framer-motion";
+import { ChevronRight, Zap, Star, Trophy } from "lucide-react";
 
-const DemoBookingCTA: React.FC = () => {
-  const benefits = [
-    {
-      icon: BookOpenIcon,
-      title: "Skill Analysis",
-      description: "Deep-dive evaluation of your current strategies.",
-      color: "text-blue-600",
-      bg: "bg-blue-600/10",
-      border: "border-blue-600/20"
-    },
-    {
-      icon: UsersIcon,
-      title: "Match Your Coach",
-      description: "Find the perfect mentor for your learning style.",
-      color: "text-purple-600",
-      bg: "bg-purple-600/10",
-      border: "border-purple-600/20"
-    },
-    {
-      icon: ClockIcon,
-      title: "Flexible Timing",
-      description: "Sessions that fit your global schedule perfectly.",
-      color: "text-pink-600",
-      bg: "bg-pink-600/10",
-      border: "border-pink-600/20"
-    },
-    {
-      icon: StarIcon,
-      title: "Custom Roadmap",
-      description: "A tailored path from Beginner to Grandmaster.",
-      color: "text-yellow-600",
-      bg: "bg-yellow-600/10",
-      border: "border-yellow-600/20"
-    },
-  ];
-
-  const steps = [
-    {
-      id: "01",
-      title: "Assessment",
-      desc: "We analyze your opening & endgame knowledge."
-    },
-    {
-      id: "02",
-      title: "Live Lesson",
-      desc: "Experience our interactive teaching method."
-    },
-    {
-      id: "03",
-      title: "Game Plan",
-      desc: "Get your personalized path to mastery."
-    }
-  ];
-
+export default function CompactCTA() {
   return (
-    <section className="relative py-16 md:py-24 bg-white overflow-hidden font-sans">
+    <section className="py-16 md:py-24 px-4 bg-white relative overflow-hidden font-sans selection:bg-yellow-400 selection:text-black">
       
-      {/* --- Cosmic Background Effects (softened for light theme) --- */}
-      <div className="absolute top-0 left-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-blue-400/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 right-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-purple-400/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
-      
-      {/* Grid Pattern Overlay (lighter) */}
-      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5"></div>
+      {/* --- BACKGROUND DECORATIONS --- */}
+      <motion.div 
+        animate={{ rotate: 360 }} 
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        className="absolute -top-10 -right-10 opacity-10 text-black pointer-events-none"
+      >
+        <Trophy className="w-[150px] h-[150px] md:w-[250px] md:h-[250px]" strokeWidth={1} />
+      </motion.div>
 
-      <div className="container mx-auto px-4 md:px-6 lg:px-12 relative z-10">
-        
-        {/* --- Header Section --- */}
-        <div className="text-center max-w-4xl mx-auto mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-gray-100 border border-gray-200 mb-6 animate-fade-in-up">
-            <SparklesIcon className="w-3.5 h-3.5 md:w-4 md:h-4 text-yellow-600" />
-            <span className="text-xs md:text-sm font-bold text-gray-700 tracking-wide uppercase">Start Your Mission</span>
-          </div>
-          
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight">
-            Ready to Make Your <br className="hidden md:block"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
-              Winning Move?
-            </span>
-          </h2>
-          
-          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
-            Don't just play the game—master it. Book your free demo today and see the difference expert coaching makes.
-          </p>
+      {/* Responsive Decal Text */}
+      <div className="absolute top-1/2 left-5 md:left-10 -translate-y-1/2 text-[5rem] md:text-[12rem] font-black text-gray-50 leading-none select-none -z-10 tracking-tighter uppercase italic">
+        GO!
+      </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 md:mt-10 w-full sm:w-auto px-4 sm:px-0">
-            <a 
-              href="/contact" 
-              className="group relative w-full sm:w-auto px-8 py-4 bg-gray-900 text-white font-bold rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 active:scale-95"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-              <span className="relative flex items-center justify-center gap-2">
-                Book Free Demo Lesson
-                <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </a>
+      <div className="max-w-5xl mx-auto relative z-10">
+        <motion.div 
+          whileHover={{ y: -5 }}
+          className="bg-black border-[3px] md:border-4 border-black rounded-[2rem] md:rounded-[3rem] p-8 md:p-14 shadow-[8px_8px_0px_0px_rgba(253,224,71,1)] md:shadow-[14px_14px_0px_0px_rgba(253,224,71,1)] relative overflow-hidden transition-all"
+        >
+          {/* Animated Background Pulse */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-400/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-10 md:gap-12">
             
-            <a 
-              href="tel:+918130627389"
-              className="group w-full sm:w-auto px-8 py-4 bg-transparent border border-gray-300 text-gray-900 font-bold rounded-xl hover:bg-gray-100 transition-all flex items-center justify-center gap-2 active:bg-gray-200"
-            >
-              <PhoneIcon className="w-5 h-5 text-blue-600" />
-              <span>Call Us</span>
-            </a>
-          </div>
-        </div>
-
-        {/* --- Benefits Grid (Holographic Cards) --- */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-16 md:mb-24 px-2 md:px-0">
-          {benefits.map((item, idx) => (
-            <div 
-              key={idx}
-              className={`group relative p-6 md:p-8 rounded-2xl border ${item.border} bg-white/70 backdrop-blur-sm shadow-md hover:shadow-xl hover:-translate-y-1 md:hover:-translate-y-2 transition-all duration-300`}
-            >
-              <div className={`w-12 h-12 md:w-14 md:h-14 rounded-xl ${item.bg} flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <item.icon className={`w-6 h-6 md:w-7 md:h-7 ${item.color}`} />
+            {/* LEFT: TEXT CONTENT */}
+            <div className="flex-1 text-center lg:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-yellow-400 border-2 border-white rounded-xl mb-6 -rotate-2 shadow-[3px_3px_0px_0px_rgba(255,255,255,0.2)]">
+                <Star className="w-3.5 h-3.5 text-black fill-current" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-black italic">Enrollment Open</span>
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2 md:mb-3">{item.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed border-t border-gray-200 pt-3">
-                {item.description}
+              
+              <h2 className="text-2xl md:text-5xl font-black text-white leading-[1.1] md:leading-none uppercase italic mb-6 tracking-tight">
+                Ready to <br className="hidden sm:block" />
+                <span className="text-yellow-400 underline decoration-white/30 decoration-4 underline-offset-8">Master</span> the Board?
+              </h2>
+              
+              <p className="text-gray-400 font-bold text-sm md:text-lg max-w-sm mx-auto lg:mx-0 leading-relaxed">
+                Join 2,500+ students globally. Start your journey from beginner to Grandmaster today.
               </p>
             </div>
-          ))}
-        </div>
 
-        {/* --- Flight Plan (What to Expect) --- */}
-        <div className="relative bg-gray-50 rounded-[2rem] border border-gray-200 p-6 md:p-12 overflow-hidden shadow-lg mx-2 md:mx-0">
-          {/* Background Glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-blue-400/50 to-transparent"></div>
-
-          <div className="text-center mb-10 md:mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900">Your First Session Flight Plan</h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 relative">
-            {/* Connecting Line (Desktop Only) */}
-            <div className="hidden md:block absolute top-8 left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-blue-300 via-blue-500 to-blue-300 z-0"></div>
-            
-            {/* Connecting Line (Mobile - Vertical) */}
-            <div className="md:hidden absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-0.5 bg-gradient-to-b from-blue-300 via-blue-500 to-blue-300 z-0 h-full opacity-30"></div>
-
-            {steps.map((step, idx) => (
-              <div key={idx} className="relative z-10 flex flex-col items-center text-center group bg-gray-50 md:bg-transparent py-2">
-                {/* Number Circle */}
-                <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white border-2 border-blue-500/40 flex items-center justify-center text-lg md:text-xl font-bold text-blue-600 shadow-lg group-hover:border-blue-600 group-hover:scale-110 transition-all duration-300 mb-4 md:mb-6 relative">
-                  {step.id}
-                  {/* Pulse Effect */}
-                  <div className="absolute inset-0 rounded-full bg-blue-500/20 animate-ping opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            {/* RIGHT: ACTION BOX */}
+            <div className="flex flex-col items-center lg:items-end gap-6 w-full lg:w-auto">
+              <button className="group relative w-full sm:w-auto px-8 md:px-12 py-5 md:py-6 bg-yellow-400 border-[3px] md:border-4 border-black text-black font-black uppercase tracking-[0.2em] text-xs md:text-sm rounded-2xl shadow-[5px_5px_0px_0px_rgba(255,255,255,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all flex items-center justify-center gap-3 active:scale-95">
+                Get Started Now
+                <ChevronRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+              </button>
+              
+              <div className="flex items-center gap-3">
+                <div className="flex -space-x-3">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-black bg-gray-800 overflow-hidden shadow-[2px_2px_0px_0px_rgba(253,224,71,1)]">
+                      <img src={`https://i.pravatar.cc/100?u=starchess${i}`} alt="User" className="w-full h-full object-cover" />
+                    </div>
+                  ))}
                 </div>
-
-                <h4 className="text-lg md:text-xl font-bold text-gray-900 mb-2">{step.title}</h4>
-                <p className="text-gray-600 text-sm max-w-[200px] leading-relaxed">{step.desc}</p>
+                <div className="text-left">
+                  <p className="text-[9px] md:text-[10px] font-black uppercase text-white tracking-widest leading-none">
+                    Join the Elite
+                  </p>
+                  <p className="text-[9px] md:text-[10px] font-black uppercase text-yellow-500 tracking-widest mt-1">
+                    +12 joined today
+                  </p>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
 
+          </div>
+
+          {/* DECORATIVE STAMP - Scaled for Tablet/Desktop */}
+          <div className="absolute -bottom-8 -left-8 hidden lg:block group-hover:rotate-0 transition-transform duration-500">
+            <div className="w-24 h-24 md:w-32 md:h-32 bg-white border-4 border-black rounded-full flex flex-col items-center justify-center rotate-12 shadow-[6px_6px_0px_0px_rgba(253,224,71,1)]">
+              <Zap className="w-6 h-6 md:w-8 md:h-8 text-black fill-yellow-400" />
+              <p className="text-[9px] md:text-[11px] font-black uppercase mt-1">Instant</p>
+              <p className="text-[9px] md:text-[11px] font-black uppercase leading-none">Access</p>
+            </div>
+          </div>
+
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default DemoBookingCTA;
+}

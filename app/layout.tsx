@@ -11,14 +11,14 @@ import BookDemoModal from "@/components/BookDemoModal"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Checkmate Sensei Academy | Professional Chess Coaching for Kids",
-  description: "Nurturing young minds through strategic chess training. Founded by International Rated Coach Vivek Singh. Expert-led 1:1 and group classes for ages 6-16.",
-  keywords: ["Chess Academy Indirapuram", "Online Chess Classes", "Vivek Singh Chess", "Checkmate Sensei", "FIDE Rated Coaches"],
+  title: "Star Chess Academy | Professional Chess Coaching for Kids",
+  description: "Nurturing young minds through strategic chess training. Founded by International Rated Coach Raghava M.. Expert-led 1:1 and group classes for ages 6-16.",
+  keywords: ["Chess Academy Indirapuram", "Online Chess Classes", "Raghava M. Chess", "Star Chess", "FIDE Rated Coaches"],
   openGraph: {
-    title: "Checkmate Sensei Academy",
+    title: "Star Chess Academy",
     description: "Transform your child into a strategic thinker. Book a free demo class today.",
-    url: "https://checkmatesensei.com",
-    siteName: "Checkmate Sensei Academy",
+    url: "https://starchess.in",
+    siteName: "Star Chess Academy",
     locale: "en_IN",
     type: "website",
   },
@@ -39,30 +39,30 @@ export default function RootLayout({
         {
           "@context": "https://schema.org",
           "@type": "SportsOrganization",
-          "name": "Checkmate Sensei Academy",
-          "url": "https://checkmatesensei.com",
-          "logo": "https://checkmatesensei.com/logo.png",
+          "name": "Star Chess Academy",
+          "url": "https://starchess.in",
+          "logo": "https://starchess.in/logo.png",
           "founder": {
             "@type": "Person",
-            "name": "Vivek Singh"
+            "name": "Raghava M."
           },
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "915A, Niti Khand I, Indirapuram",
-            "addressLocality": "Ghaziabad",
-            "addressRegion": "UP",
-            "postalCode": "201014",
+            "streetAddress": "Thazhambur",
+            "addressLocality": "Chennai",
+            "addressRegion": "Tamil Nadu 603302",
+            "postalCode": "603302",
             "addressCountry": "IN"
           },
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+91-8130627389",
+            "telephone": "+91-8056082286",
             "contactType": "customer service",
-            "email": "checkmatesensei@gmail.com"
+            "email": "info@starchess.in"
           },
           "sameAs": [
-            "https://www.facebook.com/checkmatesensei",
-            "https://www.instagram.com/checkmatesensei"
+            "https://www.facebook.com/starchess",
+            "https://www.instagram.com/starchess"
           ]
         }
         `}

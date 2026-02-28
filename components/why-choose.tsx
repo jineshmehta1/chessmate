@@ -1,153 +1,157 @@
 "use client";
 
 import React from 'react';
-import { Award, TrendingUp, BookOpen, Users } from 'lucide-react';
+import { Target, TrendingUp, Search, Trophy, Star, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function WhyChooseUsSection() {
-  // Theme Colors (Adapted to Hero Theme: Slate/Indigo/Violet)
-  const colors = {
-    primaryIndigo: '#4F46E5',     // indigo-600
-    textDark: '#0F172A',          // slate-900
-    textMuted: '#475569',         // slate-600
-    cardBg: '#FFFFFF',            // white
-    cardBorder: '#E0E7FF',        // indigo-100
-  };
-
   const benefits = [
     {
-      title: 'Experienced Coaches',
-      description: 'Learn from FIDE-rated masters with years of teaching experience.',
-      icon: <Users className="w-6 h-6 md:w-8 md:h-8 text-indigo-600" />, 
-      bgClass: 'bg-indigo-50', 
-      accentClass: 'bg-indigo-500', 
+      title: 'Structured Levels',
+      description: 'Clear pathways from Beginner to Tournament Prep with measurable progress.',
+      icon: <Target className="w-6 h-6 md:w-7 md:h-7" strokeWidth={2.5} />, 
+      color: "bg-white",
     },
     {
-      title: 'Proven Results',
-      description: 'Students achieve higher ratings and win tournaments consistently.',
-      icon: <Award className="w-6 h-6 md:w-8 md:h-8 text-violet-600" />,
-      bgClass: 'bg-violet-50',
-      accentClass: 'bg-violet-500',
+      title: 'Growth Tracking',
+      description: 'Detailed monthly performance reports to ensure continuous accountability.',
+      icon: <TrendingUp className="w-6 h-6 md:w-7 md:h-7" strokeWidth={2.5} />,
+      color: "bg-yellow-400",
     },
     {
-      title: 'Structured Curriculum',
-      description: 'Progressive lessons tailored from beginner to grandmaster levels.',
-      icon: <BookOpen className="w-6 h-6 md:w-8 md:h-8 text-blue-600" />,
-      bgClass: 'bg-blue-50',
-      accentClass: 'bg-blue-500',
+      title: 'Personal Analysis',
+      description: 'Deep-dive reviews of your games to identify and fix strategic weaknesses.',
+      icon: <Search className="w-6 h-6 md:w-7 md:h-7" strokeWidth={2.5} />,
+      color: "bg-white",
     },
     {
-      title: 'Supportive Community',
-      description: 'Join a vibrant network of passionate chess learners.',
-      icon: <TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-teal-600" />,
-      bgClass: 'bg-teal-50',
-      accentClass: 'bg-teal-500',
+      title: 'Tournament Prep',
+      description: 'Expert guidance on opening repertoires, time management, and mindset.',
+      icon: <Trophy className="w-6 h-6 md:w-7 md:h-7" strokeWidth={2.5} />,
+      color: "bg-yellow-400",
     },
   ];
 
   return (
-    <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-slate-50 font-sans">
+    <section className="py-16 md:py-24 px-4 relative overflow-hidden bg-white font-sans selection:bg-black selection:text-yellow-400 border-t-8 border-black">
       
-      {/* Background Pattern */}
-      <div 
-        className="absolute inset-0 z-0 opacity-[0.03]" 
-        style={{ backgroundImage: 'radial-gradient(#4f46e5 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
-      </div>
+      {/* --- BACKGROUND ELEMENTS --- */}
+      <motion.div 
+        animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -bottom-10 -left-10 w-48 md:w-72 h-48 md:h-72 rounded-full bg-yellow-400/10 border border-yellow-400/30 z-0" 
+      />
+      <motion.div 
+        animate={{ scale: [1, 1.1, 1] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-10 left-[5%] w-12 h-12 md:w-16 md:h-16 rounded-full bg-yellow-400 z-0 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] border border-black hidden sm:block" 
+      />
 
-      {/* Abstract Blobs (Adjusted size for mobile) */}
-      <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-200/40 rounded-full blur-3xl filter opacity-50 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-teal-200/40 rounded-full blur-3xl filter opacity-50 pointer-events-none"></div>
-
-      <div className="relative max-w-7xl mx-auto text-center z-10">
+      <div className="relative max-w-6xl mx-auto z-10">
         
-        {/* Headline */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-16 text-slate-900 tracking-tight">
-          Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">Us?</span>
-        </h2>
-
-        {/* Flex container with wrapping */}
-        <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-6 md:gap-8 lg:gap-12 relative">
+        {/* --- HEADING --- */}
+        <div className="text-center mb-12 md:mb-20">
+          <div className="flex items-center justify-center gap-3 mb-4 md:mb-6">
+            <Zap className="fill-yellow-400" size={18} />
+            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] text-black italic">The Star Advantage</span>
+          </div>
           
-          {/* Central Knight Image */}
-          {/* Mobile: Order 1 (Top), Desktop: Order 2 (Center) */}
-          <div className="w-full md:w-auto flex justify-center items-center order-1 md:order-2 group cursor-pointer mb-4 md:mb-0">
-            <div className="relative">
-              {/* Glow Effect */}
-              <div className="absolute inset-0 bg-indigo-500/20 rounded-full blur-3xl group-hover:bg-violet-500/30 transition-colors duration-500" />
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-black text-black leading-none uppercase italic tracking-tighter mb-6 md:mb-8 px-2">
+            WHY CHOOSE {" "}
+            <span className="text-white block sm:inline-block [-webkit-text-stroke:1.5px_black] md:[-webkit-text-stroke:2px_black] drop-shadow-[4px_4px_0px_rgba(253,224,71,1)]">STAR CHESS</span> <br className="hidden sm:block" />
+            <span className="relative inline-block bg-black text-white px-4 md:px-6 py-2 mt-4 rotate-0 sm:rotate-[-1deg] border-4 border-black shadow-[6px_6px_0px_0px_rgba(253,224,71,1)] md:shadow-[10px_10px_0px_0px_rgba(253,224,71,1)]">
+              ACADEMY?
+            </span>
+          </h2>
+
+          <p className="max-w-xl mx-auto text-gray-600 font-bold text-base md:text-lg leading-tight px-4">
+            "We don’t just teach moves — we build strategic thinkers. Our mission is to turn passion into performance."
+          </p>
+        </div>
+
+        {/* --- GRID LAYOUT --- */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 items-center">
+          
+          {/* Left Column (Benefits 1 & 2) */}
+          <div className="space-y-6 md:space-y-8 order-2 lg:order-1">
+            <BenefitCard benefit={benefits[0]} />
+            <BenefitCard benefit={benefits[1]} />
+          </div>
+
+          {/* Center Piece (The Lion) */}
+          <div className="flex justify-center order-1 lg:order-2 py-4 md:py-8 scale-90 sm:scale-100">
+            <div className="relative group">
+              {/* Rotating outer border */}
+              <div className="absolute inset-[-15px] md:inset-[-20px] border-2 border-dashed border-black/10 rounded-full animate-[spin_30s_linear_infinity]" />
               
-              <img
-                src="/central.png" 
-                alt="Chess Knight"
-                className="w-40 h-40 sm:w-56 sm:h-56 lg:w-72 lg:h-72 object-contain z-10 relative transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3 drop-shadow-2xl"
-              />
+              <div className="relative bg-yellow-400 border-4 border-black rounded-full p-6 md:p-8 shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] group-hover:shadow-none group-hover:translate-x-1 group-hover:translate-y-1 transition-all duration-300">
+                <img
+                  src="/lion.png" 
+                  alt="Chess Lion"
+                  className="w-36 h-36 sm:w-44 sm:h-44 md:w-56 md:h-56 object-contain grayscale hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                />
+              </div>
+
+              <motion.div 
+                animate={{ rotate: [12, -12, 12] }}
+                transition={{ duration: 5, repeat: Infinity }}
+                className="absolute -bottom-2 -right-2 md:-bottom-4 md:-right-4 bg-black text-white px-3 py-1.5 md:px-4 md:py-2 border-2 border-yellow-400 rounded-xl font-black text-[10px] md:text-xs uppercase tracking-widest shadow-lg"
+              >
+                PRO PATH
+              </motion.div>
             </div>
           </div>
 
-          {/* Card 1: Experienced Coaches */}
-          {/* Mobile: Order 2, Desktop: Order 1 (Left Top) */}
-          <div className="w-full md:w-80 flex justify-center order-2 md:order-1 md:justify-end">
-            <BenefitCard benefit={benefits[0]} colors={colors} />
+          {/* Right Column (Benefits 3 & 4) */}
+          <div className="space-y-6 md:space-y-8 order-3">
+            <BenefitCard benefit={benefits[2]} />
+            <BenefitCard benefit={benefits[3]} />
           </div>
 
-          {/* Card 2: Proven Results */}
-          {/* Mobile: Order 3, Desktop: Order 3 (Left Bottom) */}
-          <div className="w-full md:w-80 flex justify-center order-3 md:order-3 md:justify-start">
-            <BenefitCard benefit={benefits[1]} colors={colors} />
-          </div>
+        </div>
 
-          {/* Card 3: Structured Curriculum */}
-          {/* Mobile: Order 4, Desktop: Order 4 (Right Top) */}
-          <div className="w-full md:w-80 flex justify-center order-4 md:order-4 md:justify-end">
-            <BenefitCard benefit={benefits[2]} colors={colors} />
-          </div>
-
-          {/* Card 4: Supportive Community */}
-          {/* Mobile: Order 5, Desktop: Order 5 (Right Bottom) */}
-          <div className="w-full md:w-80 flex justify-center order-5 md:order-5 md:justify-start">
-            <BenefitCard benefit={benefits[3]} colors={colors} />
-          </div>
-
+        {/* Bottom Tagline */}
+        <div className="mt-12 md:mt-16 text-center px-4">
+            <span className="inline-block bg-gray-100 text-black px-4 md:px-6 py-2.5 md:py-3 rounded-full font-black text-[9px] md:text-[10px] uppercase tracking-[0.15em] md:tracking-widest border-2 border-black leading-tight">
+                Interactive and engaging classes for all ages
+            </span>
         </div>
       </div>
     </section>
   );
 }
 
-// Reusable Card with Hover Animation
-function BenefitCard({ benefit, colors }: any) {
+function BenefitCard({ benefit }: { benefit: any }) {
   return (
-    <div
-      className="
-        group p-6 md:p-8 rounded-[2rem] shadow-xl shadow-indigo-900/10 flex flex-col items-center text-center border
-        w-full max-w-sm md:max-w-none transition-all duration-300 ease-out relative overflow-hidden
-        hover:scale-105 hover:shadow-2xl hover:shadow-indigo-900/20 hover:-translate-y-2 cursor-pointer bg-white
-      "
-      style={{
-        borderColor: colors.cardBorder,
-      }}
+    <motion.div
+      whileHover={{ y: -5, x: 5 }}
+      className={`
+        relative p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] border-4 border-black bg-white
+        shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all
+        hover:shadow-none hover:translate-x-1 hover:translate-y-1
+        cursor-default group
+      `}
     >
-      {/* Top Border Accent */}
-      <div className={`absolute top-0 left-0 w-full h-1.5 ${benefit.accentClass}`} />
-
-      {/* Icon Circle */}
-      <div
-        className={`mb-4 md:mb-6 flex items-center justify-center rounded-2xl w-14 h-14 md:w-16 md:h-16 shadow-sm transition-transform duration-300 group-hover:scale-110 ${benefit.bgClass}`}
-      >
+      <div className={`
+        w-12 h-12 md:w-14 md:h-14 p-2.5 rounded-xl md:rounded-2xl border-4 border-black flex items-center justify-center mb-4 md:mb-6 
+        transition-transform group-hover:rotate-12
+        ${benefit.color} shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+      `}>
         {benefit.icon}
       </div>
 
-      <h3
-        className="text-lg md:text-2xl font-bold mb-2 md:mb-3 transition-colors duration-300"
-        style={{ color: colors.textDark }}
-      >
+      <h3 className="text-xl md:text-2xl font-black uppercase italic mb-2 md:mb-3 text-black leading-none tracking-tighter">
         {benefit.title}
       </h3>
       
-      <p 
-        className="text-sm md:text-base leading-relaxed font-medium" 
-        style={{ color: colors.textMuted }}
-      >
+      <p className="text-xs md:text-sm font-bold text-gray-500 leading-snug">
         {benefit.description}
       </p>
-    </div>
+
+      {/* Decorative Star Icon */}
+      <div className="absolute top-4 right-4 md:top-6 md:right-6 opacity-5 group-hover:opacity-20 transition-opacity">
+        <Star size={18} fill="black" />
+      </div>
+    </motion.div>
   );
 }

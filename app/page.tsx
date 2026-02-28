@@ -6,6 +6,7 @@ import  FaqSection  from "@/components/stats-section"
 import  FeaturesSection  from "@/components/features-section"
 import AchievementsSection from "@/components/ui/AchievementsSection"
 import WhyChooseUsSection from "@/components/why-choose"
+import DifferenceSection from "@/components/ui/diff"
 
 
 export default function HomePage() {
@@ -14,9 +15,10 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <WhyChooseUsSection/>
-        <AchievementsSection/>
         <CoursesSection />
+        <AchievementsSection/>
         <TestimonialsSection />
+        <DifferenceSection/>
         <FaqSection />
         <DemoBookingCTA />
       </main>

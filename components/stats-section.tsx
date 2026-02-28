@@ -1,168 +1,186 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { 
-  ChevronRight, 
-  MessageCircle, 
-  ChevronDown 
+  Plus, 
+  Minus,
+  HelpCircle,
+  Star,
+  Zap,
+  MessageSquare,
+  ArrowRight
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-// --- FAQ Data ---
 const faqData = [
   {
-    question: "Why online chess is better?",
-    answer:
-      "Online chess offers accessibility from anywhere, flexibility in scheduling, instant analysis tools, and the ability to play against opponents globally without travel costs.",
+    question: "What is Star Chess Academy?",
+    answer: "Star Chess Academy is a professional training institute focused on developing strategic thinking, competitive skills, and tournament performance. We guide students systematically from Beginner to Advanced levels.",
   },
   {
-    question: "What is the right age to start?",
-    answer:
-      "5 to 7 years old is considered the ideal age to start. Chess helps young children develop concentration, pattern recognition, and patience early in their development.",
+    question: "Who can join the Academy?",
+    answer: "We train kids (5+ years), absolute beginners, intermediate players, and advanced tournament-rated players. Anyone with a passion for the game is welcome!",
   },
   {
-    question: "Why Checkmate Sensei Academy?",
-    answer:
-      "We offer FIDE-rated trainers, a structured curriculum, regular tournaments, and a fun, interactive learning environment tailored specifically for children.",
+    question: "Do you offer online classes?",
+    answer: "Yes! We provide live interactive online classes, online camps, and hybrid training programs to suit your convenience from anywhere in the world.",
   },
   {
-    question: "Do we get a completion certificate?",
-    answer:
-      "Yes, every student receives a certificate of completion upon finishing their specific level and passing the assessment.",
+    question: "How are the classes structured?",
+    answer: "Our training covers Tactical Training, Opening Preparation, Middlegame Strategy, Endgame Mastery, Puzzle Solving, and Game Analysis. We focus on the 'thinking process' rather than just memorization.",
+  },
+  {
+    question: "What is the class duration and schedule?",
+    answer: "Sessions typically last 45 to 60 minutes. Most students have 2–3 classes per week. We also offer weekend special workshops and custom schedules for professionals.",
+  },
+  {
+    question: "Do you provide personal 1-on-1 coaching?",
+    answer: "Yes, we offer 1-on-1 private coaching, small group sessions, and elite performance training for those looking for rapid improvement.",
+  },
+  {
+    question: "How do you track student progress?",
+    answer: "We monitor rating improvement, tactical accuracy, and tournament results. Parents receive regular updates based on monthly assessments and game analysis performance.",
+  },
+  {
+    question: "Do students participate in tournaments?",
+    answer: "Absolutely. We guide students for District, State, National, and FIDE rated tournaments, and conduct our own inter-academy events to build competitive confidence.",
+  },
+  {
+    question: "What makes Star Chess different?",
+    answer: "Our structured 'Beginner to Master' pathway, focus on the psychological side of the game, personalized feedback, and consistent tournament exposure set us apart.",
+  },
+  {
+    question: "What are the fees?",
+    answer: "Fees vary based on group vs. private training and the level of coaching required. Contact us via Phone or WhatsApp for a customized plan that fits your goals.",
+  },
+  {
+    question: "How can I enroll?",
+    answer: "You can fill out our registration form on the website, book a free trial class, or contact us directly via WhatsApp to get started immediately.",
+  },
+  {
+    question: "Do you offer a free trial?",
+    answer: "Yes! We offer a trial session to assess the student's current level, explain our methodology, and recommend the right program for their journey.",
   },
 ];
 
-export default function FaqSection() {
+export default function PremiumFaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const toggleAccordion = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
-    <section className="relative min-h-screen bg-white py-12 lg:py-24 font-sans overflow-hidden">
+    <section className="relative py-16 md:py-24 bg-white font-sans overflow-hidden selection:bg-yellow-400">
       
-      {/* --- Abstract Floating Dot (Top Center) --- */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#5C4EE5] rounded-full opacity-80" />
+      {/* --- BACKGROUND ELEMENTS --- */}
+      <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 5, repeat: Infinity }} className="absolute top-10 left-[5%] w-12 h-12 md:w-16 md:h-16 rounded-full bg-yellow-400 border-4 border-black z-0 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" />
+      
+      {/* Ghost Decal - Responsive Font */}
+      <div className="absolute top-1/2 left-5 md:left-10 -translate-y-1/2 text-[6rem] md:text-[15rem] font-black text-gray-50 leading-none select-none -z-10 tracking-tighter uppercase italic opacity-60">
+        HELP
+      </div>
 
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           
-          {/* --- LEFT COLUMN: FAQ Content --- */}
-          {/* Mobile: Order 2 (Bottom), Desktop: Order 1 (Left) */}
+          {/* --- LEFT COLUMN: CONTENT --- */}
           <div className="order-2 lg:order-1">
-            
-            {/* Badge */}
-            <div className="inline-block px-4 py-1.5 rounded-full bg-[#F3F0FF] mb-4 lg:mb-6">
-              <span className="text-[#5C4EE5] font-semibold text-xs md:text-sm uppercase tracking-wider">FAQ's</span>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-[2px] w-8 bg-black"></div>
+              <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] text-black">Support Center</span>
             </div>
-
-            {/* Title */}
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F172A] mb-8 lg:mb-10 leading-tight">
-              Frequently Asked <br className="hidden md:block"/> Questions
+            
+            <h2 className="text-2xl md:text-5xl font-black text-black leading-tight md:leading-none uppercase italic mb-10">
+              Frequently Asked <br />
+              <span className="text-white block md:inline [-webkit-text-stroke:1.5px_black] md:[-webkit-text-stroke:2px_black] drop-shadow-[4px_4px_0px_rgba(253,224,71,1)]">QUESTIONS.</span>
             </h2>
 
-            {/* Accordion Items */}
-            <div className="space-y-3 lg:space-y-4">
+            <div className="space-y-4 max-h-[700px] overflow-y-auto pr-2 no-scrollbar">
               {faqData.map((item, index) => (
                 <div 
-                  key={index} 
-                  className="bg-[#F8F9FA] rounded-xl lg:rounded-2xl overflow-hidden transition-all duration-300 border border-transparent hover:border-gray-200"
+                  key={index}
+                  className={`border-4 border-black rounded-2xl overflow-hidden transition-all duration-300 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 ${openIndex === index ? 'bg-yellow-400' : 'bg-white'}`}
                 >
                   <button
-                    onClick={() => toggleAccordion(index)}
-                    className="w-full flex items-center justify-between p-4 md:p-6 text-left focus:outline-none group select-none"
+                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                    className="w-full flex items-center justify-between p-5 md:p-6 text-left group"
                   >
-                    <span className={`text-[#0F172A] font-bold text-sm md:text-lg pr-4 transition-colors ${openIndex === index ? 'text-[#5C4EE5]' : ''}`}>
+                    <span className="text-black font-black uppercase italic text-xs md:text-lg pr-4 tracking-tight leading-tight">
                       {item.question}
                     </span>
-                    <div className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-transform duration-300 bg-white shadow-sm ${openIndex === index ? 'rotate-90 bg-[#5C4EE5] text-white' : 'rotate-0 text-[#0F172A]'}`}>
-                      <ChevronRight className="w-4 h-4 md:w-5 md:h-5" strokeWidth={3} />
+                    <div className={`flex-shrink-0 w-8 h-8 rounded-lg border-2 border-black flex items-center justify-center transition-all bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${openIndex === index ? 'bg-black text-white' : ''}`}>
+                      {openIndex === index ? <Minus className="w-4 h-4 md:w-5 md:h-5" strokeWidth={4} /> : <Plus className="w-4 h-4 md:w-5 md:h-5" strokeWidth={4} />}
                     </div>
                   </button>
                   
-                  {/* Answer */}
-                  <div 
-                    className={`px-4 md:px-6 transition-[max-height,opacity,padding] duration-500 ease-in-out overflow-hidden ${
-                      openIndex === index 
-                        ? "max-h-[500px] pb-4 md:pb-6 opacity-100" // Increased max-h for mobile wrapping
-                        : "max-h-0 opacity-0"
-                    }`}
-                  >
-                    <p className="text-gray-600 text-sm md:text-base leading-relaxed">
-                      {item.answer}
-                    </p>
-                  </div>
+                  <AnimatePresence>
+                    {openIndex === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                      >
+                        <div className="px-5 md:px-6 pb-6">
+                          <div className="h-[2px] w-full bg-black/10 mb-4" />
+                          <p className="text-black font-bold text-xs md:text-base leading-relaxed opacity-90">
+                            {item.answer}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               ))}
             </div>
+
+            {/* Bottom CTA */}
+            <div className="mt-10 flex items-center gap-4 p-6 border-4 border-dashed border-black/20 rounded-3xl bg-gray-50/50">
+                <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center shrink-0">
+                   <MessageSquare className="text-yellow-400 w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xs md:text-sm font-black uppercase tracking-tight">Still have questions?</p>
+                  <button className="text-yellow-600 font-black uppercase text-[10px] md:text-xs flex items-center gap-2 hover:gap-3 transition-all">
+                     Chat with a coach <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+            </div>
           </div>
 
-          {/* --- RIGHT COLUMN: Image & Graphics --- */}
-          {/* Mobile: Order 1 (Top), Desktop: Order 2 (Right) */}
-          <div className="order-1 lg:order-2 relative flex justify-center lg:justify-end mb-8 lg:mb-0">
-            <div className="relative w-full max-w-[350px] md:max-w-[450px] lg:max-w-[500px] mx-auto">
+          {/* --- RIGHT COLUMN: IMAGE --- */}
+          <div className="order-1 lg:order-2 lg:sticky lg:top-32">
+            <div className="relative group max-w-md mx-auto lg:max-w-none">
+              {/* Outer Decorative Ring */}
+              <div className="absolute inset-[-15px] md:inset-[-20px] border-4 border-dashed border-black/10 rounded-[3rem] animate-[spin_30s_linear_infinity]" />
               
-              {/* SVG Graphic: Pink Sun (Top Left) */}
-              <div className="absolute -top-4 -left-4 md:-top-6 md:-left-8 z-0 scale-75 md:scale-100">
-                <svg width="60" height="60" viewBox="0 0 50 50" fill="none">
-                  <circle cx="25" cy="25" r="10" stroke="#FF00CC" strokeWidth="2.5" />
-                  <path d="M25 5L25 10M25 40L25 45M45 25L40 25M10 25L5 25M39.14 10.86L35.6 14.4M14.4 35.6L10.86 39.14M39.14 39.14L35.6 35.6M14.4 14.4L10.86 10.86" stroke="#FF00CC" strokeWidth="2.5" strokeLinecap="round" />
-                </svg>
-              </div>
-
-              {/* SVG Graphic: Teal Squiggle (Top Right) */}
-              <div className="absolute -top-8 -right-2 md:-top-12 md:-right-4 z-0 scale-75 md:scale-100">
-                <svg width="80" height="40" viewBox="0 0 100 40" fill="none">
-                  <path d="M5 25C15 5 25 35 35 25C45 15 55 35 65 25C75 15 85 35 95 20" stroke="#00CC99" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-
-              {/* Main Image */}
-              <div className="relative z-10 w-full h-auto">
-                {/* 
-                   Replace 'knight-think.png' with your actual image path.
-                   Make sure the image is in the /public folder of your Next.js project.
-                */}
+              {/* Image Container */}
+              <div className="relative border-4 border-black rounded-[3rem] overflow-hidden shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] md:shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] bg-white transition-all duration-500">
                 <img 
-                  src="/knight-think.png" 
-                  alt="Cartoon Knight Thinking"
-                  className="w-full h-auto object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
+                  src="/faq.png" 
+                  alt="Starchess Training"
+                  className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700 grayscale-[20%] hover:grayscale-0"
                 />
+                
+                {/* Floating Badge */}
+                <div className="absolute top-6 left-6 bg-yellow-400 border-2 border-black px-4 py-3 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] rotate-[-5deg]">
+                  <HelpCircle className="w-6 h-6 md:w-8 md:h-8 text-black" />
+                </div>
+
+
+              </div>
+
+              {/* Decorative Star */}
+              <div className="absolute -bottom-8 -left-8 md:-bottom-10 md:-left-10 w-20 h-20 md:w-24 md:h-24 bg-white border-4 border-black rounded-full flex items-center justify-center shadow-lg -rotate-12">
+                <Star className="w-8 h-8 md:w-10 md:h-10 text-yellow-500" fill="currentColor" />
               </div>
             </div>
           </div>
+
         </div>
       </div>
-
-      {/* --- FIXED FLOATING BUTTONS --- */}
-
-      {/* WhatsApp Chat Button (Optional - Uncomment if needed) */}
-      {/* <div className="fixed bottom-6 left-6 z-50 animate-bounce-slow">
-        <a 
-          href="https://wa.me/1234567890" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="bg-[#25D366] hover:bg-[#20b858] text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-2 font-semibold transition-transform hover:scale-105"
-        >
-          <MessageCircle className="w-5 h-5 fill-white" />
-          <span className="hidden md:inline">Chat</span>
-        </a>
-      </div> */}
-
-      {/* Scroll to Top Button */}
-      <button 
-        onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-50 w-10 h-10 md:w-12 md:h-12 bg-[#5C4EE5] hover:bg-[#4a3ec2] rounded-full flex items-center justify-center shadow-lg transition-transform hover:-translate-y-1 active:scale-95"
-        aria-label="Scroll to top"
-      >
-        <ChevronDown className="w-5 h-5 md:w-6 md:h-6 text-white rotate-180" strokeWidth={2.5} />
-      </button>
-
+      
+      <style jsx global>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
     </section>
   );
 }

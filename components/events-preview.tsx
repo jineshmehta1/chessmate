@@ -1,168 +1,155 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { ChevronRight, Star, MessageCircle, ArrowUp } from "lucide-react";
+import { 
+  Trophy, 
+  Gamepad2, 
+  Puzzle, 
+  Zap, 
+  FileText, 
+  BarChart3, 
+  ChevronRight,
+  Star
+} from "lucide-react";
+import { motion } from "framer-motion";
 
-// --- Course Data ---
-const courses = [
+const COURSES = [
   {
-    title: "Beginner",
-    stars: 1,
-    topics: [
-      "Chess Board, Pieces and Notation",
-      "Opening principles",
-      "Principle of developments",
-      "Forks, Pins, Double Check, Skewer etc.",
-      "Checks and threats",
-      "King safety",
-      "Strategy (basics)",
-      "Stalemate",
-      "Fools Mate and Scholars Mate",
-    ],
+    level: "Phase 01",
+    title: "Beginner Course",
+    description: "Understanding game rules, basic ideas and the ability to play confidently.",
+    outcomes: ["32 Live classes", "12+ Online Tournaments", "300+ Puzzles", "24/7 Platform Access", "Assignments"],
+    color: "bg-white",
+    shadow: "shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]",
+    tag: "Fundamentals"
   },
   {
+    level: "Phase 02",
+    title: "Advanced Beginner",
+    description: "Improving checkmate skills, tactical awareness, and mindset for tournaments.",
+    outcomes: ["48 Live classes", "12 Online Tournaments", "600+ Puzzles", "24/7 Platform Access", "Assignments"],
+    color: "bg-yellow-400",
+    shadow: "shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]",
+    tag: "Tactician"
+  },
+  {
+    level: "Phase 03",
     title: "Intermediate",
-    stars: 2,
-    topics: [
-      "Imagination in chess",
-      "Middlegame plans",
-      "Zugzwang ideas!",
-      "Opposition and Distant Opposition",
-      "Bishop vs Knight (Open and closed positions)",
-      "Learning from the mistake series",
-      "Playing Sessions with Deep Analysis",
-      "Smothered Mate, Boden’s Mate",
-    ],
+    description: "Calculation, attacking ideas, visualization, and strategic planning.",
+    outcomes: ["64 Live classes", "12 Online Tournaments", "900+ Puzzles", "24/7 Platform Access", "Assignments", "Monthly Leaderboard"],
+    color: "bg-black",
+    textColor: "text-white",
+    shadow: "shadow-[6px_6px_0px_0px_rgba(253,224,71,1)]",
+    tag: "Strategist"
   },
   {
-    title: "Advanced",
-    stars: 3,
-    topics: [
-      "Prophylaxis Thinking",
-      "Static and dynamic advantages and how to play with or against it!",
-      "Playing Against Different Openings",
-      "Opening Theory and Novelties",
-      "Endgame studies!",
-      "All sorts of pawn structure with modern theory!",
-      "Initiative and critical points",
-    ],
-  },
+    level: "Phase 04",
+    title: "Advanced Intermediate",
+    description: "Mastery of strategy, positional play, visualization, and endgame execution.",
+    outcomes: ["96 Live classes", "12 Online Tournaments", "900+ Puzzles", "24/7 Platform Access", "Assignments", "Monthly Leaderboard"],
+    color: "bg-white",
+    shadow: "shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]",
+    tag: "Expert"
+  }
 ];
 
-export default function CoursesSection() {
-  
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
+export default function CourseCurriculum() {
   return (
-    <section className="relative bg-white py-8 lg:py-12 font-sans overflow-hidden">
+    <section className="py-20 bg-white relative overflow-hidden font-sans">
       
-      {/* --- Floating Decorative Dot (Purple) --- */}
+      {/* --- BACKGROUND ELEMENTS --- */}
+      <div className="absolute top-10 left-10 text-[10rem] font-black text-gray-50 leading-none select-none -z-10 tracking-tighter uppercase italic">
+        CHESS
+      </div>
+      
+      {/* 5 Background Circles */}
+      <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 5, repeat: Infinity }} className="absolute top-20 left-[5%] w-12 h-12 rounded-full bg-yellow-400 border-2 border-black z-0" />
+      <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 4, repeat: Infinity }} className="absolute bottom-20 right-[5%] w-32 h-32 rounded-full border-2 border-dashed border-black/10 z-0" />
+      <div className="absolute top-1/2 right-[-20px] w-20 h-20 rounded-full bg-black/5 z-0" />
+      <motion.div animate={{ x: [0, 30, 0] }} transition={{ duration: 7, repeat: Infinity }} className="absolute top-1/4 right-[20%] w-4 h-4 rounded-full bg-black z-0" />
+      <div className="absolute bottom-10 left-[15%] w-40 h-40 rounded-full bg-yellow-400/10 z-0" />
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         
-        {/* --- Header --- */}
-        <div className="mb-16">
-          <div className="inline-block px-5 py-1.5 rounded-full bg-[#EBE9FE] mb-4">
-            <span className="text-[#5C4EE5] font-semibold text-sm">Courses Fees</span>
+        {/* --- HEADER --- */}
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="h-[2px] w-8 bg-yellow-400"></div>
+            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-gray-400">Mastery Path</span>
+            <div className="h-[2px] w-8 bg-yellow-400"></div>
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[#0F172A]">
-            Explore Courses
+          <h2 className="text-3xl md:text-5xl font-black text-black leading-none uppercase italic">
+            Your <span className="bg-yellow-400 px-2 border-2 border-black">Roadmap</span> to Glory.
           </h2>
         </div>
 
-        {/* --- Cards Grid --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courses.map((course, idx) => (
-            <div 
-              key={idx} 
-              className="relative bg-white rounded-[20px] border border-gray-200 p-8 shadow-sm hover:shadow-xl transition-shadow duration-300 flex flex-col"
+        {/* --- GRID --- */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          {COURSES.map((course, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ y: -5 }}
+              className={`relative p-6 border-[3px] border-black rounded-[2rem] flex flex-col transition-all ${course.color} ${course.textColor || 'text-black'} ${course.shadow}`}
             >
-              
-              {/* --- Floating Stars --- */}
-              <div className="absolute -top-6 left-8 flex gap-1">
-                {[...Array(course.stars)].map((_, i) => (
-                  <div key={i} className="relative">
-                     {/* SVG Star Shape matching the yellow icon style */}
-                     <svg 
-                       width="50" 
-                       height="50" 
-                       viewBox="0 0 50 50" 
-                       fill="none" 
-                       className={`drop-shadow-md transform ${i % 2 === 0 ? '-rotate-6' : 'rotate-12'}`}
-                     >
-                        <path 
-                          d="M25 2 L32 17 L48 19 L36 30 L39 46 L25 38 L11 46 L14 30 L2 19 L18 17 Z" 
-                          fill="#FFC107" 
-                          stroke="none"
-                        />
-                     </svg>
+              {/* Badge */}
+              <div className={`self-start px-2 py-0.5 mb-4 rounded-md border-2 border-black text-[9px] font-black uppercase tracking-tighter
+                ${idx === 2 ? 'bg-yellow-400 text-black' : 'bg-black text-white'}`}>
+                {course.tag}
+              </div>
+
+              {/* Title Area */}
+              <div className="mb-6">
+                <p className="text-[10px] font-black uppercase opacity-60 mb-1">{course.level}</p>
+                <h3 className="text-xl font-black leading-tight uppercase italic">{course.title}</h3>
+              </div>
+
+              {/* Description */}
+              <p className="text-xs font-bold leading-relaxed mb-6 opacity-80">
+                {course.description}
+              </p>
+
+              {/* Outcome List */}
+              <div className="space-y-3 mb-8 flex-grow">
+                <p className="text-[10px] font-black uppercase border-b border-black/10 pb-1 mb-2">Outcome</p>
+                {course.outcomes.map((item, i) => (
+                  <div key={i} className="flex items-center gap-2">
+                    <Zap size={12} className={idx === 1 || idx === 2 ? "text-black" : "text-yellow-500"} fill="currentColor" />
+                    <span className="text-[11px] font-bold tracking-tight uppercase">{item}</span>
                   </div>
                 ))}
               </div>
 
-              {/* --- Card Content --- */}
-              <div className="mt-6 flex-grow">
-                <h3 className="text-2xl text-gray-500 font-medium mb-8">
-                  {course.title}
-                </h3>
+              {/* CTA Button */}
+              <button className={`w-full py-3 rounded-xl border-2 border-black font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all
+                ${idx === 2 
+                  ? 'bg-yellow-400 text-black hover:bg-white shadow-[3px_3px_0px_0px_rgba(255,255,255,1)]' 
+                  : 'bg-black text-white hover:bg-yellow-400 hover:text-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-none'}`}>
+                Join Course
+                <ChevronRight size={14} />
+              </button>
 
-                <ul className="space-y-5">
-                  {course.topics.map((topic, i) => (
-                    <li key={i} className="flex items-start gap-4">
-                      {/* Yellow Circle Arrow Icon */}
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#FFC107] flex items-center justify-center mt-0.5 shadow-sm">
-                        <ChevronRight className="w-4 h-4 text-[#0F172A] stroke-[3]" />
-                      </div>
-                      {/* Topic Text */}
-                      <span className="text-[#505D6F] text-[15px] leading-relaxed font-normal">
-                        {topic}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* --- Action Button (Bottom) --- */}
-              <div className="mt-10">
-                <Link href="https://wa.me/+918130627389" target="_blank">
-                    <button className="w-full bg-[#5C4EE5] cursor-pointer  hover:bg-[#4a3ec2] text-white font-bold py-3.5 px-6 rounded-lg transition-colors shadow-lg shadow-indigo-100">
-                    Register Now
-                    </button>
-                </Link>
-              </div>
-
-            </div>
+              {/* Decorative Corner Star */}
+              <Star size={14} className="absolute top-6 right-6 opacity-10 group-hover:opacity-100" />
+            </motion.div>
           ))}
         </div>
 
+        {/* --- BOTTOM QUICK STATS --- */}
+        <div className="mt-16 flex flex-wrap justify-center gap-8 md:gap-16 border-t-2 border-gray-100 pt-10">
+           <div className="text-center">
+             <p className="text-2xl font-black italic uppercase">12+</p>
+             <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Monthly Tourneys</p>
+           </div>
+           <div className="text-center">
+             <p className="text-2xl font-black italic uppercase">240+</p>
+             <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Live Hours</p>
+           </div>
+           <div className="text-center">
+             <p className="text-2xl font-black italic uppercase">900+</p>
+             <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Puzzles Library</p>
+           </div>
+        </div>
       </div>
-
-      {/* --- FIXED FLOATING BUTTONS --- */}
-
-      {/* WhatsApp Chat (Bottom Left) */}
-      {/* <div className="fixed bottom-6 left-6 z-50">
-        <a 
-          href="https://wa.me/123456789" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="bg-[#25D366] hover:bg-[#20b858] text-white px-5 py-2.5 rounded-full shadow-lg flex items-center gap-2 font-semibold transition-transform hover:scale-105"
-        >
-          <MessageCircle className="w-5 h-5 fill-white" />
-          <span>Chat with us</span>
-        </a>
-      </div> */}
-
-      {/* Scroll to Top (Bottom Right) */}
-      <button 
-        onClick={scrollToTop}
-        className="fixed bottom-6 right-6 z-50 w-10 h-10 bg-[#5C4EE5] hover:bg-[#4a3ec2] rounded-full flex items-center justify-center shadow-lg transition-transform hover:-translate-y-1"
-      >
-        <ArrowUp className="w-5 h-5 text-white" strokeWidth={2.5} />
-      </button>
-
     </section>
   );
 }

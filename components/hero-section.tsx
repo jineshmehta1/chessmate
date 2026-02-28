@@ -8,15 +8,15 @@ import {
   Users, 
   Clock,
   ShieldCheck,
-  Crown
+  Crown,
+  ChevronRight,
+  Zap
 } from "lucide-react";
-// 1. Import the global hook
+// Import the global hook
 import { useDemoModal } from "@/context/DemoContext";
 
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
-  
-  // 2. Initialize the modal trigger
   const { openDemoModal } = useDemoModal();
 
   useEffect(() => {
@@ -24,109 +24,140 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-slate-50 flex items-center pt-28 pb-16 lg:pt-32 lg:pb-32 overflow-hidden font-sans">
+    <section className="relative min-h-screen bg-white flex items-center pt-24 pb-16 lg:pt-32 lg:pb-20 overflow-hidden font-sans">
       
-      {/* BACKGROUND ELEMENTS */}
-      <div className="absolute inset-0 z-0 opacity-[0.03]" 
-           style={{ backgroundImage: 'radial-gradient(#4f46e5 1px, transparent 1px)', backgroundSize: '32px 32px' }}>
-      </div>
+      {/* --- PREMIUM BACKGROUND ELEMENTS --- */}
+      {/* Subtle Chess Grid Pattern */}
+      <div 
+        className="absolute inset-0 z-0 opacity-[0.03]" 
+        style={{ 
+          backgroundImage: `linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)`,
+          backgroundSize: '60px 60px' 
+        }}
+      ></div>
 
-      <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-200/40 rounded-full blur-3xl filter opacity-50 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-teal-200/40 rounded-full blur-3xl filter opacity-50 pointer-events-none"></div>
+      {/* Modern Gradient Orbs (Softened) */}
+      <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[500px] h-[500px] bg-yellow-100/40 rounded-full blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[400px] h-[400px] bg-gray-100/60 rounded-full blur-[100px] pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl relative z-10">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+      <div className="container mx-auto px-4 md:px-6 lg:px-12 max-w-7xl relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          <div className={`lg:col-span-6 space-y-6 lg:space-y-8 transition-all duration-1000 transform text-center lg:text-left ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          {/* --- LEFT CONTENT --- */}
+          <div className={`lg:col-span-7 space-y-8 transition-all duration-1000 transform ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-white border border-indigo-100 shadow-sm text-indigo-900 font-medium text-xs md:text-sm mb-2 mx-auto lg:mx-0">
-              <span className="relative flex h-2.5 w-2.5 md:h-3 md:w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 md:h-3 md:w-3 bg-indigo-500"></span>
-              </span>
-              New batch starting this weekend!
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black text-white shadow-xl shadow-yellow-500/10 text-xs md:text-sm font-bold tracking-widest uppercase">
+              <Zap size={14} className="text-yellow-400 fill-yellow-400" />
+              Enrollment Open for 2024
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-[4rem] leading-[1.1] font-display font-bold text-slate-900 tracking-tight">
-              Turn your little <br/>
-              thinker into a <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600 relative inline-block">
-                Grandmaster
-                <svg className="absolute w-full h-2 md:h-3 -bottom-1 left-0 text-yellow-400/80 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
-                   <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
-                </svg>
+            <h1 className="text-3xl sm:text-5xl lg:text-[3rem] leading-[0.95] font-black text-black tracking-tight">
+             Build Champions. <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-600 relative">
+                 Think Like a Grandmaster.
+                <div className="absolute -top-6 -right-8 opacity-20 hidden lg:block">
+                    <Crown size={60} className="text-black rotate-12" />
+                </div>
               </span>
             </h1>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+            <p className="text-gray-600 text-lg md:text-xl max-w-xl font-medium leading-relaxed">
+              At <span className="text-black font-bold">Star Chess Academy</span> we provide Structured, professional chess training for beginners to tournament players.
+Online & Offline Coaching | Personalized Growth | Proven Results
+
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 border-l-2 border-yellow-400 pl-6">
                {[
-                 { icon: Trophy, text: "FIDE Rated Trainers" },
-                 { icon: Clock, text: "Flexible Schedules" },
-                 { icon: ShieldCheck, text: "Beginner Friendly" },
-                 { icon: Users, text: "Small Batch Size" },
+                 { icon: Trophy, text: "FIDE Rated Trainers", sub: "Expert Guidance" },
+                 { icon: Users, text: "1:6 Coach Ratio", sub: "Personal Attention" },
                ].map((item, idx) => (
-                 <div key={idx} className="flex items-center gap-3 text-slate-700 font-medium text-sm md:text-base justify-center lg:justify-start">
-                   <div className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 shrink-0">
-                      <item.icon size={16} strokeWidth={2.5} />
+                 <div key={idx} className="group">
+                   <div className="flex items-center gap-3 text-black font-bold text-base">
+                      <item.icon size={20} className="text-yellow-500" />
+                      {item.text}
                    </div>
-                   {item.text}
+                   <p className="text-gray-400 text-xs mt-1 ml-8">{item.sub}</p>
                  </div>
                ))}
             </div>
 
-            {/* CTA BUTTON UPDATED: Removed Link, Added onClick */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-2 md:pt-4 justify-center lg:justify-start">
+            {/* --- CTA BUTTONS --- */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <button 
                 onClick={openDemoModal}
-                className="w-full sm:w-auto group relative px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold text-lg shadow-xl shadow-indigo-900/20 hover:shadow-2xl hover:shadow-indigo-900/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+                className="group relative px-10 py-5 bg-black text-white rounded-full font-black text-sm uppercase tracking-[0.2em] shadow-2xl hover:bg-yellow-400 hover:text-black transition-all duration-500 overflow-hidden"
               >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  Book Free Trial Class
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <span className="relative z-10 flex items-center justify-center gap-3">
+                  Book Free Demo
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-violet-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </button>
+              
+              <button className="flex items-center justify-center gap-2 px-8 py-5 rounded-full font-bold text-black border-2 border-black/5 hover:bg-gray-50 transition-all text-sm uppercase tracking-widest">
+                Explore Courses
+                <ChevronRight size={18} />
               </button>
             </div>
 
-            <div className="flex items-center gap-4 pt-2 justify-center lg:justify-start">
+            {/* Trust Pilot Style */}
+            <div className="flex items-center gap-6 pt-6 border-t border-gray-100">
                <div className="flex -space-x-3">
                  {[1,2,3,4].map(i => (
-                   <img key={i} src={`https://i.pravatar.cc/100?u=chess${i}`} alt="user" className="w-10 h-10 rounded-full border-2 border-white" />
+                   <div key={i} className="w-12 h-12 rounded-full border-4 border-white overflow-hidden bg-gray-200">
+                      <img src={`https://i.pravatar.cc/150?u=starchess${i}`} alt="Student" />
+                   </div>
                  ))}
                </div>
-               <div className="text-sm text-left">
-                 <div className="flex text-yellow-500 mb-0.5">
-                   {[1,2,3,4,5].map(i => <Star key={i} size={14} fill="currentColor" />)}
+               <div>
+                 <div className="flex text-yellow-500 mb-1">
+                   {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}
                  </div>
-                 <p className="text-slate-600 font-medium"><span className="text-slate-900 font-bold">4.9/5</span> from 2,000+ parents</p>
+                 <p className="text-xs font-bold text-black tracking-tighter uppercase">
+                   Trusted by 2,000+ Champions
+                 </p>
                </div>
             </div>
-
           </div>
 
-          <div className={`lg:col-span-6 relative mt-8 lg:mt-0 transition-all duration-1000 delay-300 transform ${mounted ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
-            <div className="relative z-20 bg-white p-2 md:p-3 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl shadow-slate-200/50 border border-slate-100 max-w-[550px] mx-auto rotate-1 hover:rotate-0 transition-transform duration-500">
-               <div className="relative h-[350px] sm:h-[450px] lg:h-[500px] w-full rounded-[1.5rem] md:rounded-[2rem] overflow-hidden">
+          {/* --- RIGHT IMAGE SECTION --- */}
+          <div className={`lg:col-span-5 relative transition-all duration-1000 delay-300 transform ${mounted ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
+            <div className="relative">
+              {/* Main Image Frame */}
+              <div className="relative z-20 bg-black p-1 rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] group">
+                <div className="relative h-[450px] md:h-[600px] w-full rounded-[2.3rem] overflow-hidden bg-gray-100">
                   <img 
                     src="9.jpeg" 
-                    alt="Happy kid playing chess"
-                    className="object-cover w-full h-full"
+                    alt="Star Chess Academy Student"
+                    className="object-cover w-full h-full grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-black/60 to-transparent"></div>
-               </div>
+                  {/* Overlay Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                </div>
 
-               <div className="absolute right-2 top-4 md:-right-6 md:top-6 bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-50 flex items-center gap-3 animate-float max-w-[180px] md:max-w-[220px]">
-                  <div className="w-10 h-10 md:w-12 md:h-12 bg-yellow-100 rounded-full flex items-center justify-center shrink-0">
-                     <Crown className="text-yellow-600 fill-yellow-600" size={20} />
-                  </div>
-                  <div>
-                     <p className="text-[10px] md:text-xs text-slate-500 font-semibold uppercase tracking-wider">Achievement</p>
-                     <p className="text-xs md:text-sm font-bold text-slate-900">National Winner</p>
-                  </div>
-               </div>
+                {/* Floating Achievement Card */}
+                <div className="absolute bottom-8 left-8 right-8 bg-white/95 backdrop-blur-md p-5 rounded-2xl flex items-center gap-4 border border-white/20 shadow-2xl">
+                   <div className="w-14 h-14 bg-yellow-400 rounded-xl flex items-center justify-center shrink-0 shadow-lg shadow-yellow-500/20">
+                      <Trophy className="text-black" size={28} />
+                   </div>
+                   <div>
+                      <p className="text-[10px] text-yellow-600 font-black uppercase tracking-widest">Global Rank</p>
+                      <p className="text-lg font-black text-black">Top 1% Academy</p>
+                   </div>
+                   <div className="ml-auto">
+                      <div className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center">
+                        <Star size={16} className="text-yellow-500 fill-yellow-500" />
+                      </div>
+                   </div>
+                </div>
+              </div>
+
+              {/* Decorative Geometric Background Shapes */}
+              <div className="absolute -top-10 -right-10 w-32 h-32 bg-yellow-400 rounded-full -z-10 animate-pulse"></div>
+              <div className="absolute -bottom-10 -left-10 w-48 h-48 border-[12px] border-black/5 rounded-[3rem] -z-10 rotate-12"></div>
             </div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[105%] h-[90%] border-2 border-dashed border-indigo-200 rounded-[2.5rem] md:rounded-[3rem] -rotate-2 -z-10"></div>
           </div>
+
         </div>
       </div>
     </section>

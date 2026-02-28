@@ -1,112 +1,106 @@
+"use client";
+
 import React from "react";
-import {
-  PlanetIcon,
-  PaperPlaneIcon,
-  StarIcon,
-  NotebookIcon,
-  RocketIcon,
-} from "./BannerIcon";
+import { motion } from "framer-motion";
+import { 
+  ChevronRight, 
+  Star, 
+  Image as ImageIcon, 
+  Camera 
+} from "lucide-react";
 
 const GalleryBanner: React.FC = () => {
   return (
-    <div className="relative w-full bg-[#F3F0FF] overflow-hidden pt-20 pb-0">
-      {/* --- Background Decorative Elements --- */}
+    <div className="relative w-full bg-white overflow-hidden pt-20 pb-16 md:pt-32 md:pb-24 selection:bg-yellow-400 selection:text-black">
+      
+      {/* --- PREMIUM BACKGROUND DOODLES --- */}
+      {/* 1. Pulsing Yellow Circle */}
+      <motion.div 
+        animate={{ y: [0, -15, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-10 left-[5%] w-12 h-12 md:w-20 md:h-20 rounded-full bg-yellow-400 border-[3px] md:border-4 border-black z-0 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]" 
+      />
+      
+      {/* 2. Rotating Dashed Ring */}
+      <motion.div 
+        animate={{ rotate: 360 }}
+        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        className="absolute top-10 right-[10%] w-20 h-20 md:w-32 md:h-32 rounded-full border-2 md:border-4 border-dashed border-black/10 z-0" 
+      />
 
-      {/* Small blue dot on the far left */}
-      <div className="absolute top-20 left-4 w-3 h-3 bg-blue-600 rounded-full opacity-80"></div>
+      {/* 3. Image Icon Doodle */}
+      <motion.div 
+        animate={{ scale: [1, 1.1, 1] }}
+        transition={{ duration: 4, repeat: Infinity }}
+        className="absolute bottom-24 left-[10%] text-yellow-500 opacity-20 z-0"
+      >
+        <ImageIcon className="w-12 h-12 md:w-20 md:h-20" strokeWidth={1} />
+      </motion.div>
 
-      {/* Planet Icon (Top Left) */}
-      <div className="absolute top-12 left-10 md:left-24 opacity-40 transform -rotate-12 pointer-events-none">
-        <PlanetIcon className="w-16 h-16 md:w-24 md:h-24 text-purple-400" />
+      {/* 4. Floating Star Sticker */}
+      <motion.div 
+        animate={{ rotate: [-10, 10, -10] }}
+        transition={{ duration: 3, repeat: Infinity }}
+        className="absolute bottom-32 right-[12%] md:right-[18%] w-10 h-10 md:w-14 md:h-14 bg-white border-2 border-black rounded-lg flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10"
+      >
+        <Star className="w-5 h-5 md:w-6 md:h-6 text-black" fill="currentColor" />
+      </motion.div>
+
+      {/* Ghost Background Decal - Responsive Font Size */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[6rem] md:text-[15rem] font-black text-gray-50 leading-none select-none -z-10 tracking-tighter uppercase italic">
+        SNAP
       </div>
 
-      {/* Paper Plane (Top Middle/Right) */}
-      <div className="absolute top-16 right-1/3 opacity-40 pointer-events-none hidden md:block">
-        <PaperPlaneIcon className="w-16 h-16 md:w-20 md:h-20 text-purple-400" />
-      </div>
+      {/* --- MAIN CONTENT (CENTERED) --- */}
+      <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+        
+        {/* Label Badge */}
+        <div className="flex items-center gap-2 mb-6">
+          <div className="h-[2px] w-6 md:w-8 bg-yellow-400"></div>
+          <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] md:tracking-[0.4em] text-black italic">Visual Storyboard</span>
+          <div className="h-[2px] w-6 md:w-8 bg-yellow-400"></div>
+        </div>
 
-      {/* Star (Top Right) */}
-      <div className="absolute top-10 right-10 md:right-32 opacity-50 transform rotate-12 pointer-events-none">
-        <StarIcon className="w-12 h-12 md:w-16 md:h-16 text-purple-400" />
-      </div>
-
-      {/* Notebook (Bottom Right - floating above wave) */}
-      <div className="absolute bottom-16 right-20 md:right-48 opacity-40 transform -rotate-12 pointer-events-none hidden sm:block">
-        <NotebookIcon className="w-14 h-14 md:w-16 md:h-16 text-purple-400" />
-      </div>
-
-      {/* --- Main Content --- */}
-      <div className="container mx-auto px-6 md:px-12 relative z-10 pb-32 pt-8">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-[#1a1a4b] mb-4">
-          Gallery
+        {/* Heading - Responsive: 2xl mobile / 5xl desktop */}
+        <h1 className="text-2xl md:text-5xl lg:text-6xl font-black text-black leading-none uppercase italic mb-10 tracking-tight">
+          Our <span className="text-white [-webkit-text-stroke:1px_black] md:[-webkit-text-stroke:2px_black] drop-shadow-[4px_4px_0px_rgba(253,224,71,1)]">Gallery.</span>
         </h1>
-
-        <nav className="flex items-center text-base md:text-lg font-medium">
-          <a
-            href="#"
-            className="text-gray-600 hover:text-gray-800 transition-colors"
-          >
+        
+        {/* Neubrutalist Sticker Breadcrumbs */}
+        <nav className="inline-flex items-center gap-2 md:gap-3 bg-black text-white px-5 py-2.5 md:px-8 md:py-4 rounded-2xl border-[3px] md:border-4 border-black shadow-[5px_5px_0px_0px_rgba(253,224,71,1)] md:shadow-[8px_8px_0px_0px_rgba(253,224,71,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-pointer">
+          <a href="/" className="text-[9px] md:text-[11px] font-black uppercase tracking-widest hover:text-yellow-400 transition-colors">
             Home
           </a>
-          <span className="mx-3 text-gray-400 text-sm">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
+          <ChevronRight className="w-3.5 h-3.5 md:w-4 md:h-4 text-yellow-400" strokeWidth={4} />
+          <span className="text-[9px] md:text-[11px] font-black uppercase tracking-widest text-yellow-400">
+            Gallery
           </span>
-          <span className="text-blue-600">Gallery</span>
         </nav>
       </div>
 
-      {/* --- Wave Separator --- */}
-      <div className="absolute bottom-0 left-0 w-full leading-none">
-        <svg
-          className="relative block w-full h-[60px] md:h-[80px]"
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
+      {/* --- Premium Scalloped Bottom Border --- */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
+        <svg 
+          className="relative block w-full h-8 md:h-14" 
+          viewBox="0 0 1200 120" 
           preserveAspectRatio="none"
         >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            className="fill-[#F3F0FF] hidden"
-          ></path>
-          {/* 
-             The image shows a specific repeating sine wave pattern. 
-             Let's use a path that closely mimics the "scalloped" look.
-           */}
-          <path
-            d="M0,60 C150,120 300,0 450,60 C600,120 750,0 900,60 C1050,120 1200,0 1350,60 V120 H0 V60Z"
-            fill="#ffffff"
-            transform="scale(1, 0.8) translate(0, 30)"
-          ></path>
-          {/* Let's try a cleaner more symmetrical wave path */}
-          <path
-            d="M0,120 C200,100 300,40 400,60 C550,90 650,110 800,80 C950,50 1050,20 1200,60 V120 H0 Z"
-            fill="#ffffff"
-            className="hidden"
-          ></path>
-          <path
-            d="M0,40 Q100,90 200,40 T400,40 T600,40 T800,40 T1000,40 T1200,40 V120 H0 Z"
-            fill="#ffffff"
-            transform="scale(1.5, 1)"
-          ></path>
+          <path 
+            d="M0,0 Q150,120 300,0 T600,0 T900,0 T1200,0 V120 H0 Z" 
+            fill="#000000" 
+          />
         </svg>
       </div>
 
-      {/* --- Rocket (Bottom Left - Overlapping the wave/white area) --- */}
-      <div className="absolute bottom-4 left-10 md:left-24 z-20">
-        <RocketIcon className="w-8 h-8 md:w-10 md:h-10 text-green-500 transform -rotate-45" />
-      </div>
+      {/* --- Camera Sticker (Bottom Left) --- */}
+      <motion.div 
+        animate={{ y: [0, -8, 0], rotate: [-10, 10, -10] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-12 left-6 md:bottom-16 md:left-32 z-20 bg-white border-2 border-black p-2 md:p-3 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+      >
+        <Camera className="w-6 h-6 md:w-8 md:h-8 text-black fill-yellow-400" />
+      </motion.div>
+
     </div>
   );
 };

@@ -1,14 +1,15 @@
-"use client"
+"use client";
+
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  CameraIcon, 
-  TrophyIcon, 
-  UsersIcon, 
-  BookOpenIcon, 
-  XIcon, 
-  ChevronLeftIcon, 
-  ChevronRightIcon 
-} from './BannerIcon';
+  X, 
+  ChevronLeft, 
+  ChevronRight,
+  Maximize2,
+  Trophy,
+  Zap
+} from 'lucide-react';
 
 interface GalleryImage {
   id: number;
@@ -17,371 +18,145 @@ interface GalleryImage {
   category: string;
   title: string;
   description: string;
-  span?: string; // CSS class for grid spanning
+  span?: string;
 }
 
-const categories = [
-  { id: "all", name: "All Moments", icon: CameraIcon },
-  { id: "tournaments", name: "Tournaments", icon: TrophyIcon },
-  { id: "certificate", name: "Certificates", icon: UsersIcon },
-  { id: "events", name: "Events", icon: BookOpenIcon },
-];
-
 const galleryImages: GalleryImage[] = [
-  {
-    id: 1,
-    src: "/gallery1.jpeg",
-    alt: "Chess Tournament 2024",
-    category: "tournaments",
-    title: "Championship",
-    description: "Students competing in the annual championship finals.",
-    span: "md:col-span-2 md:row-span-2"
-  },
-  {
-    id: 2,
-    src: "/gallery2.jpeg",
-    alt: "Beginner Chess Class",
-    category: "events",
-    title: "Young Minds",
-    description: "Beginners learning their first moves.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 3,
-    src: "/gallery3.jpeg",
-    alt: "Fide Arbiter",
-    category: "certificate",
-    title: "Young Champions",
-    description: "Official certification ceremony.",
-    span: "md:col-span-1 md:row-span-2"
-  },
-  {
-    id: 4,
-    src: "/gallery4.jpeg",
-    alt: "Chess Workshop",
-    category: "events",
-    title: "Strategy Winners",
-    description: "Deep dive into grandmaster tactics.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 5,
-    src: "/gallery5.jpeg",
-    alt: "Award Ceremony",
-    category: "certificate",
-    title: "Award Ceremony",
-    description: "Awarding the champions.",
-    span: "md:col-span-2 md:row-span-1"
-  },
-  {
-    id: 6,
-    src: "/gallery6.jpeg",
-    alt: "Tournament Hall",
-    category: "tournaments",
-    title: "Winning Finals",
-    description: "The intense atmosphere of the tournaments.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 7,
-    src: "/gallery7.jpeg",
-    alt: "Trophy",
-    category: "tournaments",
-    title: "Victory",
-    description: "Taking home the gold.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 8,
-    src: "/gallery8.jpeg",
-    alt: "Trophy",
-    category: "tournaments",
-    title: "Victory",
-    description: "Taking home the gold.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-
-  {
-    id: 9,
-    src: "/9.jpeg",
-    alt: "Trophy",
-    category: "tournaments",
-    title: "Champion Minds",
-    description: "Making great moves.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 10,
-    src: "/gallery10.jpeg",
-    alt: "Trophy",
-    category: "tournaments",
-    title: "Mentorship results",
-    description: "Winning at every level.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-
-  {
-    id: 11,
-    src: "/gallery11.jpeg",
-    alt: "Trophy",
-    category: "tournaments",
-    title: "Future masters",
-    description: "Masters in the making.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 12,
-    src: "/gallery12.jpeg",
-    alt: "Trophy",
-    category: "tournaments",
-    title: "Triumph",
-    description: "Winning at every level.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 13,
-    src: "/gallery13.jpeg",
-    alt: "Trophy",
-    category: "tournaments",
-    title: "Young Champions",
-    description: "Frist steps.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 14,
-    src: "/gallery14.jpeg",
-    alt: "Trophy",
-    category: "tournaments",
-    title: "Awards",
-    description: "Winning at every level.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 15,
-    src: "/gallery15.jpeg",
-    alt: "Trophy",
-    category: "tournaments",
-    title: "Focussed Minds",
-    description: "Future champions.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 16,
-    src: "/gallery16.jpeg",
-    alt: "Trophy",
-    category: "tournaments",
-    title: "Award Ceremony",
-    description: "Making the difference.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 17,
-    src: "/gallery17.jpeg",
-    alt: "Trophy",
-    category: "tournaments",
-    title: "Victory",
-    description: "Taking home the gold.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 18,
-    src: "/gallery19.jpeg",
-    alt: "Trophy",
-    category: "tournaments",
-    title: "Academy Pride",
-    description: "Guiding the students.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 19,
-    src: "/gallery18.jpeg",
-    alt: "Trophy",
-    category: "tournaments",
-    title: "Awarded",
-    description: "Winning with the moves.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 20,
-    src: "/gallery20.jpeg",
-    alt: "Trophy",
-    category: "tournaments",
-    title: "Winner",
-    description: "Enhancing the bars.",
-    span: "md:col-span-1 md:row-span-1"
-  },
-
-
+  { id: 1, src: "/star1.jpeg", alt: "Chess Tournament 2024", category: "tournaments", title: "Championship", description: "Students competing in the annual championship finals.", span: "col-span-2 row-span-2" },
+  { id: 2, src: "/star2.jpeg", alt: "Beginner Chess Class", category: "events", title: "Young Minds", description: "Beginners learning their first moves.", span: "col-span-1 row-span-1" },
+  { id: 3, src: "/star4.jpeg", alt: "Fide Arbiter", category: "certificate", title: "Young Champions", description: "Official certification ceremony.", span: "col-span-1 row-span-2" },
+  { id: 4, src: "/star3.jpeg", alt: "Chess Workshop", category: "events", title: "Strategy Winners", description: "Deep dive into grandmaster tactics.", span: "col-span-1 row-span-1" },
+  { id: 5, src: "/1.jpeg", alt: "Award Ceremony", category: "certificate", title: "Award Ceremony", description: "Awarding the champions.", span: "col-span-2 row-span-1" },
+  { id: 6, src: "/2.jpeg", alt: "Tournament Hall", category: "tournaments", title: "Winning Finals", description: "The intense atmosphere of the tournaments.", span: "col-span-1 row-span-1" },
+  { id: 8, src: "/4.jpeg", alt: "Trophy", category: "tournaments", title: "Victory", description: "Taking home the gold.", span: "col-span-1 row-span-1" },
+  { id: 9, src: "/5.jpeg", alt: "Trophy", category: "tournaments", title: "Champion Minds", description: "Making great moves.", span: "col-span-1 row-span-1" },
+  { id: 10, src: "/6.jpeg", alt: "Trophy", category: "tournaments", title: "Mentorship results", description: "Winning at every level.", span: "col-span-1 row-span-1" },
+  { id: 11, src: "/7.jpeg", alt: "Trophy", category: "tournaments", title: "Future masters", description: "Masters in the making.", span: "col-span-1 row-span-1" },
 ];
 
 const GallerySection: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
-  const filteredImages = selectedCategory === "all" 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === selectedCategory);
-
-  // Handlers for Lightbox
   const openLightbox = (image: GalleryImage) => setSelectedImage(image);
   const closeLightbox = () => setSelectedImage(null);
   
   const navigateImage = (direction: 'next' | 'prev', e: React.MouseEvent) => {
     e.stopPropagation();
     if (!selectedImage) return;
-    
-    // Find index in the CURRENT filtered list
-    const currentIndex = filteredImages.findIndex(img => img.id === selectedImage.id);
-    if (currentIndex === -1) return;
-
-    let newIndex;
-    if (direction === 'next') {
-      newIndex = (currentIndex + 1) % filteredImages.length;
-    } else {
-      newIndex = (currentIndex - 1 + filteredImages.length) % filteredImages.length;
-    }
-    setSelectedImage(filteredImages[newIndex]);
+    const currentIndex = galleryImages.findIndex(img => img.id === selectedImage.id);
+    let newIndex = direction === 'next' 
+      ? (currentIndex + 1) % galleryImages.length 
+      : (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    setSelectedImage(galleryImages[newIndex]);
   };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-gray-50 to-white relative">
-      <div className="container mx-auto px-4 md:px-8">
-        
-        {/* --- Header & Filter --- */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="text-center md:text-left">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1a4b] mb-4">
-              Captured <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">Moments</span>
-            </h2>
-            <p className="text-gray-500 text-lg">
-              A glimpse into our academy's journey and victories.
-            </p>
-          </div>
+    <section className="py-16 md:py-24 bg-white relative overflow-hidden selection:bg-yellow-400 font-sans border-t-8 border-black">
+      
+      {/* Background Decor - Responsive */}
+      <motion.div animate={{ rotate: 360 }} transition={{ duration: 30, repeat: Infinity, ease: "linear" }} className="absolute -top-20 -right-20 w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-dashed border-black/5 z-0" />
+      
+      {/* Ghost Decal - Responsive Font Size */}
+      <div className="absolute top-1/2 left-5 md:left-10 -translate-y-1/2 text-[6rem] md:text-[15rem] font-black text-gray-50 leading-none select-none -z-10 tracking-tighter uppercase italic opacity-60 md:opacity-100">
+        SNAP
+      </div>
 
-          {/* Categories Tabs */}
-          <div className="flex flex-wrap justify-center md:justify-end gap-2 bg-white p-2 rounded-2xl shadow-sm border border-gray-100">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 ${
-                  selectedCategory === cat.id
-                    ? "bg-[#1a1a4b] text-white shadow-md transform scale-105"
-                    : "bg-transparent text-gray-500 hover:bg-gray-50"
-                }`}
-              >
-                <cat.icon className="w-4 h-4" />
-                {cat.name}
-              </button>
-            ))}
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
+        
+        {/* --- HEADER (2xl Mobile / 5xl Desktop) --- */}
+        <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-12 md:mb-20 gap-6 text-center md:text-left">
+          <div className="max-w-2xl">
+            <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
+              <div className="bg-black p-2 rounded-lg">
+                <Trophy className="w-4 h-4 md:w-5 md:h-5 text-yellow-400" />
+              </div>
+              <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-black italic">Academy Visuals</span>
+            </div>
+            <h2 className="text-2xl md:text-5xl font-black text-black leading-tight md:leading-none uppercase italic tracking-tighter">
+              The Star <br />
+              <span className="text-white block md:inline [-webkit-text-stroke:1.5px_black] md:[-webkit-text-stroke:2px_black] drop-shadow-[4px_4px_0px_rgba(253,224,71,1)]">STORYBOARD.</span>
+            </h2>
+          </div>
+          <div className="hidden md:flex items-center gap-3 bg-gray-50 border-4 border-black px-6 py-3 rounded-2xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+             <Zap className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+             <p className="text-[10px] font-black uppercase tracking-widest">Click to Expand History</p>
           </div>
         </div>
 
-        {/* --- Masonry / Bento Grid --- */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[250px]">
-          {filteredImages.map((image, idx) => (
-            <div 
+        {/* --- BENTO GRID --- */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 auto-rows-[120px] md:auto-rows-[250px]">
+          {galleryImages.map((image) => (
+            <motion.div 
               key={image.id}
-              className={`group relative rounded-3xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition-all duration-500 ${selectedCategory === 'all' ? image.span : 'col-span-1 row-span-1'}`}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className={`group relative border-[3px] md:border-4 border-black rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden cursor-pointer shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all duration-300 ${image.span || 'col-span-1 row-span-1'}`}
               onClick={() => openLightbox(image)}
             >
-              {/* Image */}
+              {/* Main Image */}
               <img 
                 src={image.src} 
                 alt={image.alt} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                className="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100"
               />
 
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a4b]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                 <span className="text-xs font-bold text-yellow-400 uppercase tracking-wider mb-1">{categories.find(c => c.id === image.category)?.name}</span>
-                 <h3 className="text-white text-xl font-bold leading-tight">{image.title}</h3>
-                 <p className="text-gray-300 text-sm mt-1 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-75">
-                   {image.description}
-                 </p>
+              {/* Hover Effect */}
+              <div className="absolute inset-0 bg-yellow-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="w-10 h-10 md:w-14 md:h-14 bg-white border-[3px] md:border-4 border-black rounded-xl md:rounded-2xl flex items-center justify-center text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                  <Maximize2 className="w-5 h-5 md:w-6 md:h-6" strokeWidth={3} />
+                </div>
               </div>
-
-              {/* Icon Decoration (Top Right) */}
-              <div className="absolute top-4 right-4 w-8 h-8 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-[-10px] group-hover:translate-y-0">
-                 <CameraIcon className="w-4 h-4" />
-              </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-
-        {/* --- Empty State --- */}
-        {filteredImages.length === 0 && (
-          <div className="text-center py-20">
-             <p className="text-gray-400 text-lg">No photos found in this category.</p>
-          </div>
-        )}
-
       </div>
 
-      {/* --- Lightbox Modal --- */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#1a1a4b]/95 backdrop-blur-sm p-4 animate-in fade-in duration-200"
-          onClick={closeLightbox}
-        >
-          {/* Close Button */}
-          <button 
+      {/* --- LIGHTBOX MODAL --- */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 md:p-12"
             onClick={closeLightbox}
-            className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10"
           >
-            <XIcon className="w-8 h-8" />
-          </button>
+            {/* Close Button */}
+            <button className="absolute top-6 right-6 text-white hover:text-yellow-400 transition-colors z-[110] active:scale-90">
+              <X className="w-10 h-10 md:w-14 md:h-14" strokeWidth={3} />
+            </button>
 
-          {/* Navigation - Prev */}
-          <button 
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 rounded-full hover:bg-white/10 transition-all"
-            onClick={(e) => navigateImage('prev', e)}
-          >
-            <ChevronLeftIcon className="w-10 h-10" />
-          </button>
+            {/* Navigation Buttons (Hidden on mobile for swipe-feel, active on desktop) */}
+            <button onClick={(e) => navigateImage('prev', e)} className="absolute left-6 top-1/2 -translate-y-1/2 text-white hover:text-yellow-400 p-4 transition-all hidden lg:block">
+              <ChevronLeft className="w-12 h-12 md:w-20 md:h-20" strokeWidth={3} />
+            </button>
+            <button onClick={(e) => navigateImage('next', e)} className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:text-yellow-400 p-4 transition-all hidden lg:block">
+              <ChevronRight className="w-12 h-12 md:w-20 md:h-20" strokeWidth={3} />
+            </button>
 
-          {/* Navigation - Next */}
-          <button 
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 rounded-full hover:bg-white/10 transition-all"
-            onClick={(e) => navigateImage('next', e)}
-          >
-             <ChevronRightIcon className="w-10 h-10" />
-          </button>
-
-          {/* Main Content */}
-          <div 
-            className="bg-white rounded-3xl overflow-hidden shadow-2xl max-w-5xl w-full max-h-[85vh] flex flex-col md:flex-row"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Image Side */}
-            <div className="w-full md:w-3/4 bg-black flex items-center justify-center relative">
-               <img 
-                 src={selectedImage.src} 
-                 alt={selectedImage.alt} 
-                 className="max-h-[50vh] md:max-h-[85vh] w-full object-contain"
-               />
-            </div>
-
-            {/* Details Side */}
-            <div className="w-full md:w-1/4 p-8 bg-white flex flex-col justify-center">
-              <span className="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold uppercase tracking-wide self-start mb-4">
-                {categories.find(c => c.id === selectedImage.category)?.name}
-              </span>
-              <h3 className="text-2xl md:text-3xl font-extrabold text-[#1a1a4b] mb-4">
-                {selectedImage.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                {selectedImage.description}
-              </p>
+            {/* Lightbox Content */}
+            <motion.div 
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              className="relative max-w-5xl w-full h-full flex flex-col items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img 
+                src={selectedImage.src} 
+                alt={selectedImage.alt} 
+                className="max-w-full max-h-[80vh] object-contain border-[6px] md:border-8 border-white shadow-[10px_10px_0px_0px_rgba(253,224,71,1)] md:shadow-[20px_20px_0px_0px_rgba(253,224,71,1)]" 
+              />
               
-              <div className="mt-8 pt-8 border-t border-gray-100 text-sm text-gray-400 flex items-center gap-2">
-                 <CameraIcon className="w-4 h-4" />
-                 <span> Checkmate Sensei  Academy</span>
+              {/* Image Info in Lightbox */}
+              <div className="mt-8 text-center bg-white border-4 border-black px-6 py-3 rounded-2xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+                 <p className="text-[10px] font-black uppercase text-yellow-600 tracking-widest">{selectedImage.category}</p>
+                 <h4 className="text-xl md:text-2xl font-black uppercase italic text-black">{selectedImage.title}</h4>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </section>
   );
