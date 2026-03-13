@@ -20,15 +20,14 @@ const Header: React.FC = () => {
   }, []);
 
   const navItems: NavItem[] = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Courses", href: "/courses" },
-    { name: "Coaches", href: "/coaches" },
-    { name: "Achievements", href: "/achievements" },
-    { name: "Gallery", href: "/gallery" },
-    { name: "Blog", href: "/blog" },
-    { name: "Contact", href: "/contact" },
-  ];
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Chess Programs", href: "/courses" },
+  { name: "Coaches", href: "/coaches" },
+  { name: "Achievements", href: "/achievements" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contact", href: "/contact" },
+];
 
   return (
     <header
@@ -69,16 +68,24 @@ const Header: React.FC = () => {
           </nav>
 
           {/* Right Section */}
-          <div className="flex items-center gap-3 md:gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
 
-            {/* CTA Button (Hidden on very small screens) */}
-            <a
-              href="/bookdemo"
-              className="hidden sm:flex items-center gap-2 bg-yellow-400 hover:bg-black hover:text-white text-black px-4 lg:px-6 py-2 lg:py-3 font-black text-[11px] lg:text-xs uppercase tracking-widest transition-all duration-300 border-2 border-yellow-400"
-            >
-              Book a Demo
-              <ArrowRightIcon className="w-4 h-4" />
-            </a>
+  {/* Login Button */}
+  <a
+    href="/login"
+    className="hidden sm:flex items-center justify-center border-2 border-black text-black hover:bg-black hover:text-white px-4 lg:px-5 py-2 lg:py-3 font-black text-[11px] lg:text-xs uppercase tracking-widest transition-all duration-300"
+  >
+    Login
+  </a>
+
+  {/* Book Demo Button */}
+  <a
+    href="/bookdemo"
+    className="hidden sm:flex items-center gap-2 bg-yellow-400 hover:bg-black hover:text-white text-black px-4 lg:px-6 py-2 lg:py-3 font-black text-[11px] lg:text-xs uppercase tracking-widest transition-all duration-300 border-2 border-yellow-400"
+  >
+    Book a Demo
+    <ArrowRightIcon className="w-4 h-4" />
+  </a>
 
             {/* Mobile Toggle */}
             <button
@@ -117,6 +124,14 @@ const Header: React.FC = () => {
           ))}
 
           <hr className="border-gray-200" />
+
+          <a
+  href="/login"
+  className="w-full text-center border-2 border-black text-black py-3 font-black uppercase tracking-widest"
+  onClick={() => setIsMobileMenuOpen(false)}
+>
+  Login
+</a>
 
           <a
             href="/bookdemo"
