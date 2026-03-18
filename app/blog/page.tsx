@@ -262,20 +262,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* --- NEWSLETTER CALLOUT --- */}
-      <section className="py-16 md:py-24 bg-gray-50 border-t-4 border-black">
-        <div className="container mx-auto px-6 max-w-4xl text-center">
-            <Newspaper className="w-10 h-10 md:w-12 md:h-12 mx-auto mb-6 text-black" />
-            <h2 className="text-2xl md:text-4xl font-black uppercase italic mb-4">Never miss a move.</h2>
-            <p className="text-xs md:text-sm font-bold text-gray-500 uppercase tracking-widest mb-10">Get tactical puzzles and news in your inbox.</p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-                <input type="email" placeholder="YOUR EMAIL" className="flex-1 px-6 py-4 border-[3px] border-black rounded-xl font-black text-xs uppercase focus:bg-yellow-400 outline-none transition-colors" />
-                <button className="bg-black text-white px-8 py-4 rounded-xl border-[3px] border-black font-black uppercase text-xs shadow-[4px_4px_0px_0px_rgba(253,224,71,1)] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all">
-                    Subscribe
-                </button>
-            </div>
-        </div>
-      </section>
+     
 
     </div>
   );

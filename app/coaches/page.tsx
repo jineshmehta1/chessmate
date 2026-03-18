@@ -14,6 +14,7 @@ import {
   Rocket
 } from "lucide-react";
 import TeamSection from "@/components/ui/team-section";
+import { useDemoModal } from "@/context/DemoContext";
 
 // --- DATA ---
 const MAIN_COACHES = [
@@ -53,6 +54,7 @@ const WHY_US = [
 ];
 
 export default function CoachesPage() {
+  const { openDemoModal } = useDemoModal();
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-yellow-400">
       
@@ -122,8 +124,8 @@ export default function CoachesPage() {
                   {coach.bio}
                 </p>
 
-               <Link
-  href="/bookdemo"
+               <button
+  onClick={openDemoModal}
   className={`w-full py-4 rounded-xl border-[3px] border-black font-black text-[10px] md:text-xs uppercase tracking-widest transition-all active:translate-y-1 active:shadow-none text-center
   ${
     idx === 2
@@ -132,7 +134,7 @@ export default function CoachesPage() {
   }`}
 >
   Book Demo
-</Link>
+</button>
               </motion.div>
             ))}
           </div>
@@ -195,18 +197,20 @@ export default function CoachesPage() {
 
       {/* --- FINAL CTA --- */}
       <section className="py-16 md:py-24 bg-white text-center">
-        <div className="container mx-auto px-6">
-          <h2 className="text-2xl md:text-5xl font-black uppercase italic mb-8 leading-tight tracking-tighter">
-            Ready to learn from <br /> the <span className="bg-yellow-400 px-2 border-2 border-black">best?</span>
-          </h2>
-          <Link
-  href="/bookdemo"
-  className="inline-flex items-center justify-center px-10 md:px-12 py-5 md:py-6 bg-black text-white border-[3px] md:border-4 border-black rounded-2xl font-black uppercase tracking-widest text-xs md:text-lg shadow-[6px_6px_0px_0px_rgba(253,224,71,1)] md:shadow-[10px_10px_0px_0px_rgba(253,224,71,1)] transition-all hover:translate-x-2 hover:translate-y-2 hover:shadow-none active:scale-95"
->
-  Book a Demo Class
-</Link>
-        </div>
-      </section>
+      <div className="container mx-auto px-6">
+        <h2 className="text-2xl md:text-5xl font-black uppercase italic mb-8 leading-tight tracking-tighter">
+          Ready to learn from <br /> the <span className="bg-yellow-400 px-2 border-2 border-black">best?</span>
+        </h2>
+        
+        {/* Updated from Link to button */}
+        <button
+          onClick={openDemoModal}
+          className="inline-flex items-center justify-center px-10 md:px-12 py-5 md:py-6 bg-black text-white border-[3px] md:border-4 border-black rounded-2xl font-black uppercase tracking-widest text-xs md:text-lg shadow-[6px_6px_0px_0px_rgba(253,224,71,1)] md:shadow-[10px_10px_0px_0px_rgba(253,224,71,1)] transition-all hover:translate-x-2 hover:translate-y-2 hover:shadow-none active:scale-95"
+        >
+          Book a Demo Class
+        </button>
+      </div>
+    </section>
 
     </div>
   );

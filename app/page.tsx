@@ -14,12 +14,16 @@ export default function HomePage() {
     <div className="min-h-screen">
       <main>
         <HeroSection />
-        <WhyChooseUsSection/>
+        <section id="why-choose-us">
+          <WhyChooseUsSection />
+        </section>
         <CoursesSection />
         <AchievementsSection/>
         <TestimonialsSection />
         <DifferenceSection/>
+        <section id="faq">
         <FaqSection />
+        </section>
         <DemoBookingCTA />
       </main>
     </div>
