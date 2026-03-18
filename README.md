@@ -1,6 +1,3 @@
 ﻿# star-chess-academy
 
 
-
-
-
