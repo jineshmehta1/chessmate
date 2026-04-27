@@ -81,7 +81,7 @@ export default function CoachesPage() {
           </h1>
 
           <p className="max-w-2xl text-base md:text-lg font-bold text-gray-600 mb-10">
-            At Star Chess Academy, our coaches are passionate mentors committed to turning every student into a Grandmaster in the making.
+            At Chessmate Academy, our coaches are passionate mentors committed to turning every student into a Grandmaster in the making.
           </p>
           
           <nav className="inline-flex items-center gap-3 bg-black text-white px-6 md:px-8 py-3 md:py-4 rounded-2xl border-[3px] md:border-4 border-black shadow-[5px_5px_0px_0px_rgba(253,224,71,1)] md:shadow-[8px_8px_0px_0px_rgba(253,224,71,1)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none">

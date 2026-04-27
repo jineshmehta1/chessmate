@@ -35,7 +35,7 @@ const courses: Course[] = [
   {
     title: "Intermediate",
     subtitle: "1000 – 1500 Rating",
-    image: "https://starchess.in/images/md2.png",
+    image: "https://thechessmate.org/images/md2.png",
     goals:
       "Improve tactical vision, middlegame planning, and tournament confidence. Prepare for competitive play.",
     schedule: "8 classes / month · 60 minutes each",
@@ -70,7 +70,7 @@ const CoursesSection: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 mb-4 text-sm font-semibold text-purple-700 bg-purple-100 rounded-full">
-            ♟️ Star Chess Academy
+            ♟️ Chessmate Academy
           </span>
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a1a4b] tracking-tight">
             Chess Course <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Fees</span>

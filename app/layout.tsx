@@ -5,20 +5,20 @@ import { GeistMono } from "geist/font/mono"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import Header from "@/components/header"
-import { Footer } from "@/components/footer"
+import  Footer  from "@/components/footer"
 import { DemoProvider } from "@/context/DemoContext"
 import BookDemoModal from "@/components/BookDemoModal"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Star Chess Academy | Where Champions Are Build",
+  title: "Chessmate Academy | Where Champions Are Build",
   description: "Nurturing young minds through strategic chess training. Founded by International Rated Coach Raghava M.. Expert-led 1:1 and group classes for ages 6-16.",
-  keywords: ["Chess Academy Indirapuram", "Online Chess Classes", "Raghava M. Chess", "Star Chess", "FIDE Rated Coaches"],
+  keywords: ["Chess Academy Indirapuram", "Online Chess Classes", "Raghava M. Chess", "Chessmate", "FIDE Rated Coaches"],
   openGraph: {
-    title: "Star Chess Academy",
+    title: "Chessmate Academy",
     description: "Transform your child into a strategic thinker. Book a free demo class today.",
-    url: "https://starchess.in",
-    siteName: "Star Chess Academy",
+    url: "https://thechessmate.org",
+    siteName: "Chessmate Academy",
     locale: "en_IN",
     type: "website",
   },
@@ -39,9 +39,9 @@ export default function RootLayout({
         {
           "@context": "https://schema.org",
           "@type": "SportsOrganization",
-          "name": "Star Chess Academy",
-          "url": "https://starchess.in",
-          "logo": "https://starchess.in/logo.png",
+          "name": "Chessmate Academy",
+          "url": "https://thechessmate.org",
+          "logo": "https://thechessmate.org/logo.png",
           "founder": {
             "@type": "Person",
             "name": "Raghava M."
@@ -56,13 +56,13 @@ export default function RootLayout({
           },
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+91-8056082286",
+            "telephone": "+91-7990775581",
             "contactType": "customer service",
-            "email": "info@starchess.in"
+            "email": "contact@thechessmate.org"
           },
           "sameAs": [
-            "https://www.facebook.com/starchess",
-            "https://www.instagram.com/starchess"
+            "https://www.facebook.com/chessmate",
+            "https://www.instagram.com/thechessmate"
           ]
         }
         `}

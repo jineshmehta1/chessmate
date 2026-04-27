@@ -63,7 +63,7 @@ export default function CompactCTA() {
                 <div className="flex -space-x-3">
                   {[1, 2, 3, 4].map((i) => (
                     <div key={i} className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-black bg-gray-800 overflow-hidden shadow-[2px_2px_0px_0px_rgba(253,224,71,1)]">
-                      <img src={`https://i.pravatar.cc/100?u=starchess${i}`} alt="User" className="w-full h-full object-cover" />
+                      <img src={`https://i.pravatar.cc/100?u=thechessmate${i}`} alt="User" className="w-full h-full object-cover" />
                     </div>
                   ))}
                 </div>

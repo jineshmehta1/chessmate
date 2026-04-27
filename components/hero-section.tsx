@@ -6,10 +6,9 @@ import {
   Trophy, 
   Star, 
   Users, 
-  Crown,
-  ChevronRight,
   Zap,
-  Layout // Icon for the platform
+  Layout,
+  ChevronRight
 } from "lucide-react";
 import { useDemoModal } from "@/context/DemoContext";
 
@@ -22,128 +21,135 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-white flex items-center pt-24 pb-16 lg:pt-28 lg:pb-20 overflow-hidden font-sans">
+    <section className="relative min-h-screen bg-white flex items-center pt-28 pb-12 md:pt-32 md:pb-16 lg:pt-28 lg:pb-20 overflow-hidden">
       
-      {/* --- PREMIUM BACKGROUND ELEMENTS --- */}
+      {/* --- BACKGROUND ARCHITECTURE --- */}
       <div 
-        className="absolute inset-0 z-0 opacity-[0.03]" 
+        className="absolute inset-0 z-0 opacity-[0.02] hidden sm:block" 
         style={{ 
           backgroundImage: `linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)`,
-          backgroundSize: '60px 60px' 
+          backgroundSize: '70px 70px' 
         }}
       ></div>
 
-      <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[500px] h-[500px] bg-yellow-100/40 rounded-full blur-[120px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[400px] h-[400px] bg-gray-100/60 rounded-full blur-[100px] pointer-events-none"></div>
+      {/* High-Contrast Accents */}
+      <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-yellow-400/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[200px] md:w-[300px] h-[200px] md:h-[300px] bg-gray-200/50 rounded-full blur-[80px] md:blur-[100px] pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 md:px-6 lg:px-12 max-w-7xl relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div className="container mx-auto px-5 sm:px-8 lg:px-12 max-w-[1440px] relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           
-          {/* --- LEFT CONTENT --- */}
-          <div className={`lg:col-span-7 space-y-8 transition-all duration-1000 transform ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          {/* --- LEFT CONTENT (TEXT) --- */}
+          <div className={`lg:col-span-7 space-y-6 md:space-y-8 transition-all duration-1000 transform ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black text-white shadow-xl shadow-yellow-500/10 text-xs md:text-sm font-bold tracking-widest uppercase">
-              <Zap size={14} className="text-yellow-400 fill-yellow-400" />
-              Enrollment Open for 2026
+            {/* Professional Alert Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-black text-white rounded-none text-[9px] md:text-xs font-black tracking-[0.2em] md:tracking-[0.3em] uppercase border-l-4 border-yellow-500">
+              <Zap size={12} className="fill-yellow-500 text-yellow-500 animate-pulse" />
+              Enrollment Open • 2026 Season
             </div>
 
-            <div className="space-y-4">
-              <h1 className="text-3xl sm:text-5xl lg:text-[2.5rem] leading-[0.95] font-black text-black tracking-tight uppercase">
-                Star Chess Academy <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-600 relative">
-                   Where Champions Are Built.
-                  <div className="absolute -top-6 -right-8 opacity-20 hidden lg:block">
-                      <Crown size={60} className="text-black rotate-12" />
-                  </div>
-                </span>
+            {/* Main Brand Headline */}
+            <div className="space-y-3 md:space-y-4">
+              <h1 className="text-3xl sm:text-3xl lg:text-4xl xl:text-5xl leading-[0.9] font-[1000] text-black tracking-tighter uppercase">
+                Elevate Your {" "}
+                <span className="text-yellow-500">Game.</span>
               </h1>
-              {/* CHANGE 1: Added tagline below heading */}
-              <p className="text-yellow-600 font-black tracking-[0.3em] text-sm md:text-base uppercase italic">
-                LEARN • PLAY • THINK SMART
+              
+              <p className="text-black font-black tracking-[0.2em] md:tracking-[0.4em] text-[10px] md:text-sm uppercase">
+                Chessmate Academy • Professional Training
               </p>
             </div>
 
-            {/* CHANGE 2: Reduced paragraph text */}
-            <p className="text-gray-600 text-lg md:text-xl max-w-xl font-medium leading-relaxed">
-              Structured professional chess training for all levels. master the game with 
-              personalized coaching and proven growth strategies.
+            <p className="text-gray-600 text-base md:text-xl max-w-xl font-bold leading-relaxed border-l-4 md:border-l-8 border-black pl-4 md:pl-6">
+              World-class chess coaching for aspiring players. From fundamentals to 
+              Grandmaster strategies, master the art of the board.
             </p>
 
-            {/* CHANGE 3: Added 3rd point for the Student Platform */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-y-4 gap-x-4 border-l-2 border-yellow-400 pl-6">
+            {/* Premium Features Row */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 py-2 md:py-4">
                {[
-                 { icon: Trophy, text: "FIDE Rated Trainers", sub: "Expert Guidance" },
-                 { icon: Users, text: "1:6 Coach Ratio", sub: "Personal Attention" },
-                 { icon: Layout, text: "Student Platform", sub: "Practice & Analyze" },
+                 { icon: Trophy, title: "FIDE Rated", sub: "Expert Coaches" },
+                 { icon: Users, title: "1:6 Ratio", sub: "Small Batches" },
+                 { icon: Layout, title: "LMS Portal", sub: "Study Material" },
                ].map((item, idx) => (
-                 <div key={idx} className="group">
-                   <div className="flex items-center gap-3 text-black font-bold text-sm md:text-base">
-                      <item.icon size={20} className="text-yellow-500 shrink-0" />
-                      {item.text}
+                 <div key={idx} className="flex flex-row sm:flex-col items-center sm:items-start gap-3 sm:gap-1 group">
+                   <div className="flex items-center gap-3 text-black font-[900] text-xs uppercase tracking-widest">
+                      <item.icon size={18} className="text-yellow-500 shrink-0" />
+                      {item.title}
                    </div>
-                   <p className="text-gray-400 text-[10px] md:text-xs mt-1 ml-8">{item.sub}</p>
+                   <p className="text-gray-400 text-[9px] md:text-[10px] uppercase font-bold tracking-wider sm:ml-7 leading-none sm:mt-1">{item.sub}</p>
                  </div>
                ))}
             </div>
 
             {/* --- CTA BUTTONS --- */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              {/* Updated Button to trigger modal directly */}
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2 md:pt-4">
               <button
                 onClick={openDemoModal}
-                className="group relative px-10 py-5 bg-black text-white rounded-full font-black text-sm uppercase tracking-[0.2em] shadow-2xl hover:bg-yellow-400 hover:text-black transition-all duration-500 overflow-hidden text-center"
+                className="group relative px-8 py-4 md:px-10 md:py-5 bg-black text-yellow-500 font-black text-xs md:text-[12px] uppercase tracking-[0.2em] md:tracking-[0.3em] transition-all duration-300 hover:bg-yellow-500 hover:text-black shadow-[6px_6px_0px_0px_rgba(234,179,8,0.2)] md:shadow-[10px_10px_0px_0px_rgba(234,179,8,0.2)] text-center"
               >
-                <span className="relative z-10 flex items-center justify-center gap-3">
+                <span className="relative z-10 flex items-center justify-center gap-2 md:gap-3">
                   Book Free Demo
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-2 transition-transform duration-300" />
                 </span>
               </button>
 
               <Link
                 href="/courses"
-                className="flex items-center justify-center gap-2 px-8 py-5 rounded-full font-bold text-black border-2 border-black/5 hover:bg-gray-50 transition-all text-sm uppercase tracking-widest text-center"
+                className="flex items-center justify-center gap-2 px-8 py-4 md:px-10 md:py-5 border-[3px] md:border-[4px] border-black font-black text-black text-xs md:text-[12px] uppercase tracking-[0.2em] md:tracking-[0.3em] hover:bg-black hover:text-white transition-all duration-300 text-center"
               >
-                Explore Courses
-                <ChevronRight size={18} />
+                View Courses
+                <ChevronRight className="w-4 h-4 md:w-[18px] md:h-[18px]" />
               </Link>
             </div>
 
-            {/* Trust Pilot Style */}
-            <div className="flex items-center gap-6 pt-6 border-t border-gray-100">
-               <div className="flex -space-x-3">
+            {/* Social Proof Section */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 pt-6 md:pt-10 border-t border-gray-100">
+               <div className="flex -space-x-3 md:-space-x-4">
                  {[1,2,3,4].map(i => (
-                   <div key={i} className="w-12 h-12 rounded-full border-4 border-white overflow-hidden bg-gray-200">
-                      <img src={`https://i.pravatar.cc/150?u=starchess${i}`} alt="Student" />
+                   <div key={i} className="w-10 h-10 md:w-12 md:h-12 border-2 md:border-4 border-white overflow-hidden bg-black flex items-center justify-center">
+                      <img 
+                        src={`https://i.pravatar.cc/150?u=chessmate${i}`} 
+                        alt="Student" 
+                        className="grayscale contrast-125 object-cover"
+                      />
                    </div>
                  ))}
                </div>
-               <div>
-                 <div className="flex text-yellow-500 mb-1">
-                   {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}
+               <div className="space-y-1">
+                 <div className="flex text-yellow-500">
+                   {[1,2,3,4,5].map(i => <Star key={i} className="w-3 h-3 md:w-3.5 md:h-3.5" fill="currentColor" />)}
                  </div>
-                 <p className="text-xs font-bold text-black tracking-tighter uppercase">
-                   Trusted by 2,000+ Champions
+                 <p className="text-[9px] md:text-[10px] font-black text-black tracking-[0.1em] uppercase">
+                   Trusted by 2,000+ Champions worldwide
                  </p>
                </div>
             </div>
           </div>
 
-          {/* --- RIGHT IMAGE SECTION --- */}
-          <div className={`lg:col-span-5 relative transition-all duration-1000 delay-300 transform ${mounted ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
-            <div className="relative">
-              <div className="relative z-20 bg-black p-1 rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] group">
-                <div className="relative h-[450px] md:h-[600px] w-full rounded-[2.3rem] overflow-hidden bg-gray-100">
+          {/* --- RIGHT SECTION (IMAGE ARCHITECTURE) --- */}
+          <div className={`lg:col-span-5 relative transition-all duration-1000 delay-300 transform ${mounted ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'} mt-8 lg:mt-0`}>
+            <div className="relative max-w-[450px] mx-auto lg:max-w-none">
+              
+              {/* Responsive Sharp, Brutalist Image Frame */}
+              <div className="relative z-20 border-[10px] md:border-[15px] lg:border-[20px] border-black rounded-none shadow-[15px_15px_0px_0px_rgba(234,179,8,1)] md:shadow-[25px_25px_0px_0px_rgba(234,179,8,1)] lg:shadow-[30px_30px_0px_0px_rgba(234,179,8,1)]">
+                <div className="relative h-[350px] sm:h-[450px] lg:h-[450px] xl:h-[450px] w-full bg-black overflow-hidden">
                   <img 
-                    src="/raghav.jpeg" 
-                    alt="Star Chess Academy Student"
-                    className="object-cover w-full h-full grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                    src="/hero.jpg" 
+                    alt="Chessmate Student Champion"
+                    className="object-cover w-full h-full transition-all duration-1000"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+                  
+                  {/* Result Badge */}
+                  <div className="absolute top-4 right-4 md:top-6 md:right-6 bg-yellow-500 text-black px-3 py-1.5 md:px-4 md:py-2 font-black uppercase text-[8px] md:text-[10px] tracking-widest shadow-xl">
+                    Top Performance
+                  </div>
                 </div>
               </div>
 
-              <div className="absolute -top-10 -right-10 w-32 h-32 bg-yellow-400 rounded-full -z-10 animate-pulse"></div>
-              <div className="absolute -bottom-10 -left-10 w-48 h-48 border-[12px] border-black/5 rounded-[3rem] -z-10 rotate-12"></div>
+              {/* Decorative Background Shapes - Hidden on smallest mobile for cleaner look */}
+              <div className="absolute -top-6 -right-6 md:-top-12 md:-right-12 w-24 h-24 md:w-48 md:h-48 border-[8px] md:border-[15px] border-yellow-500/10 -z-10 rotate-12"></div>
+              <div className="absolute bottom-10 -left-6 md:-left-10 w-12 h-12 md:w-24 md:h-24 bg-black -z-10"></div>
             </div>
           </div>
 

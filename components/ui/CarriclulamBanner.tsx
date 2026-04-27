@@ -1,107 +1,135 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { 
-  ChevronRight, 
-  Star, 
-  Target, 
-  Rocket 
-} from "lucide-react";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ChevronRight, Award, Layers, BookOpen } from 'lucide-react';
 
 const CurriculumBanner: React.FC = () => {
   return (
-    <div className="relative w-full bg-white overflow-hidden pt-20 pb-16 md:pt-32 md:pb-24 selection:bg-yellow-400 selection:text-black">
+    <section className="relative w-full min-h-[60vh] md:min-h-[100vh] flex items-center bg-[#050505] overflow-hidden pt-0">
       
-      {/* --- PREMIUM BACKGROUND DOODLES --- */}
-      {/* 1. Pulsing Yellow Circle */}
-      <motion.div 
-        animate={{ y: [0, -15, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-10 left-[5%] w-12 h-12 md:w-20 md:h-20 rounded-full bg-yellow-400 border-[3px] md:border-4 border-black z-0 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]" 
-      />
-      
-      {/* 2. Rotating Dashed Ring */}
-      <motion.div 
-        animate={{ rotate: 360 }}
-        transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        className="absolute top-10 right-[10%] w-20 h-20 md:w-32 md:h-32 rounded-full border-2 md:border-4 border-dashed border-black/10 z-0" 
+      {/* --- BACKGROUND ARCHITECTURE --- */}
+      {/* 1. Faded Chessboard Pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] z-0" 
+        style={{ 
+          backgroundImage: `linear-gradient(45deg, #EAB308 25%, transparent 25%, transparent 75%, #EAB308 75%, #EAB308), 
+                            linear-gradient(45deg, #EAB308 25%, transparent 25%, transparent 75%, #EAB308 75%, #EAB308)`,
+          backgroundSize: '100px 100px',
+          backgroundPosition: '0 0, 50px 50px'
+        }}
       />
 
-      {/* 3. Target Icon Doodle */}
-      <motion.div 
-        animate={{ scale: [1, 1.1, 1] }}
-        transition={{ duration: 4, repeat: Infinity }}
-        className="absolute bottom-24 left-[10%] text-yellow-500 opacity-20 z-0"
-      >
-        <Target className="w-12 h-12 md:w-20 md:h-20" strokeWidth={1} />
-      </motion.div>
+      {/* 2. Abstract Gold Glow */}
+      <div className="absolute top-0 right-0 w-[50%] h-full bg-gradient-to-l from-[#EAB308]/10 to-transparent pointer-events-none" />
 
-      {/* 4. Floating Star Sticker */}
-      <motion.div 
-        animate={{ rotate: [-10, 10, -10] }}
-        transition={{ duration: 3, repeat: Infinity }}
-        className="absolute bottom-32 right-[10%] w-10 h-10 md:w-14 md:h-14 bg-white border-2 border-black rounded-lg flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10"
-      >
-        <Star className="w-5 h-5 md:w-6 md:h-6 text-black" fill="currentColor" />
-      </motion.div>
+      {/* --- MAIN LAYOUT --- */}
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          
+          {/* LEFT CONTENT: Typography Focus */}
+          <div className="max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <span className="h-[1px] w-12 bg-[#EAB308]"></span>
+                <span className="text-[#EAB308] text-[11px] font-black uppercase tracking-[0.5em]">
+                  Structured Roadmap
+                </span>
+              </div>
 
-      {/* Ghost Background Decal - Responsive Font Size */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[6rem] md:text-[15rem] font-black text-gray-50 leading-none select-none -z-10 tracking-tighter uppercase italic">
-        PATH
-      </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tighter mb-8 uppercase">
+                The <span className="font-serif italic font-light text-[#EAB308] normal-case">Blueprint</span> {" "}
+                Of Play.
+              </h1>
 
-      {/* --- MAIN CONTENT (CENTERED) --- */}
-      <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
-        
-        {/* Label Badge */}
-        <div className="flex items-center gap-2 mb-6">
-          <div className="h-[2px] w-6 md:w-8 bg-yellow-400"></div>
-          <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] md:tracking-[0.5em] text-black italic">The Master Roadmap</span>
-          <div className="h-[2px] w-6 md:w-8 bg-yellow-400"></div>
+              <p className="text-gray-400 text-lg md:text-xl font-medium leading-relaxed mb-10 max-w-lg">
+                Our curriculum is engineered into four specialized phases, 
+                designed to transition students from foundational logic to 
+                Grandmaster-level strategic depth.
+              </p>
+
+              {/* Refined Breadcrumbs */}
+              <nav className="flex items-center gap-4 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                <a href="/" className="text-gray-500 hover:text-[#EAB308] transition-colors">Home</a>
+                <ChevronRight className="w-3.5 h-3.5 text-[#EAB308]" />
+                <span className="text-white">Curriculum</span>
+              </nav>
+            </motion.div>
+          </div>
+
+          {/* RIGHT CONTENT: Geometric Composition */}
+          <div className="relative">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="relative aspect-[4/5] md:aspect-square max-w-md mx-auto lg:ml-auto"
+            >
+              {/* Frame Decoration */}
+              <div className="absolute inset-0 border border-[#EAB308]/30 p-4">
+                <div className="relative w-full h-full overflow-hidden bg-[#111]">
+                  <img 
+                    src="https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2000" 
+                    alt="Chess Curriculum Analysis"
+                    className="w-full h-full object-cover brightness-100 hover:grayscale-0 hover:brightness-100 transition-all duration-1000"
+                  />
+                  
+                  {/* Glassmorphism Path Card */}
+                  <div className="absolute bottom-6 left-6 right-6 bg-black/50 backdrop-blur-xl border border-white/10 p-6">
+                     <div className="flex justify-between items-center text-center">
+                        <div>
+                          <p className="text-[#EAB308] text-2xl font-bold">04</p>
+                          <p className="text-white text-[9px] uppercase font-black tracking-widest mt-1">Learning Phases</p>
+                        </div>
+                        <div className="h-10 w-[1px] bg-white/20"></div>
+                        <div>
+                          <p className="text-[#EAB308] text-2xl font-bold">500+</p>
+                          <p className="text-white text-[9px] uppercase font-black tracking-widest mt-1">Tactical Puzzles</p>
+                        </div>
+                        <div className="h-10 w-[1px] bg-white/20"></div>
+                        <div>
+                          <p className="text-[#EAB308] text-2xl font-bold">FIDE</p>
+                          <p className="text-white text-[9px] uppercase font-black tracking-widest mt-1">Rated Level</p>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Architectural Lines */}
+              <div className="absolute -top-6 -right-6 w-24 h-24 border-t-2 border-r-2 border-[#EAB308] opacity-50"></div>
+              <div className="absolute -bottom-6 -left-6 w-24 h-24 border-b-2 border-l-2 border-[#EAB308] opacity-50"></div>
+            </motion.div>
+          </div>
+
         </div>
-
-        {/* Heading - Responsive: 2xl mobile / 5xl desktop */}
-        <h1 className="text-2xl md:text-5xl lg:text-6xl font-black text-black leading-none uppercase italic mb-10 tracking-tight">
-          Our <span className="text-white [-webkit-text-stroke:1px_black] md:[-webkit-text-stroke:2px_black] drop-shadow-[4px_4px_0px_rgba(253,224,71,1)]">Curriculum.</span>
-        </h1>
-        
-        {/* Neubrutalist Sticker Breadcrumbs */}
-        <nav className="inline-flex items-center gap-2 md:gap-3 bg-black text-white px-5 py-2.5 md:px-8 md:py-4 rounded-2xl border-[3px] md:border-4 border-black shadow-[5px_5px_0px_0px_rgba(253,224,71,1)] md:shadow-[8px_8px_0px_0px_rgba(253,224,71,1)] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-pointer">
-          <a href="/" className="text-[9px] md:text-[11px] font-black uppercase tracking-widest hover:text-yellow-400 transition-colors">
-            Home
-          </a>
-          <ChevronRight className="w-3.5 h-3.5 md:w-4 md:h-4 text-yellow-400" strokeWidth={4} />
-          <span className="text-[9px] md:text-[11px] font-black uppercase tracking-widest text-yellow-400">
-            Curriculum
-          </span>
-        </nav>
       </div>
 
-      {/* --- Premium Scalloped Bottom Border (Sharp Black) --- */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
-        <svg 
-          className="relative block w-full h-8 md:h-14" 
-          viewBox="0 0 1200 120" 
-          preserveAspectRatio="none"
-        >
-          <path 
-            d="M0,0 Q150,120 300,0 T600,0 T900,0 T1200,0 V120 H0 Z" 
-            fill="#000000" 
-          />
-        </svg>
+      {/* --- BOTTOM SECTION DIVIDER (Minimalist) --- */}
+      <div className="absolute bottom-0 left-0 w-full bg-white/5 border-t border-white/10 py-6 hidden md:block">
+        <div className="container mx-auto px-12">
+          <div className="flex justify-between items-center text-white/30">
+            <div className="flex items-center gap-3 group cursor-default">
+              <Layers className="w-4 h-4 text-[#EAB308]" />
+              <span className="text-[10px] font-bold uppercase tracking-widest group-hover:text-white transition-colors">Phase-Based Methodology</span>
+            </div>
+            <div className="flex items-center gap-3 group cursor-default">
+              <BookOpen className="w-4 h-4 text-[#EAB308]" />
+              <span className="text-[10px] font-bold uppercase tracking-widest group-hover:text-white transition-colors">Digital Study Resources</span>
+            </div>
+            <div className="flex items-center gap-3 group cursor-default">
+              <Award className="w-4 h-4 text-[#EAB308]" />
+              <span className="text-[10px] font-bold uppercase tracking-widest group-hover:text-white transition-colors">FIDE Standard Assessment</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* --- Rocket Sticker (Bottom Left) --- */}
-      <motion.div 
-        animate={{ y: [0, -8, 0], rotate: [-45, -40, -45] }}
-        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-12 left-6 md:bottom-16 md:left-32 z-20 bg-white border-2 border-black p-2 md:p-3 rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
-      >
-        <Rocket className="w-6 h-6 md:w-8 md:h-8 text-black fill-yellow-400" />
-      </motion.div>
-
-    </div>
+    </section>
   );
 };
 

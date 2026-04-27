@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { MenuIcon, XIcon, ArrowRightIcon } from "./ui/BannerIcon";
 import { ChevronDown } from "lucide-react";
-import { useDemoModal } from "@/context/DemoContext"; // Integrated Context
+import { useDemoModal } from "@/context/DemoContext";
 
 interface SubItem {
   name: string;
@@ -16,7 +16,7 @@ interface NavItem {
 }
 
 const Header: React.FC = () => {
-  const { openDemoModal } = useDemoModal(); // Initialize Modal Function
+  const { openDemoModal } = useDemoModal();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -29,81 +29,77 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // EXACT PAGES FROM YOUR DOCUMENT
   const navItems: NavItem[] = [
     { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
     {
-      name: "Chess Programs",
-      subItems: [
-        { name: "Curriculum", href: "/curriculum" },
-        { name: "Training Camps", href: "/training-camps" },
-      ],
-    },
-    {
-      name: "About Us",
-      subItems: [
-        { name: "Why Star Chess?", href: "/#why-choose-us" },
-        { name: "FAQ", href: "/#faq" },
-        { name: "Blogs", href: "/blog" },
-        { name: "Coaches", href: "/coaches" },
-        { name: "Branches", href: "/contact#branches" },
-      ],
+      name: "Courses", href: "/courses"
     },
     { name: "Achievements", href: "/achievements" },
-    { name: "Contact", href: "/contact" },
+    {
+      name: "Puzzles",
+      subItems: [
+        { name: "Beginner", href: "/puzzles/beginner" },
+        { name: "Intermediate", href: "/puzzles/intermediate" },
+        { name: "Advanced", href: "/puzzles/advanced" },
+      ],
+    },
+    { name: "Gallery", href: "/gallery" },
+    { name: "Blogs", href: "/blog" },
+    { name: "Contact Us", href: "/contact" },
   ];
-
-  const toggleMobileSubmenu = (name: string) => {
-    setActiveMobileSubmenu(activeMobileSubmenu === name ? null : name);
-  };
 
   return (
     <header
-      className={`fixed z-50 w-full transition-all duration-300 ${
-        scrolled
-          ? "bg-white shadow-lg py-2"
-          : "bg-white/90 backdrop-blur-md py-3 md:py-4 border-b border-gray-100"
+      className={`fixed z-50 w-full transition-all duration-300 bg-white ${
+        scrolled ? "shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] py-3" : "py-5 border-b border-gray-100"
       }`}
     >
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between">
           
-          {/* Logo */}
-          <a href="/" className="flex items-center shrink-0">
+          {/* Logo Section - High Contrast Yellow/Black */}
+          <a href="/" className="flex items-center gap-3 shrink-0 group">
             <img
-              src="/logo.webp"
-              alt="Star Chess Academy"
-              className={`object-contain transition-all duration-300 ${
-                scrolled ? "h-10 sm:h-12" : "h-12 sm:h-14 md:h-16"
+              src="/logo.jpg"
+              alt="Chessmate Academy"
+              className={`object-contain transition-all duration-500 ${
+                scrolled ? "h-10" : "h-12 md:h-14"
               }`}
             />
+            <span className="text-2xl md:text-3xl font-extrabold tracking-[0.01em] text-black uppercase leading-none font-sans">
+  CHESS<span className="text-[#EAB308] ml-1">MATE</span>
+</span>
           </a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          {/* Desktop Navigation - Brutalist Premium Style */}
+          <nav className="hidden xl:flex items-center gap-8">
             {navItems.map((item) => (
               <div key={item.name} className="relative group">
                 {item.subItems ? (
-                  <button className="flex items-center gap-1 px-3 xl:px-4 py-2 text-[12px] xl:text-[13px] font-bold text-black hover:text-yellow-600 transition-colors uppercase tracking-wider">
+                  <button className="flex items-center gap-1.5 text-[11px] font-black uppercase tracking-[0.25em] text-black hover:text-[#EAB308] transition-colors">
                     {item.name}
                     <ChevronDown className="w-3 h-3 transition-transform group-hover:rotate-180" />
                   </button>
                 ) : (
                   <a
                     href={item.href}
-                    className="px-3 xl:px-4 py-2 text-[12px] xl:text-[13px] font-bold text-black hover:text-yellow-600 transition-colors uppercase tracking-wider relative group"
+                    className="text-[11px] font-black uppercase tracking-[0.25em] text-black hover:text-[#EAB308] transition-colors relative group"
                   >
                     {item.name}
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-yellow-400 transition-all duration-300 group-hover:w-2/3"></span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#EAB308] transition-all duration-300 group-hover:w-full"></span>
                   </a>
                 )}
 
+                {/* Submenu Overlay - Sharp & Bold */}
                 {item.subItems && (
-                  <div className="absolute top-full left-0 w-56 bg-white shadow-xl border border-gray-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top translate-y-2 group-hover:translate-y-0">
+                  <div className="absolute top-full -left-4 w-56 bg-black border-t-4 border-[#EAB308] mt-4 py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-2xl">
                     {item.subItems.map((sub) => (
                       <a
                         key={sub.name}
                         href={sub.href}
-                        className="block px-6 py-3 text-[11px] font-bold text-black hover:bg-yellow-50 hover:text-yellow-600 uppercase tracking-wider transition-colors"
+                        className="block px-6 py-3 text-[10px] font-black text-white hover:text-[#EAB308] hover:bg-white/5 uppercase tracking-widest transition-all"
                       >
                         {sub.name}
                       </a>
@@ -114,81 +110,63 @@ const Header: React.FC = () => {
             ))}
           </nav>
 
-          {/* Right Section */}
-          <div className="flex items-center gap-2 md:gap-4">
-            <a
-              href="https://training.starchess.in/"
-              className="hidden sm:flex items-center justify-center border-2 border-black text-black hover:bg-black hover:text-white px-4 lg:px-5 py-2 lg:py-3 font-black text-[11px] lg:text-xs uppercase tracking-widest transition-all duration-300"
-            >
-              Login
-            </a>
-
-            {/* Desktop Modal Trigger */}
+          {/* Action Button */}
+          <div className="flex items-center gap-4">
             <button
               onClick={openDemoModal}
-              className="hidden sm:flex items-center gap-2 bg-yellow-400 hover:bg-black hover:text-white text-black px-4 lg:px-6 py-2 lg:py-3 font-black text-[11px] lg:text-xs uppercase tracking-widest transition-all duration-300 border-2 border-yellow-400"
+              className="hidden md:flex items-center gap-3 px-8 py-3 bg-black text-[#EAB308] text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 border-2 border-black hover:bg-[#EAB308] hover:text-black shadow-lg"
             >
               Book a Demo
               <ArrowRightIcon className="w-4 h-4" />
             </button>
 
-            {/* Mobile Toggle */}
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-black hover:bg-gray-100 transition-all"
+              className="xl:hidden p-2 text-black"
               aria-label="Toggle Menu"
             >
-              {isMobileMenuOpen ? <XIcon className="w-7 h-7" /> : <MenuIcon className="w-7 h-7" />}
+              {isMobileMenuOpen ? <XIcon className="w-8 h-8" /> : <MenuIcon className="w-8 h-8" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Full Screen Brutalist */}
       <div
-        className={`lg:hidden transition-all duration-500 overflow-hidden ${
-          isMobileMenuOpen ? "max-h-[100vh] opacity-100" : "max-h-0 opacity-0"
-        } bg-white border-t border-gray-100 shadow-xl overflow-y-auto`}
+        className={`xl:hidden fixed inset-0 top-[70px] bg-white transition-transform duration-500 ease-in-out z-40 ${
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
-        <div className="px-6 py-8 flex flex-col gap-4">
+        <div className="flex flex-col h-full p-8 overflow-y-auto">
           {navItems.map((item) => (
-            <div key={item.name} className="flex flex-col">
+            <div key={item.name} className="border-b border-gray-100">
               {item.subItems ? (
-                <>
+                <div className="py-6">
                   <button
-                    onClick={() => toggleMobileSubmenu(item.name)}
-                    className="flex items-center justify-between text-xl font-black text-black uppercase py-2"
+                    onClick={() => setActiveMobileSubmenu(activeMobileSubmenu === item.name ? null : item.name)}
+                    className="flex items-center justify-between w-full text-black text-xl font-black uppercase tracking-widest"
                   >
                     {item.name}
-                    <ChevronDown
-                      className={`w-6 h-6 transition-transform duration-300 ${
-                        activeMobileSubmenu === item.name ? "rotate-180" : ""
-                      }`}
-                    />
+                    <ChevronDown className={`w-5 h-5 transition-transform ${activeMobileSubmenu === item.name ? "rotate-180 text-[#EAB308]" : ""}`} />
                   </button>
-                  <div
-                    className={`flex flex-col gap-3 pl-4 overflow-hidden transition-all duration-300 ${
-                      activeMobileSubmenu === item.name
-                        ? "max-h-96 mt-2 mb-4 opacity-100"
-                        : "max-h-0 opacity-0"
-                    }`}
-                  >
+                  <div className={`flex flex-col gap-5 mt-5 pl-4 overflow-hidden transition-all duration-300 ${activeMobileSubmenu === item.name ? "max-h-80 opacity-100" : "max-h-0 opacity-0"}`}>
                     {item.subItems.map((sub) => (
                       <a
                         key={sub.name}
                         href={sub.href}
-                        className="text-lg font-bold text-gray-600 hover:text-yellow-600 uppercase transition-colors"
+                        className="text-gray-500 text-sm font-black uppercase tracking-widest hover:text-[#EAB308]"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {sub.name}
                       </a>
                     ))}
                   </div>
-                </>
+                </div>
               ) : (
                 <a
                   href={item.href}
-                  className="text-xl font-black text-black hover:text-yellow-500 uppercase transition-colors py-2"
+                  className="block py-6 text-black text-xl font-black uppercase tracking-widest hover:text-[#EAB308]"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
@@ -197,26 +175,15 @@ const Header: React.FC = () => {
             </div>
           ))}
 
-          <hr className="border-gray-200 my-2" />
-
-          <div className="flex flex-col gap-3">
-            <a
-              href="https://training.starchess.in/"
-              className="w-full text-center border-2 border-black text-black py-4 font-black uppercase tracking-widest"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Login
-            </a>
-            
-            {/* Mobile Modal Trigger */}
+          <div className="mt-auto pb-12">
             <button
               onClick={() => {
                 openDemoModal();
                 setIsMobileMenuOpen(false);
               }}
-              className="w-full text-center bg-yellow-400 text-black py-4 font-black uppercase tracking-widest border-2 border-yellow-400"
+              className="w-full bg-black text-[#EAB308] py-5 font-black uppercase text-sm tracking-[0.3em] shadow-2xl active:bg-[#EAB308] active:text-black"
             >
-              Book a Demo
+              Book a Free Demo
             </button>
           </div>
         </div>

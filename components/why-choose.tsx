@@ -8,113 +8,132 @@ import {
   ClipboardCheck, 
   Users, 
   Target, 
-  Star, 
-  Zap 
+  Zap,
+  ChevronRight,
+  ShieldCheck,
+  Star
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function WhyChooseUsSection() {
   const benefits = [
     {
-      title: 'Weekend Tournaments',
-      description: 'Competitive online tournaments every weekend to test your skills.',
-      icon: <Trophy className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />, 
+      title: 'Grandmaster Method',
+      description: 'Secrets from world-class training systems.',
+      icon: <Trophy size={20} strokeWidth={2.5} />, 
+      color: "bg-[#EAB308]",
+    },
+    {
+      title: 'Combat Training',
+      description: 'Intensive sessions to break rating plateaus.',
+      icon: <Swords size={20} strokeWidth={2.5} />,
       color: "bg-white",
     },
     {
-      title: 'Training Camps',
-      description: 'Intensive masterclasses designed to break plateaus quickly.',
-      icon: <Swords className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />,
-      color: "bg-yellow-400",
+      title: 'Tactical Vision',
+      description: 'Daily challenges for sharp calculation speed.',
+      icon: <Puzzle size={20} strokeWidth={2.5} />,
+      color: "bg-[#EAB308]",
     },
     {
-      title: 'Puzzle Contests',
-      description: 'Daily tactics challenges to sharpen calculation and vision.',
-      icon: <Puzzle className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />,
+      title: 'Growth Analytics',
+      description: 'Monthly reports tracking Elo and accuracy.',
+      icon: <ClipboardCheck size={20} strokeWidth={2.5} />,
       color: "bg-white",
     },
     {
-      title: 'Student Reports',
-      description: 'Monthly data to track progress and accountability.',
-      icon: <ClipboardCheck className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />,
-      color: "bg-yellow-400",
+      title: 'Elite Ecosystem',
+      description: 'Global community and exclusive tournaments.',
+      icon: <Users size={20} strokeWidth={2.5} />,
+      color: "#EAB308",
     },
     {
-      title: 'Hybrid Sessions',
-      description: 'Interactive online classes and focused offline sessions.',
-      icon: <Users className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />,
+      title: 'Tournament Edge',
+      description: 'Psychology coaching for high-pressure matches.',
+      icon: <Target size={20} strokeWidth={2.5} />,
       color: "bg-white",
-    },
-    {
-      title: 'Tournament Prep',
-      description: 'Expert opening prep and pro-level mindset coaching.',
-      icon: <Target className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />,
-      color: "bg-yellow-400",
     },
   ];
 
   return (
-    <section className="py-12 md:py-20 px-4 relative overflow-hidden bg-white selection:bg-black selection:text-yellow-400 border-t-8 border-black">
+    <section id="why-choose-us" className="py-12 md:py-16 px-6 bg-white border-t-4 border-black relative overflow-hidden">
       
-      {/* Background Element */}
-      <div className="absolute -bottom-10 -left-10 w-48 md:w-72 h-48 md:h-72 rounded-full bg-yellow-400/10 border border-yellow-400/30 z-0" />
-
       <div className="relative max-w-6xl mx-auto z-10">
         
-        {/* --- HEADING --- */}
-        <div className="text-center mb-10 md:mb-16">
+        {/* --- COMPACT HEADING --- */}
+        <div className="text-center mb-10 md:mb-14">
           <div className="flex items-center justify-center gap-2 mb-3">
-            <Zap className="fill-yellow-400" size={14} />
-            <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em] text-black italic">The Star Advantage</span>
+            <Zap className="fill-[#EAB308] text-[#EAB308]" size={16} />
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-black">
+              The Chessmate Advantage
+            </span>
           </div>
           
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-black leading-none uppercase italic tracking-tighter mb-4">
-            WHY CHOOSE <span className="text-white sm:inline-block [-webkit-text-stroke:1px_black] md:[-webkit-text-stroke:2px_black] drop-shadow-[3px_3px_0px_rgba(253,224,71,1)]">STAR CHESS</span>
+          <h2 className="text-3xl md:text-5xl font-[1000] text-black leading-tight uppercase tracking-tighter mb-4">
+            Why <span className="text-white drop-shadow-[3px_3px_0px_rgba(0,0,0,1)] [-webkit-text-stroke:1.5px_black]">Chessmate</span> Academy?
           </h2>
 
-          <p className="max-w-lg mx-auto text-gray-600 font-bold text-sm md:text-base leading-tight">
-            "Turning passion into performance through strategic thinking."
+          <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-gray-400">
+            "Turning Passion Into Performance"
           </p>
         </div>
 
-        {/* --- COMPACT GRID LAYOUT --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 items-center">
+        {/* --- SYMMETRICAL COMPACT GRID --- */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 items-center">
           
           {/* Left Column */}
           <div className="space-y-4 md:space-y-5 order-2 lg:order-1">
-            <BenefitCard benefit={benefits[0]} />
-            <BenefitCard benefit={benefits[1]} />
-            <BenefitCard benefit={benefits[2]} />
+            {benefits.slice(0, 3).map((benefit, idx) => (
+              <BenefitCard key={idx} benefit={benefit} />
+            ))}
           </div>
 
-          {/* Center Piece */}
-          <div className="flex justify-center order-1 lg:order-2 py-2 md:py-4 scale-75 sm:scale-90 lg:scale-100">
+          {/* Center Visual (Smaller Knight) */}
+          {/* Center Visual (Updated with Image) */}
+          <div className="flex justify-center order-1 lg:order-2 py-6 lg:py-0">
             <div className="relative group">
-              <div className="absolute inset-[-12px] border-2 border-dashed border-black/10 rounded-full animate-[spin_30s_linear_infinity]" />
-              <div className="relative bg-yellow-400 border-[3px] border-black rounded-full p-4 md:p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-                <img
-                  src="/lion.png" 
-                  alt="Chess Lion"
-                  className="w-32 h-32 md:w-48 md:h-48 object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
+              {/* Spinning Decorative Border */}
+              <div className="absolute inset-[-15px] border border-dashed border-black/20 rounded-full animate-[spin_40s_linear_infinity]" />
+              
+              {/* Image Container */}
+              <div className="relative bg-white border-4 border-black w-32 h-32 md:w-64 md:h-64 shadow-[10px_10px_0px_0px_rgba(234,179,8,1)] overflow-hidden">
+                <img 
+                  src="/why.webp" // Replace with your actual image path
+                  alt="Chessmate Academy Centerpiece"
+                  className="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700"
                 />
+                
+                {/* Optional Brand Overlay Badge */}
+                <div className="absolute bottom-0 right-0 bg-black text-[#EAB308] px-2 py-1 font-black text-[8px] uppercase tracking-tighter border-t-2 border-l-2 border-black">
+                  Elite
+                </div>
               </div>
             </div>
           </div>
 
           {/* Right Column */}
           <div className="space-y-4 md:space-y-5 order-3">
-            <BenefitCard benefit={benefits[3]} />
-            <BenefitCard benefit={benefits[4]} />
-            <BenefitCard benefit={benefits[5]} />
+            {benefits.slice(3, 6).map((benefit, idx) => (
+              <BenefitCard key={idx} benefit={benefit} />
+            ))}
           </div>
 
         </div>
 
-        {/* Bottom Tagline */}
-        <div className="mt-10 text-center">
-            <span className="inline-block bg-gray-100 text-black px-4 py-2 rounded-full font-black text-[8px] md:text-[10px] uppercase tracking-widest border-2 border-black">
-                Professional training for all age groups
-            </span>
+        {/* Bottom Bar (Balanced) */}
+        <div className="mt-12 pt-8 border-t-2 border-gray-100 flex flex-col md:flex-row items-center justify-between gap-6 opacity-80">
+            <div className="flex items-center gap-3">
+              <ShieldCheck className="text-[#EAB308]" size={24} />
+              <p className="text-[10px] font-black text-black uppercase tracking-widest">
+                FIDE Certified Center
+              </p>
+            </div>
+            <p className="text-[9px] font-bold text-gray-400 uppercase tracking-[0.4em]">
+                Elite Standard Training
+            </p>
+            <div className="flex items-center gap-1">
+               {[1,2,3,4,5].map(i => <Star key={i} size={10} className="fill-[#EAB308] text-[#EAB308]" />)}
+            </div>
         </div>
       </div>
     </section>
@@ -124,36 +143,34 @@ export default function WhyChooseUsSection() {
 function BenefitCard({ benefit }: { benefit: any }) {
   return (
     <motion.div
-      whileHover={{ y: -3, x: 3 }}
+      whileHover={{ translatex: 2, translateY: 2 }}
       className={`
-        relative p-4 md:p-5 rounded-xl md:rounded-2xl border-[3px] border-black bg-white
-        shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] transition-all
-        hover:shadow-none hover:translate-x-1 hover:translate-y-1
-        cursor-default group flex items-start gap-4
+        relative p-4 md:p-5 border-2 border-black bg-white
+        shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all
+        hover:shadow-none cursor-default group flex items-start gap-4
       `}
     >
-      {/* Compact Icon */}
+      {/* Small Icon Box */}
       <div className={`
-        shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl border-[3px] border-black flex items-center justify-center 
+        shrink-0 w-10 h-10 border-2 border-black flex items-center justify-center 
         transition-transform group-hover:rotate-6
-        ${benefit.color} shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]
+        ${benefit.color === "bg-[#EAB308]" ? "bg-[#EAB308]" : "bg-white"}
       `}>
-        {benefit.icon}
+        <div className="text-black">
+          {benefit.icon}
+        </div>
       </div>
 
       <div className="flex flex-col">
-        <h3 className="text-base md:text-lg font-black uppercase italic mb-0.5 text-black leading-tight tracking-tight">
-          {benefit.name || benefit.title}
+        <h3 className="text-sm font-[1000] uppercase tracking-tight text-black mb-1 leading-none group-hover:text-[#EAB308]">
+          {benefit.title}
         </h3>
-        <p className="text-[10px] md:text-xs font-bold text-gray-500 leading-tight">
+        <p className="text-[10px] font-bold text-gray-500 leading-tight">
           {benefit.description}
         </p>
       </div>
 
-      {/* Small Decorative Star */}
-      <div className="absolute top-2 right-2 opacity-10 group-hover:opacity-30 transition-opacity">
-        <Star size={12} fill="black" />
-      </div>
+      <ChevronRight size={14} className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 text-[#EAB308] transition-opacity" />
     </motion.div>
   );
 }

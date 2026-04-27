@@ -8,7 +8,8 @@ import {
   ChevronRight,
   Maximize2,
   Trophy,
-  Zap
+  Zap,
+  Camera
 } from 'lucide-react';
 
 interface GalleryImage {
@@ -22,16 +23,14 @@ interface GalleryImage {
 }
 
 const galleryImages: GalleryImage[] = [
-  { id: 1, src: "/star1.jpeg", alt: "Chess Tournament 2024", category: "tournaments", title: "Championship", description: "Students competing in the annual championship finals.", span: "col-span-2 row-span-2" },
-  { id: 2, src: "/star2.jpeg", alt: "Beginner Chess Class", category: "events", title: "Young Minds", description: "Beginners learning their first moves.", span: "col-span-1 row-span-1" },
-  { id: 3, src: "/star4.jpeg", alt: "Fide Arbiter", category: "certificate", title: "Young Champions", description: "Official certification ceremony.", span: "col-span-1 row-span-2" },
-  { id: 4, src: "/star3.jpeg", alt: "Chess Workshop", category: "events", title: "Strategy Winners", description: "Deep dive into grandmaster tactics.", span: "col-span-1 row-span-1" },
-  { id: 5, src: "/1.jpeg", alt: "Award Ceremony", category: "certificate", title: "Award Ceremony", description: "Awarding the champions.", span: "col-span-2 row-span-1" },
-  { id: 6, src: "/2.jpeg", alt: "Tournament Hall", category: "tournaments", title: "Winning Finals", description: "The intense atmosphere of the tournaments.", span: "col-span-1 row-span-1" },
-  { id: 8, src: "/4.jpeg", alt: "Trophy", category: "tournaments", title: "Victory", description: "Taking home the gold.", span: "col-span-1 row-span-1" },
-  { id: 9, src: "/5.jpeg", alt: "Trophy", category: "tournaments", title: "Champion Minds", description: "Making great moves.", span: "col-span-1 row-span-1" },
-  { id: 10, src: "/6.jpeg", alt: "Trophy", category: "tournaments", title: "Mentorship results", description: "Winning at every level.", span: "col-span-1 row-span-1" },
-  { id: 11, src: "/7.jpeg", alt: "Trophy", category: "tournaments", title: "Future masters", description: "Masters in the making.", span: "col-span-1 row-span-1" },
+  { id: 1, src: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?q=80&w=2071", alt: "National Championship", category: "Tournaments", title: "Championship Finals", description: "Elite level competition at the annual state championships.", span: "col-span-2 row-span-2" },
+  { id: 2, src: "https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=1916", alt: "Training Session", category: "Academy", title: "Strategic Drills", description: "Young prodigies analyzing middlegame positions.", span: "col-span-1 row-span-1" },
+  { id: 3, src: "https://images.unsplash.com/photo-1528819622765-d6bcf132f793?q=80&w=2070", alt: "Masterclass", category: "Events", title: "Grandmaster Seminar", description: "Exclusive masterclass session with visiting experts.", span: "col-span-1 row-span-2" },
+  { id: 4, src: "https://images.unsplash.com/photo-1544161513-0179fe746fd5?q=80&w=2070", alt: "Mental Focus", category: "Academy", title: "Absolute Focus", description: "Developing mental resilience through timed practice.", span: "col-span-1 row-span-1" },
+  { id: 5, src: "https://images.unsplash.com/photo-1611195974226-a6a9be9dd763?q=80&w=2050", alt: "Trophy Ceremony", category: "Achievements", title: "Winning Moment", description: "Celebrating podium finishes and student progress.", span: "col-span-2 row-span-1" },
+  { id: 6, src: "https://images.unsplash.com/photo-1523341081608-173627341d25?q=80&w=2070", alt: "Classic Chess", category: "Tournaments", title: "Rapid Arena", description: "Intensity during the weekend rapid tournaments.", span: "col-span-1 row-span-1" },
+  { id: 7, src: "https://images.unsplash.com/photo-1560174038-da43ac74f01b?q=80&w=1957", alt: "Academy Hall", category: "Events", title: "Training Center", description: "Our high-tech training environment for students.", span: "col-span-1 row-span-1" },
+  { id: 8, src: "https://images.unsplash.com/photo-1505015920881-0f83c2f7c95e?q=80&w=1974", alt: "Team Spirit", category: "Academy", title: "Team Analysis", description: "Collaborative learning during group strategy sessions.", span: "col-span-1 row-span-1" },
 ];
 
 const GallerySection: React.FC = () => {
@@ -51,60 +50,62 @@ const GallerySection: React.FC = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-white relative overflow-hidden selection:bg-yellow-400 font-sans border-t-8 border-black">
+    <section className="py-20 md:py-32 bg-white relative overflow-hidden selection:bg-[#EAB308] border-t-[10px] border-black">
       
-      {/* Background Decor - Responsive */}
-      <motion.div animate={{ rotate: 360 }} transition={{ duration: 30, repeat: Infinity, ease: "linear" }} className="absolute -top-20 -right-20 w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-dashed border-black/5 z-0" />
-      
-      {/* Ghost Decal - Responsive Font Size */}
-      <div className="absolute top-1/2 left-5 md:left-10 -translate-y-1/2 text-[6rem] md:text-[15rem] font-black text-gray-50 leading-none select-none -z-10 tracking-tighter uppercase italic opacity-60 md:opacity-100">
-        SNAP
+      {/* Background Architectural Decal */}
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 text-[10rem] md:text-[25rem] font-[1000] text-gray-50 leading-none select-none -z-0 tracking-tighter uppercase italic opacity-80 pointer-events-none">
+        PHOTO
       </div>
 
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         
-        {/* --- HEADER (2xl Mobile / 5xl Desktop) --- */}
-        <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-12 md:mb-20 gap-6 text-center md:text-left">
+        {/* --- HEADER --- */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 md:mb-24 gap-8">
           <div className="max-w-2xl">
-            <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
-              <div className="bg-black p-2 rounded-lg">
-                <Trophy className="w-4 h-4 md:w-5 md:h-5 text-yellow-400" />
+            <div className="flex items-center gap-3 mb-6">
+              <div className="bg-black p-2 border-2 border-black">
+                <Camera className="w-5 h-5 text-[#EAB308]" />
               </div>
-              <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-black italic">Academy Visuals</span>
+              <span className="text-[10px] md:text-xs font-[1000] uppercase tracking-[0.4em] text-black italic">Academy Archive</span>
             </div>
-            <h2 className="text-2xl md:text-5xl font-black text-black leading-tight md:leading-none uppercase italic tracking-tighter">
-              The Star <br />
-              <span className="text-white block md:inline [-webkit-text-stroke:1.5px_black] md:[-webkit-text-stroke:2px_black] drop-shadow-[4px_4px_0px_rgba(253,224,71,1)]">STORYBOARD.</span>
+            <h2 className="text-3xl md:text-5xl font-[1000] text-black leading-[0.9] uppercase tracking-tighter">
+              VISUAL {" "}
+              <span className="text-white [-webkit-text-stroke:1.5px_black] md:[-webkit-text-stroke:2px_black] drop-shadow-[4px_4px_0px_rgba(234,179,8,1)]">MOMENTS.</span>
             </h2>
           </div>
-          <div className="hidden md:flex items-center gap-3 bg-gray-50 border-4 border-black px-6 py-3 rounded-2xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-             <Zap className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-             <p className="text-[10px] font-black uppercase tracking-widest">Click to Expand History</p>
+          
+          <div className="inline-flex items-center gap-4 bg-black text-[#EAB308] px-8 py-4 border-2 border-black shadow-[10px_10px_0px_0px_rgba(243,244,246,1)]">
+             <Zap className="w-5 h-5 fill-[#EAB308]" />
+             <p className="text-[10px] font-[1000] uppercase tracking-widest">Mastery in Focus</p>
           </div>
         </div>
 
         {/* --- BENTO GRID --- */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 auto-rows-[120px] md:auto-rows-[250px]">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[150px] md:auto-rows-[280px]">
           {galleryImages.map((image) => (
             <motion.div 
               key={image.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className={`group relative border-[3px] md:border-4 border-black rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden cursor-pointer shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all duration-300 ${image.span || 'col-span-1 row-span-1'}`}
+              className={`group relative border-4 border-black overflow-hidden cursor-pointer shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all duration-300 ${image.span || 'col-span-1 row-span-1'}`}
               onClick={() => openLightbox(image)}
             >
-              {/* Main Image */}
+              {/* Image with Grayscale Filter */}
               <img 
                 src={image.src} 
                 alt={image.alt} 
-                className="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100"
+                className="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
               />
 
-              {/* Hover Effect */}
-              <div className="absolute inset-0 bg-yellow-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="w-10 h-10 md:w-14 md:h-14 bg-white border-[3px] md:border-4 border-black rounded-xl md:rounded-2xl flex items-center justify-center text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                  <Maximize2 className="w-5 h-5 md:w-6 md:h-6" strokeWidth={3} />
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    <p className="text-[#EAB308] text-[9px] font-black uppercase tracking-widest mb-1">{image.category}</p>
+                    <h4 className="text-white text-lg font-[1000] uppercase leading-tight">{image.title}</h4>
+                </div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-[#EAB308] border-2 border-black flex items-center justify-center text-black shadow-xl">
+                  <Maximize2 className="w-5 h-5" strokeWidth={3} />
                 </div>
               </div>
             </motion.div>
@@ -119,39 +120,42 @@ const GallerySection: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 md:p-12"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/98 backdrop-blur-md p-6 md:p-12"
             onClick={closeLightbox}
           >
             {/* Close Button */}
-            <button className="absolute top-6 right-6 text-white hover:text-yellow-400 transition-colors z-[110] active:scale-90">
-              <X className="w-10 h-10 md:w-14 md:h-14" strokeWidth={3} />
+            <button className="absolute top-8 right-8 text-white hover:text-[#EAB308] transition-colors z-[110] p-2 border-2 border-white/20 rounded-full">
+              <X className="w-8 h-8" strokeWidth={3} />
             </button>
 
-            {/* Navigation Buttons (Hidden on mobile for swipe-feel, active on desktop) */}
-            <button onClick={(e) => navigateImage('prev', e)} className="absolute left-6 top-1/2 -translate-y-1/2 text-white hover:text-yellow-400 p-4 transition-all hidden lg:block">
-              <ChevronLeft className="w-12 h-12 md:w-20 md:h-20" strokeWidth={3} />
+            {/* Nav Controls */}
+            <button onClick={(e) => navigateImage('prev', e)} className="absolute left-8 top-1/2 -translate-y-1/2 text-white hover:text-[#EAB308] transition-all p-4 hidden md:block">
+              <ChevronLeft className="w-16 h-16" strokeWidth={4} />
             </button>
-            <button onClick={(e) => navigateImage('next', e)} className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:text-yellow-400 p-4 transition-all hidden lg:block">
-              <ChevronRight className="w-12 h-12 md:w-20 md:h-20" strokeWidth={3} />
+            <button onClick={(e) => navigateImage('next', e)} className="absolute right-8 top-1/2 -translate-y-1/2 text-white hover:text-[#EAB308] transition-all p-4 hidden md:block">
+              <ChevronRight className="w-16 h-16" strokeWidth={4} />
             </button>
 
             {/* Lightbox Content */}
             <motion.div 
-              initial={{ scale: 0.9, y: 20 }}
+              initial={{ scale: 0.9, y: 30 }}
               animate={{ scale: 1, y: 0 }}
-              className="relative max-w-5xl w-full h-full flex flex-col items-center justify-center"
+              className="relative max-w-6xl w-full h-full flex flex-col items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <img 
-                src={selectedImage.src} 
-                alt={selectedImage.alt} 
-                className="max-w-full max-h-[80vh] object-contain border-[6px] md:border-8 border-white shadow-[10px_10px_0px_0px_rgba(253,224,71,1)] md:shadow-[20px_20px_0px_0px_rgba(253,224,71,1)]" 
-              />
+              <div className="relative border-8 border-white shadow-[20px_20px_0px_0px_rgba(234,179,8,1)] overflow-hidden">
+                <img 
+                  src={selectedImage.src} 
+                  alt={selectedImage.alt} 
+                  className="max-w-full max-h-[75vh] object-contain" 
+                />
+              </div>
               
-              {/* Image Info in Lightbox */}
-              <div className="mt-8 text-center bg-white border-4 border-black px-6 py-3 rounded-2xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-                 <p className="text-[10px] font-black uppercase text-yellow-600 tracking-widest">{selectedImage.category}</p>
-                 <h4 className="text-xl md:text-2xl font-black uppercase italic text-black">{selectedImage.title}</h4>
+              {/* Meta Info */}
+              <div className="mt-10 text-center max-w-xl">
+                 <span className="bg-[#EAB308] text-black px-4 py-1 font-[1000] text-[10px] uppercase tracking-widest">{selectedImage.category}</span>
+                 <h4 className="text-2xl md:text-4xl font-[1000] uppercase italic text-white mt-4 tracking-tight">{selectedImage.title}</h4>
+                 <p className="text-gray-400 text-sm md:text-base mt-2 font-medium leading-relaxed">{selectedImage.description}</p>
               </div>
             </motion.div>
           </motion.div>

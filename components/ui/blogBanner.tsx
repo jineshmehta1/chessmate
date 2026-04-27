@@ -3,9 +3,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ChevronRight, Mail, Phone, MapPin, Send } from 'lucide-react';
+import { ChevronRight, Newspaper, Zap, BookOpen, Search } from 'lucide-react';
 
-const ConnectBanner: React.FC = () => {
+const BlogBanner: React.FC = () => {
   return (
     <section className="relative w-full min-h-[60vh] md:min-h-[100vh] flex items-center bg-[#050505] overflow-hidden pt-0">
       
@@ -26,7 +26,7 @@ const ConnectBanner: React.FC = () => {
       
       {/* 3. Ghost Decal */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[12rem] md:text-[25rem] font-[1000] text-white/[0.02] leading-none select-none -z-0 tracking-tighter uppercase italic pointer-events-none">
-        CONNECT
+        READ
       </div>
 
       {/* --- MAIN LAYOUT --- */}
@@ -43,30 +43,30 @@ const ConnectBanner: React.FC = () => {
               <div className="flex items-center gap-4 mb-6">
                 <span className="h-[1px] w-12 bg-[#EAB308]"></span>
                 <span className="text-[#EAB308] text-[11px] font-black uppercase tracking-[0.5em]">
-                  Get In Touch
+                  Academy Journal
                 </span>
               </div>
 
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tighter mb-8 uppercase">
-                Let's <span className="font-serif italic font-light text-[#EAB308] normal-case">Coordinate</span> {" "}
-                Your Move.
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tighter mb-8 uppercase">
+                Strategic {" "}
+                <span className="font-serif italic font-light text-[#EAB308] normal-case">Insights.</span>
               </h1>
 
               <p className="text-gray-400 text-lg md:text-xl font-medium leading-relaxed mb-10 max-w-lg">
-                Whether you're looking to enroll a child or seeking professional 
-                grandmaster training, our team is ready to analyze your goals.
+                The Grandmaster's perspective on theory, psychology, and performance. 
+                Deep dives into the mechanics of high-level chess.
               </p>
 
               {/* Refined Navigation Paths */}
               <nav className="flex items-center gap-4 text-[10px] md:text-xs font-bold uppercase tracking-widest">
                 <Link href="/" className="text-gray-500 hover:text-[#EAB308] transition-colors">Home</Link>
                 <ChevronRight className="w-3.5 h-3.5 text-[#EAB308]" />
-                <span className="text-white tracking-[0.2em]">Contact</span>
+                <span className="text-white tracking-[0.2em]">Blog & Analysis</span>
               </nav>
             </motion.div>
           </div>
 
-          {/* RIGHT CONTENT: Geometric Composition */}
+          {/* RIGHT CONTENT: Geometric Image Composition */}
           <div className="relative">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -78,12 +78,30 @@ const ConnectBanner: React.FC = () => {
               <div className="absolute inset-0 border border-[#EAB308]/20 p-4">
                 <div className="relative w-full h-full overflow-hidden bg-[#0a0a0a]">
                   <img 
-                    src="/contact.png" 
-                    alt="Contact Chess Mate"
+                    src="/blog.jpg" 
+                    alt="Chess Analysis Journal"
                     className="w-full h-full object-cover brightness-100 hover:grayscale-0 hover:brightness-100 transition-all duration-1000"
                   />
                   
-                  
+                  {/* Glassmorphism Insight Card */}
+                  <div className="absolute bottom-6 left-6 right-6 bg-black/60 backdrop-blur-xl border border-white/10 p-6">
+                     <div className="flex justify-between items-center text-center">
+                        <div>
+                          <p className="text-[#EAB308] text-2xl font-bold">50+</p>
+                          <p className="text-white text-[9px] uppercase font-black tracking-widest mt-1">Articles</p>
+                        </div>
+                        <div className="h-10 w-[1px] bg-white/20"></div>
+                        <div>
+                          <p className="text-[#EAB308] text-2xl font-bold">Weekly</p>
+                          <p className="text-white text-[9px] uppercase font-black tracking-widest mt-1">Updates</p>
+                        </div>
+                        <div className="h-10 w-[1px] bg-white/20"></div>
+                        <div>
+                          <p className="text-[#EAB308] text-2xl font-bold">Expert</p>
+                          <p className="text-white text-[9px] uppercase font-black tracking-widest mt-1">Authors</p>
+                        </div>
+                     </div>
+                  </div>
                 </div>
               </div>
 
@@ -101,16 +119,16 @@ const ConnectBanner: React.FC = () => {
         <div className="container mx-auto px-12">
           <div className="flex justify-between items-center text-white/30">
             <div className="flex items-center gap-3 group cursor-default">
-              <Send className="w-4 h-4 text-[#EAB308]" />
-              <span className="text-[10px] font-bold uppercase tracking-widest group-hover:text-white transition-colors">Instant Inquiry Response</span>
+              <Newspaper className="w-4 h-4 text-[#EAB308]" />
+              <span className="text-[10px] font-bold uppercase tracking-widest group-hover:text-white transition-colors">Opening Analysis</span>
             </div>
             <div className="flex items-center gap-3 group cursor-default">
-              <MapPin className="w-4 h-4 text-[#EAB308]" />
-              <span className="text-[10px] font-bold uppercase tracking-widest group-hover:text-white transition-colors">Global Digital Access</span>
+              <Zap className="w-4 h-4 text-[#EAB308]" />
+              <span className="text-[10px] font-bold uppercase tracking-widest group-hover:text-white transition-colors">Tactical Puzzles</span>
             </div>
             <div className="flex items-center gap-3 group cursor-default">
-               <div className="w-2 h-2 rounded-full bg-[#EAB308] animate-pulse"></div>
-              <span className="text-[10px] font-bold uppercase tracking-widest group-hover:text-white transition-colors">Admissions Open 2026</span>
+              <BookOpen className="w-4 h-4 text-[#EAB308]" />
+              <span className="text-[10px] font-bold uppercase tracking-widest group-hover:text-white transition-colors">Study Roadmaps</span>
             </div>
           </div>
         </div>
@@ -120,4 +138,4 @@ const ConnectBanner: React.FC = () => {
   );
 };
 
-export default ConnectBanner;
+export default BlogBanner;

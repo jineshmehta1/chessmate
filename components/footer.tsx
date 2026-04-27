@@ -16,13 +16,14 @@ import {
   Shield,
   Sword,
   Crown,
-  Timer,
   ChevronRight,
-  Heart
+  Heart,
+  Youtube,
+  Twitter
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-export function Footer() {
+export default function Footer() {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -33,136 +34,159 @@ export function Footer() {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
+  const QUICK_LINKS = [
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Courses", href: "/courses" },
+    { name: "Achievements", href: "/achievements" },
+    { name: "Puzzles", href: "/puzzles" },
+    { name: "Contact", href: "/contact" }
+  ];
+
   return (
-    <footer className="relative bg-black text-white pt-16 md:pt-24 pb-10 overflow-hidden font-sans selection:bg-yellow-400 selection:text-black border-t-8 border-black">
+    <footer className="relative bg-[#000000] text-white pt-20 md:pt-32 pb-12 overflow-hidden selection:bg-[#EAB308] selection:text-black border-t-[12px] border-black">
       
-      {/* --- BACKGROUND DOODLES --- */}
-      <motion.div animate={{ rotate: 360 }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }} className="absolute top-10 right-[5%] opacity-10 md:opacity-20 text-yellow-400 pointer-events-none">
-        <Target className="w-20 h-20 md:w-32 md:h-32" strokeWidth={1} />
-      </motion.div>
-      <motion.div animate={{ y: [0, -20, 0] }} transition={{ duration: 5, repeat: Infinity }} className="absolute top-40 left-[2%] opacity-10 text-white pointer-events-none">
-        <Crown className="w-14 h-14 md:w-20 md:h-20" strokeWidth={1} />
-      </motion.div>
-      <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 4, repeat: Infinity }} className="absolute bottom-40 right-[15%] opacity-10 text-yellow-400 pointer-events-none">
-        <Zap className="w-10 h-10 md:w-16 md:h-16" strokeWidth={1} />
-      </motion.div>
-      <div className="absolute top-1/2 left-[20%] opacity-5 pointer-events-none">
-        <Timer className="w-24 h-24 md:w-40 md:h-40" strokeWidth={1} />
+      {/* --- BACKGROUND ARCHITECTURAL DECAL --- */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] md:text-[30rem] font-[1000] text-white/[0.03] leading-none select-none -z-0 tracking-tighter uppercase italic pointer-events-none">
+        MATE
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 md:mb-20">
+      {/* Floating Chess Decals */}
+      <motion.div animate={{ rotate: 360 }} transition={{ duration: 40, repeat: Infinity, ease: "linear" }} className="absolute top-10 right-[5%] opacity-10 text-[#EAB308] pointer-events-none">
+        <Target className="w-24 h-24 md:w-40 md:h-40" />
+      </motion.div>
+      <motion.div animate={{ y: [0, -30, 0] }} transition={{ duration: 6, repeat: Infinity }} className="absolute top-1/3 left-[2%] opacity-10 text-white pointer-events-none">
+        <Crown className="w-16 h-16 md:w-24 md:h-24" />
+      </motion.div>
+
+      <div className="container mx-auto px-6 relative z-10 max-w-7xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-20">
           
           {/* BRAND COLUMN */}
-          <div className="space-y-6 md:space-y-8">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 md:w-16 md:h-16 bg-yellow-400 border-4 border-white rounded-2xl flex items-center justify-center rotate-3 shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">
-                <Trophy className="text-black w-7 h-7 md:w-8 md:h-8" />
+          <div className="space-y-8">
+            <div className="flex items-center gap-4 group">
+              <div className="w-14 h-14 bg-[#EAB308] border-2 border-black flex items-center justify-center shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] group-hover:shadow-none group-hover:translate-x-1 group-hover:translate-y-1 transition-all">
+                {/* Knight Icon Representation */}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 22C8 22 3 20 3 14C3 12 4.5 10.5 5.5 9C4 8 4 6 5 4C6 2.5 8 2 10 3C12 4 13 6 13 8C13 10 12 11.5 11 12.5C13 14 16 15 19 15C20 15 21 16 21 17C21 19 19 21 15 22H8Z" fill="black"/>
+                </svg>
               </div>
-              <div>
-                <h3 className="text-xl md:text-2xl font-black uppercase italic leading-none">Star Chess<br/>Academy</h3>
-                <p className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-yellow-400 mt-1">Learn - play - Think smart</p>
+              <div className="leading-none">
+                <h3 className="text-xl md:text-2xl font-[1000] uppercase tracking-tighter">Chess<span className="text-[#EAB308]">Mate</span></h3>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mt-1">Elite Academy</p>
               </div>
             </div>
 
-            <p className="text-gray-400 text-xs md:text-sm font-bold leading-relaxed max-w-xs">
-              Empowering the next generation of Grandmasters through strategic art and tactical precision.
+            <p className="text-gray-400 text-sm font-bold leading-relaxed max-w-xs">
+              World-class chess coaching for aspiring grandmasters. Master the art of the move with FIDE certified trainers.
             </p>
 
-            <div className="flex gap-4">
-              {[Facebook, Instagram, MessageCircle].map((Icon, i) => (
-                <a key={i} href="#" className="w-10 h-10 md:w-12 md:h-12 bg-white border-2 border-white rounded-xl flex items-center justify-center text-black hover:bg-yellow-400 hover:translate-y-[-4px] transition-all shadow-[4px_4px_0px_0px_rgba(253,224,71,1)]">
-                  <Icon className="w-5 h-5 md:w-6 md:h-6" fill="currentColor" />
+            <div className="flex gap-3">
+              {[Facebook, Instagram, Youtube, Twitter].map((Icon, i) => (
+                <a key={i} href="#" className="w-10 h-10 bg-white flex items-center justify-center text-black border-2 border-black hover:bg-[#EAB308] transition-all">
+                  <Icon className="w-5 h-5" fill="currentColor" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* LINKS COLUMN */}
-          <div className="lg:pl-8">
-            <h4 className="text-base md:text-lg font-black uppercase italic mb-6 md:mb-8 flex items-center gap-2">
-              <Star className="text-yellow-400 w-5 h-5" fill="currentColor" /> Useful Links
+          {/* QUICK LINKS */}
+          <div>
+            <h4 className="text-lg font-black uppercase tracking-widest mb-8 flex items-center gap-2">
+              <Star className="text-[#EAB308] w-5 h-5 fill-[#EAB308]" /> Navigation
             </h4>
-            <ul className="space-y-4">
-              {['Curriculum', 'About Us', 'Contact', 'Achievements'].map((link) => (
-                <li key={link}>
-                  <a href="#" className="group flex items-center gap-2 text-gray-400 hover:text-yellow-400 font-bold uppercase text-[10px] md:text-xs tracking-widest transition-colors">
-                    <ChevronRight className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover:translate-x-1 transition-transform" /> {link}
+            <ul className="grid grid-cols-1 gap-4">
+              {QUICK_LINKS.map((link) => (
+                <li key={link.name}>
+                  <a href={link.href} className="group flex items-center gap-2 text-gray-500 hover:text-[#EAB308] font-black uppercase text-[11px] tracking-[0.2em] transition-all">
+                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /> {link.name}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* ACADEMY CONTACT */}
+          {/* ACADEMY SUPPORT */}
           <div>
-            <h4 className="text-base md:text-lg font-black uppercase italic mb-6 md:mb-8 flex items-center gap-2">
-              <Shield className="text-yellow-400 w-5 h-5" /> Academy
+            <h4 className="text-lg font-black uppercase tracking-widest mb-8 flex items-center gap-2">
+              <Shield className="text-[#EAB308] w-5 h-5" /> Support
             </h4>
-            <div className="space-y-4 md:space-y-6">
-              <div className="flex items-center gap-3 group cursor-pointer">
-                <div className="w-10 h-10 border-2 border-white rounded-lg flex items-center justify-center group-hover:bg-yellow-400 group-hover:text-black transition-colors">
+            <div className="space-y-6">
+              <div className="flex items-center gap-4 group cursor-pointer">
+                <div className="w-10 h-10 border-2 border-white/10 flex items-center justify-center group-hover:bg-[#EAB308] group-hover:text-black transition-all">
                   <Phone className="w-4 h-4 md:w-5 md:h-5" />
                 </div>
-                <span className="text-xs md:text-sm font-bold">+91-8056082286</span>
+                <div>
+                    <p className="text-[9px] font-black uppercase text-gray-500">Call Us</p>
+                    <span className="text-xs md:text-sm font-black tracking-widest">+91 79907 75581</span>
+                </div>
               </div>
-              <div className="flex items-center gap-3 group cursor-pointer">
-                <div className="w-10 h-10 border-2 border-white rounded-lg flex items-center justify-center group-hover:bg-yellow-400 group-hover:text-black transition-colors">
+              <div className="flex items-center gap-4 group cursor-pointer">
+                <div className="w-10 h-10 border-2 border-white/10 flex items-center justify-center group-hover:bg-[#EAB308] group-hover:text-black transition-all">
                   <Mail className="w-4 h-4 md:w-5 md:h-5" />
                 </div>
-                <span className="text-xs md:text-sm font-bold break-all">info@starchess.in</span>
+                <div>
+                    <p className="text-[9px] font-black uppercase text-gray-500">Email Us</p>
+                    <span className="text-xs md:text-sm font-black tracking-widest uppercase">contact@thechessmate.org</span>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* HEADQUARTERS */}
+          {/* HEADQUARTERS CARD */}
           <div>
-            <h4 className="text-base md:text-lg font-black uppercase italic mb-6 md:mb-8 flex items-center gap-2">
-              <MapPin className="text-yellow-400 w-5 h-5" /> Headquarters
+            <h4 className="text-lg font-black uppercase tracking-widest mb-8 flex items-center gap-2">
+              <MapPin className="text-[#EAB308] w-5 h-5" /> Branches
             </h4>
-            <div className="p-6 bg-[#111] border-[3px] md:border-4 border-yellow-400 rounded-[1.5rem] md:rounded-[2rem] shadow-[6px_6px_0px_0px_rgba(255,255,255,0.05)]">
-              <p className="text-[11px] md:text-xs font-bold leading-relaxed text-gray-300 uppercase tracking-tight">
-                Thazhambur, <br/>Chennai,<br/> Tamil Nadu 603302
+            <div className="p-6 bg-white/5 border-2 border-[#EAB308] shadow-[8px_8px_0px_0px_rgba(234,179,8,1)]">
+              <p className="text-xs font-bold leading-relaxed text-gray-300 uppercase tracking-widest">
+                Operating across <br/>
+                Digital Platforms <br/>
+                & Premium Local Hubs
               </p>
-              <div className="mt-4 flex items-center gap-2 text-yellow-400 font-black text-[9px] md:text-[10px] uppercase tracking-widest">
-                <Sword className="w-3.5 h-3.5 md:w-4 md:h-4" /> Battle Ground
+              <div className="mt-6 flex items-center gap-2 text-[#EAB308] font-black text-[10px] uppercase tracking-[0.2em]">
+                <Sword className="w-4 h-4" /> Grandmaster Arena
               </div>
             </div>
           </div>
 
         </div>
 
-        {/* BOTTOM BAR */}
-        <div className="pt-8 border-t-2 border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-center md:text-left">
-            <p className="text-gray-500 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em]">
-              © {new Date().getFullYear()} Star Chess Academy. All rights reserved.
+        {/* BOTTOM COPYRIGHT AREA */}
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="text-center md:text-left space-y-2">
+            <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.3em]">
+              © {new Date().getFullYear()} Chess Mate Academy. All rights reserved.
             </p>
-            <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] mt-2 text-gray-400">
-              Designed with <Heart className="inline text-red-500 fill-red-500 w-2.5 h-2.5" /> by{" "}
-              <a href="https://wa.me/917851988964" target="_blank" className="text-white hover:text-yellow-400 underline decoration-yellow-400/30">Jinesh Mehta</a>
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-600">
+              Elite Standard Training <span className="mx-2 text-[#EAB308]">|</span> FIDE Focussed
             </p>
           </div>
           
-          <div className="flex gap-6 md:gap-8">
-            <a href="#" className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white">Privacy</a>
-            <a href="#" className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white">Terms</a>
+          <div className="flex flex-col items-center md:items-end gap-2">
+            <div className="flex gap-8">
+                <a href="#" className="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" className="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white transition-colors">Terms of Service</a>
+            </div>
+            <p className="text-[9px] font-black uppercase tracking-[0.3em] text-gray-700">
+              Designed with <Heart className="inline text-red-600 fill-red-600 w-3 h-3 mx-1" /> for Champions
+            </p>
           </div>
         </div>
       </div>
 
-      {/* FLOATING ACTION BUTTONS */}
+      {/* --- FLOATING ACTION UI (BRUTALIST STYLE) --- */}
       <a
-         href="https://wa.me/918056082286"
+         href="https://wa.me/917990775581"
          target="_blank"
-         className="fixed bottom-6 left-6 z-50 bg-[#25D366] text-white p-3.5 md:p-4 rounded-2xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all active:scale-90"
+         className="fixed bottom-8 left-8 z-50 bg-[#25D366] text-white p-4 border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all active:scale-95 group"
       >
-         <MessageCircle className="w-6 h-6 md:w-7 md:h-7" fill="currentColor" />
+         <MessageCircle className="w-6 h-6 md:w-7 md:h-7 group-hover:scale-110 transition-transform" fill="currentColor" />
       </a>
 
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-6 right-6 z-50 p-3.5 md:p-4 bg-yellow-400 text-black rounded-2xl border-4 border-black shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] transition-all hover:shadow-none active:scale-90 ${showScrollTop ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
+        className={`fixed bottom-8 right-8 z-50 p-4 bg-[#EAB308] text-black border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all hover:shadow-none active:scale-95 ${showScrollTop ? 'translate-y-0 opacity-100' : 'translate-y-32 opacity-0'}`}
       >
         <ArrowUp className="w-6 h-6 md:w-7 md:h-7" strokeWidth={4} />
       </button>
