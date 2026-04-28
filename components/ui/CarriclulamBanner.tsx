@@ -74,9 +74,9 @@ const CurriculumBanner: React.FC = () => {
               <div className="absolute inset-0 border border-[#EAB308]/20 p-2 lg:p-4">
                 <div className="relative w-full h-full overflow-hidden bg-[#111]">
                   <img 
-                    src="https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2000" 
+                    src="/co.jpg" 
                     alt="Chess Curriculum Analysis"
-                    className="w-full h-full object-cover grayscale brightness-50 hover:grayscale-0 hover:brightness-100 transition-all duration-1000"
+                    className="w-full h-full object-cover brightness-100 hover:grayscale-0 hover:brightness-100 transition-all duration-1000"
                   />
                   
                   {/* Glassmorphism Path Card - Responsive spacing/text */}

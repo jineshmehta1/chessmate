@@ -18,7 +18,6 @@ export default function HomePage() {
           <WhyChooseUsSection />
         </section>
         <CoursesSection />
-        <AchievementsSection/>
         <TestimonialsSection />
         <DifferenceSection/>
         <section id="faq">

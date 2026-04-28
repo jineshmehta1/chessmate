@@ -6,7 +6,6 @@ import {
   Minus,
   HelpCircle,
   Zap,
-  MessageSquare,
   ArrowRight,
   Phone,
   Mail
@@ -16,23 +15,23 @@ import { motion, AnimatePresence } from "framer-motion";
 const faqData = [
   {
     question: "What is Chess Mate Academy?",
-    answer: "Chess Mate Academy is a premier professional training institute. We focus on developing elite strategic thinking, competitive resilience, and tournament mastery using FIDE-rated standards.",
+    answer: "Chess Mate Academy is a premier professional training institute. We provide interactive live classes to kids and adults, focusing on strategic thinking and competitive mastery.",
   },
   {
-    question: "Is there a curriculum for beginners?",
-    answer: "Yes. Our 'Beginner to Master' roadmap is structured into clear phases. We start with fundamental movement and logic before moving into advanced tactical patterns.",
+    question: "What age group do we teach?",
+    answer: "We teach kids as young as 5 years old to adults with no age limits. Our curriculum is tailored to the cognitive stage of the student, ensuring effective learning for every generation.",
   },
   {
     question: "Do you provide online or offline sessions?",
-    answer: "We offer both. Our live interactive online classes use a professional platform with digital boards, while our offline branches provide a classic competitive environment.",
+    answer: "We are a fully digital academy specializing in high-quality, live interactive online classes. We do not provide offline classes, allowing students from all over the world to access our elite FIDE-certified coaching.",
+  },
+  {
+    question: "Is there a curriculum for beginners?",
+    answer: "Yes. Our 'Beginner to Master' roadmap is structured into clear phases, starting with fundamental movement and logic before progressing to advanced tactical patterns.",
   },
   {
     question: "How do you track a student's progress?",
-    answer: "Progress is tracked through monthly performance analytics, puzzle accuracy ratings, and internal tournament results. Parents receive a detailed growth report every 30 days.",
-  },
-  {
-    question: "Are there specific tournament preparations?",
-    answer: "Absolutely. We specialize in psychological and tactical preparation for District, State, and National level FIDE rated tournaments, including opening repertoire mastery.",
+    answer: "Progress is monitored through monthly performance analytics, puzzle accuracy, and internal tournament results. Parents receive a comprehensive growth report every 30 days.",
   },
   {
     question: "Can I book a trial class first?",
@@ -59,7 +58,7 @@ export default function PremiumFaqSection() {
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <Zap className="fill-[#EAB308] text-[#EAB308]" size={20} />
-                <span className="text-[11px] font-black uppercase tracking-[0.4em] text-black italic">Help Center</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-black italic">Help Center</span>
               </div>
               
               <h2 className="text-4xl md:text-6xl font-[1000] text-black leading-[0.95] uppercase tracking-tighter mb-8">
@@ -68,7 +67,7 @@ export default function PremiumFaqSection() {
               </h2>
               
               <p className="text-gray-500 font-bold text-sm md:text-base leading-relaxed max-w-md">
-                Find answers to common inquiries about our training methodology, 
+                Find answers to common inquiries about our online training methodology, 
                 schedules, and enrollment process.
               </p>
             </div>
@@ -77,14 +76,17 @@ export default function PremiumFaqSection() {
             <div className="bg-black p-8 border-l-[8px] border-[#EAB308] shadow-[15px_15px_0px_0px_rgba(243,244,246,1)]">
               <h4 className="text-[#EAB308] font-black uppercase text-xs tracking-widest mb-6">Direct Support</h4>
               <div className="space-y-6">
-                <div className="flex items-center gap-4 group cursor-pointer">
-                  <div className="w-10 h-10 bg-[#EAB308] flex items-center justify-center text-black">
+                <div className="flex items-start gap-4 group cursor-pointer">
+                  <div className="w-10 h-10 bg-[#EAB308] flex items-center justify-center text-black shrink-0">
                     <Phone size={18} />
                   </div>
-                  <span className="text-white font-bold text-sm tracking-tight group-hover:text-[#EAB308] transition-colors">+91 79907 75581</span>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-white font-bold text-sm tracking-tight group-hover:text-[#EAB308] transition-colors">+91 79907 75581</span>
+                    <span className="text-white font-bold text-sm tracking-tight group-hover:text-[#EAB308] transition-colors">+91 87330 84949</span>
+                  </div>
                 </div>
                 <div className="flex items-center gap-4 group cursor-pointer">
-                  <div className="w-10 h-10 bg-[#EAB308] flex items-center justify-center text-black">
+                  <div className="w-10 h-10 bg-[#EAB308] flex items-center justify-center text-black shrink-0">
                     <Mail size={18} />
                   </div>
                   <span className="text-white font-bold text-sm tracking-tight group-hover:text-[#EAB308] transition-colors">contact@thechessmate.org</span>
@@ -92,7 +94,7 @@ export default function PremiumFaqSection() {
               </div>
               
               <button className="w-full mt-10 py-4 bg-white text-black font-black uppercase text-[10px] tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-[#EAB308] transition-all">
-                Contact Coach <ArrowRight size={14} />
+                Book a Demo <ArrowRight size={14} />
               </button>
             </div>
           </div>
@@ -141,7 +143,7 @@ export default function PremiumFaqSection() {
             <div className="mt-12 flex items-center gap-4 opacity-40">
               <HelpCircle size={20} className="text-black" />
               <p className="text-[10px] font-black uppercase tracking-[0.3em]">
-                Verified Support • Professional Response
+                Global Digital Learning • Expert Support
               </p>
             </div>
           </div>

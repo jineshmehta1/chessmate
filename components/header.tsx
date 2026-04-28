@@ -45,7 +45,7 @@ const Header: React.FC = () => {
         { name: "Advanced", href: "/puzzles/advanced" },
       ],
     },
-    { name: "Gallery", href: "/gallery" },
+    // { name: "Gallery", href: "/gallery" },
     { name: "Blogs", href: "/blog" },
     { name: "Contact Us", href: "/contact" },
   ];

@@ -103,28 +103,7 @@ export default function HeroSection() {
               </Link>
             </div>
 
-            {/* Social Proof Section */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 pt-6 md:pt-10 border-t border-gray-100">
-               <div className="flex -space-x-3 md:-space-x-4">
-                 {[1,2,3,4].map(i => (
-                   <div key={i} className="w-10 h-10 md:w-12 md:h-12 border-2 md:border-4 border-white overflow-hidden bg-black flex items-center justify-center">
-                      <img 
-                        src={`https://i.pravatar.cc/150?u=chessmate${i}`} 
-                        alt="Student" 
-                        className="grayscale contrast-125 object-cover"
-                      />
-                   </div>
-                 ))}
-               </div>
-               <div className="space-y-1">
-                 <div className="flex text-yellow-500">
-                   {[1,2,3,4,5].map(i => <Star key={i} className="w-3 h-3 md:w-3.5 md:h-3.5" fill="currentColor" />)}
-                 </div>
-                 <p className="text-[9px] md:text-[10px] font-black text-black tracking-[0.1em] uppercase">
-                   Trusted by 2,000+ Champions worldwide
-                 </p>
-               </div>
-            </div>
+            
           </div>
 
           {/* --- RIGHT SECTION (IMAGE ARCHITECTURE) --- */}

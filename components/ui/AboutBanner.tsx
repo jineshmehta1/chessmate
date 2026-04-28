@@ -75,23 +75,10 @@ const AboutBanner: React.FC = () => {
                   <img 
                     src="/ches.avif" 
                     alt="Chess Mastery"
-                    className="w-full h-full object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-1000"
+                    className="w-full h-full object-cover brightness-100 hover:grayscale-0 hover:brightness-100 transition-all duration-1000"
                   />
                   
-                  {/* Glassmorphism Stat Card */}
-                  <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 bg-black/60 backdrop-blur-xl border border-white/10 p-4 md:p-6">
-                     <div className="flex justify-between items-center text-center">
-                        <div>
-                          <p className="text-[#EAB308] text-xl md:text-2xl font-bold">1200+</p>
-                          <p className="text-white text-[8px] md:text-[9px] uppercase font-black tracking-widest mt-1">Students Rated</p>
-                        </div>
-                        <div className="h-8 md:h-10 w-[1px] bg-white/20 mx-2"></div>
-                        <div>
-                          <p className="text-[#EAB308] text-xl md:text-2xl font-bold">15+</p>
-                          <p className="text-white text-[8px] md:text-[9px] uppercase font-black tracking-widest mt-1">Global Hubs</p>
-                        </div>
-                     </div>
-                  </div>
+                  
                 </div>
               </div>
 

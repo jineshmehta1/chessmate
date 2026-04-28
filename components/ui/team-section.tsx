@@ -35,7 +35,7 @@ const TEAM = [
   },
   {
     name: "Ujjwal Bansal",
-    role: "Founder and Coach",
+    role: "FIDE Rated Coach",
     image: "/ujjwal.webp", // Replace with actual path
     experience: "10+ Years",
     highlights: [

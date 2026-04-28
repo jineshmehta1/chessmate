@@ -4,68 +4,81 @@ import React from "react";
 import { 
   Zap, 
   ChevronRight,
-  Star,
-  Clock,
-  Users,
-  CheckCircle2
+  CheckCircle2,
+  Layers
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useDemoModal } from "@/context/DemoContext";
 
 const COURSES = [
   {
-    title: "Beginner Group",
-    price: "$160",
-    image: "/beg.webp", // Replace with your actual path
-    lectures: "8 Lectures a Month",
-    features: ["How to Play Chess?", "How does Pieces Move?", "How to Checkmate?", "Complete Fundamentals"],
-    rating: "4.9",
-    tag: "Fundamentals"
+    title: "Beginner",
+    image: "/beg.webp", 
+    tag: "Phase 01",
+    features: [
+      "How to Play Chess?",
+      "How does Pieces Move?",
+      "How to Checkmate?",
+      "Basic Fundamentals & Rules",
+      "Game Thinking & Decision Making"
+    ]
   },
   {
-    title: "Intermediate Group",
-    price: "$160",
-    image: "/inter.jpeg", // Replace with your actual path
-    lectures: "8 Lectures a Month",
-    features: ["Tactics in Chess", "Strategy Mastery", "Chess Calculation", "Openings in Chess"],
-    rating: "4.9",
-    tag: "Tactician"
+    title: "Intermediate",
+    image: "/inter.jpeg",
+    tag: "Phase 02",
+    features: [
+      "Tactics in Chess",
+      "Basic Chess Endgames",
+      "Chess Calculation",
+      "Basic Openings in Chess",
+      "Game Analysis & Correction"
+    ]
   },
   {
-    title: "Advanced Group",
-    price: "$160",
-    image: "/adv.jpeg", // Replace with your actual path
-    lectures: "8 Lectures a Month",
-    features: ["Opening Repertoire", "Middle Game Mastery", "In-depth Endgame", "Tournament Prep"],
-    rating: "4.9",
-    tag: "Expert"
+    title: "Advance",
+    image: "/adv.jpeg",
+    tag: "Phase 03",
+    features: [
+      "Opening Repertoire Development",
+      "Strategic & Positional Mastery",
+      "Advanced Endgames & Conversion",
+      "Tournament Prep & Practical Skills",
+      "Advance Calculation Practice"
+    ]
   },
   {
-    title: "1-1 Individual",
-    price: "$160",
-    image: "/ind.avif", // Replace with your actual path
-    lectures: "8 Lectures a Month",
-    features: ["Mental Training", "Tournament Prep", "Personal Gaming", "Personal Attention"],
-    rating: "5.0",
-    tag: "Individual"
+    title: "Master",
+    image: "/ind.avif",
+    tag: "Elite Tier",
+    features: [
+      "Engine & Database Support",
+      "Dynamic Imbalance Handling",
+      "Performance Optimization",
+      "Mental Training",
+      "High-Level Decision Making"
+    ]
   }
 ];
 
 export default function CourseSection() {
+  const { openDemoModal } = useDemoModal();
+
   return (
-    <section className="py-20 bg-white border-t-8 border-black">
+    <section className="py-20 bg-white border-t-[10px] border-black selection:bg-[#EAB308]">
       <div className="container mx-auto px-6 max-w-7xl">
         
         {/* --- HEADER --- */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Zap className="fill-[#EAB308] text-[#EAB308]" size={18} />
-            <span className="text-[11px] font-black uppercase tracking-[0.4em] text-black">Professional Training</span>
+        <div className="text-center mb-16 md:mb-24">
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <Layers className="text-[#EAB308] w-6 h-6" />
+            <span className="text-[10px] md:text-xs font-[1000] uppercase tracking-[0.4em] text-black">Structured Roadmap</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-[1000] text-black uppercase tracking-tighter mb-4">
-            Our <span className="text-white drop-shadow-[4px_4px_0px_rgba(0,0,0,1)] [-webkit-text-stroke:2px_black]">Courses</span>
+          <h2 className="text-3xl md:text-5xl font-[1000] text-black uppercase tracking-tighter mb-6">
+            CHOOSE YOUR <span className="text-white drop-shadow-[4px_4px_0px_rgba(0,0,0,1)] [-webkit-text-stroke:2px_black]">LEVEL</span>
           </h2>
-          <p className="max-w-2xl mx-auto text-gray-500 font-bold text-sm md:text-base leading-relaxed">
-            Feel free to choose any suitable chess course for your child or get a FREE demo class to know the best course suitable for your child.
+          <p className="max-w-2xl mx-auto text-gray-500 font-bold text-sm md:text-base leading-relaxed uppercase tracking-wide">
+            Feel free to choose any suitable chess course for your child or get a <span className="text-black underline decoration-[#EAB308] decoration-4">FREE demo class</span> to know the best fit.
           </p>
         </div>
 
@@ -74,61 +87,48 @@ export default function CourseSection() {
           {COURSES.map((course, idx) => (
             <motion.div
               key={idx}
-              whileHover={{ y: -5 }}
-              className="group relative flex flex-col bg-white border-4 border-black shadow-[10px_10px_0px_0px_rgba(234,179,8,1)] transition-all"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -8 }}
+              className="group relative flex flex-col bg-white border-4 border-black shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] transition-all"
             >
               {/* Image Container */}
               <div className="relative h-48 w-full bg-black overflow-hidden border-b-4 border-black">
                 <img 
                   src={course.image} 
                   alt={course.title}
-                  className="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-500"
+                  className="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
                 />
-                <div className="absolute top-4 left-4 bg-[#EAB308] text-black px-3 py-1 font-black text-[10px] uppercase border-2 border-black">
+                <div className="absolute top-4 left-4 bg-[#EAB308] text-black px-3 py-1 font-[1000] text-[10px] uppercase border-2 border-black">
                   {course.tag}
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-xl font-[1000] uppercase tracking-tighter leading-none text-black">
-                    {course.title}
-                  </h3>
-                  <div className="bg-black text-[#EAB308] px-2 py-1 font-black text-xs">
-                    {course.price}
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2 mb-6 text-gray-400">
-                  <Clock size={14} className="text-[#EAB308]" />
-                  <span className="text-[10px] font-black uppercase tracking-widest">{course.lectures}</span>
-                </div>
+              <div className="p-8 flex flex-col flex-grow">
+                <h3 className="text-2xl font-[1000] uppercase tracking-tighter leading-none text-black mb-8 group-hover:text-[#EAB308] transition-colors">
+                  {course.title}
+                </h3>
 
                 {/* Features List */}
-                <div className="space-y-3 mb-8 flex-grow">
+                <div className="space-y-4 mb-10 flex-grow">
                   {course.features.map((feature, i) => (
-                    <div key={i} className="flex items-start gap-2">
-                      <CheckCircle2 size={14} className="text-[#EAB308] mt-0.5 shrink-0" />
-                      <span className="text-[11px] font-bold text-gray-600 uppercase leading-tight">{feature}</span>
+                    <div key={i} className="flex items-start gap-3">
+                      <CheckCircle2 className="text-[#EAB308] w-4 h-4 mt-0.5 shrink-0" strokeWidth={3} />
+                      <span className="text-[11px] font-black text-gray-600 uppercase leading-tight tracking-tight">{feature}</span>
                     </div>
                   ))}
                 </div>
 
-                {/* Rating & CTA */}
-                <div className="mt-auto space-y-4">
-                  <div className="flex items-center justify-between border-t-2 border-gray-100 pt-4">
-                    <div className="flex items-center gap-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} size={12} className="fill-[#EAB308] text-[#EAB308]" />
-                      ))}
-                    </div>
-                    <span className="text-[10px] font-black text-black">RATED {course.rating} / 5</span>
-                  </div>
-
-                  <button className="w-full bg-black text-white py-4 font-black text-[10px] uppercase tracking-[0.2em] transition-all hover:bg-[#EAB308] hover:text-black flex items-center justify-center gap-2">
-                    Book Demo
-                    <ChevronRight size={14} />
+                {/* CTA */}
+                <div className="mt-auto">
+                  <button 
+                    onClick={openDemoModal}
+                    className="w-full bg-black text-[#EAB308] py-5 border-2 border-black font-[1000] uppercase text-[11px] tracking-[0.2em] transition-all hover:bg-[#EAB308] hover:text-black shadow-[6px_6px_0px_0px_rgba(234,179,8,1)] hover:shadow-none flex items-center justify-center gap-3 active:scale-95"
+                  >
+                    Enroll Now
+                    <ChevronRight className="w-4 h-4 stroke-[4px]" />
                   </button>
                 </div>
               </div>
@@ -136,7 +136,12 @@ export default function CourseSection() {
           ))}
         </div>
 
-       
+        {/* Bottom Trust Tag */}
+        <div className="mt-20 text-center opacity-30">
+            <p className="text-[10px] font-black uppercase tracking-[0.6em] text-black">
+                Elite Standard Professional Training
+            </p>
+        </div>
       </div>
     </section>
   );
