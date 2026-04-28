@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Chess } from "chess.js";
 import dynamic from "next/dynamic";
 import PuzzlePageLayout from "../PuzzlePageLayout";
+import { ChevronLeft, ChevronRight, RotateCcw, LayoutGrid } from "lucide-react";
 
 const Chessboard = dynamic(
   () => import("react-chessboard").then((mod) => mod.Chessboard),
@@ -276,29 +277,37 @@ const folders = [
     lichessFormat: true,
   },
 ];
+// ─── HOOK FOR RESPONSIVE BOARD ──────────────────────────────────────────────
+function useBoardWidth(containerRef: React.RefObject<HTMLDivElement>) {
+  const [boardWidth, setBoardWidth] = useState(300);
 
-// ─── UCI → SAN HELPER ────────────────────────────────────────────────────────
-function uciToSan(game: Chess, uci: string): string | null {
-  const from = uci.slice(0, 2);
-  const to = uci.slice(2, 4);
-  const promotion = uci.length === 5 ? uci[4] : undefined;
-  try {
-    const g = new Chess(game.fen());
-    const move = g.move({ from, to, promotion });
-    return move ? move.san : null;
-  } catch {
-    return null;
-  }
+  useEffect(() => {
+    const handleResize = () => {
+      if (containerRef.current) {
+        // Calculate width: Container width minus some padding for safety
+        const parentWidth = containerRef.current.offsetWidth;
+        // Logic: On mobile, fill screen width. On desktop, cap it at 500px
+        const newWidth = Math.min(parentWidth - 32, 500);
+        setBoardWidth(newWidth);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [containerRef]);
+
+  return boardWidth;
 }
 
-// ─── PUZZLE PLAYER ───────────────────────────────────────────────────────────
+// ─── PUZZLE PLAYER (RESPONSIVE) ───────────────────────────────────────────────
 function PuzzlePlayer({
   puzzles,
   lichessFormat,
   folderLabel,
   onBack,
 }: {
-  puzzles: typeof doubleAttackPuzzles;
+  puzzles: any[];
   lichessFormat: boolean;
   folderLabel: string;
   onBack: () => void;
@@ -309,78 +318,62 @@ function PuzzlePlayer({
   const [currentMoveIndex, setCurrentMoveIndex] = useState(0);
   const [status, setStatus] = useState("");
   const [boardOrientation, setBoardOrientation] = useState<"white" | "black">("white");
+  
+  const boardContainerRef = useRef<HTMLDivElement>(null);
+  const boardWidth = useBoardWidth(boardContainerRef);
 
   const puzzle = puzzles[currentIndex];
 
-  // Init / reset puzzle
   useEffect(() => {
     const timeout = setTimeout(() => {
       const newGame = new Chess(puzzle.fen);
-
       if (lichessFormat) {
-        // Auto-play opponent's first move
         const opponentUci = puzzle.moves[0];
-        const from = opponentUci.slice(0, 2);
-        const to = opponentUci.slice(2, 4);
-        const promo = opponentUci.length === 5 ? opponentUci[4] : undefined;
-        try { newGame.move({ from, to, promotion: promo }); } catch {}
-        setGame(newGame);
-        setFen(newGame.fen());
-        setCurrentMoveIndex(1); // player solves move index 1
-        // Board orientation: player's color
-        setBoardOrientation(puzzle.playerColor === "w" ? "white" : "black");
+        try { newGame.move({ from: opponentUci.slice(0, 2), to: opponentUci.slice(2, 4), promotion: opponentUci[4] }); } catch {}
+        setCurrentMoveIndex(1);
       } else {
-        setGame(newGame);
-        setFen(newGame.fen());
         setCurrentMoveIndex(0);
-        setBoardOrientation(puzzle.playerColor === "w" ? "white" : "black");
       }
+      setGame(newGame);
+      setFen(newGame.fen());
+      setBoardOrientation(puzzle.playerColor === "w" ? "white" : "black");
       setStatus("");
     }, 100);
     return () => clearTimeout(timeout);
-  }, [currentIndex]);
+  }, [currentIndex, puzzle, lichessFormat]);
 
   const handleMove = (sourceSquare: string, targetSquare: string) => {
-    if (!game) return false;
+    if (!game || status.includes("✅")) return false;
 
     const gameCopy = new Chess(game.fen());
     const move = gameCopy.move({ from: sourceSquare, to: targetSquare, promotion: "q" });
     if (!move) return false;
 
     const expectedRaw = puzzle.moves[currentMoveIndex];
-
-    // Support both SAN (doubleAttack) and UCI (lichess) formats
     let isCorrect = false;
+    
     if (lichessFormat) {
-      const from = expectedRaw.slice(0, 2);
-      const to = expectedRaw.slice(2, 4);
-      const promo = expectedRaw.length === 5 ? expectedRaw[4] : undefined;
-      isCorrect = move.from === from && move.to === to && (!promo || move.promotion === promo);
+      isCorrect = move.from === expectedRaw.slice(0, 2) && move.to === expectedRaw.slice(2, 4);
     } else {
       isCorrect = move.san === expectedRaw;
     }
 
     if (!isCorrect) {
-      setStatus("❌ Wrong move! Try again.");
+      setStatus("❌ Wrong move!");
       return false;
     }
 
-    setStatus("");
     setGame(gameCopy);
     setFen(gameCopy.fen());
-
     const nextIndex = currentMoveIndex + 1;
 
-    // If there's an opponent response
     if (nextIndex < puzzle.moves.length) {
+      setStatus("Keep going...");
       const opponentRaw = puzzle.moves[nextIndex];
       setTimeout(() => {
         const updatedGame = new Chess(gameCopy.fen());
         if (lichessFormat) {
-          const from = opponentRaw.slice(0, 2);
-          const to = opponentRaw.slice(2, 4);
-          const promo = opponentRaw.length === 5 ? opponentRaw[4] : undefined;
-          try { updatedGame.move({ from, to, promotion: promo }); } catch {}
+          try { updatedGame.move({ from: opponentRaw.slice(0, 2), to: opponentRaw.slice(2, 4), promotion: opponentRaw[4] }); } catch {}
         } else {
           try { updatedGame.move(opponentRaw); } catch {}
         }
@@ -388,125 +381,120 @@ function PuzzlePlayer({
         setFen(updatedGame.fen());
         setCurrentMoveIndex(nextIndex + 1);
         if (nextIndex + 1 >= puzzle.moves.length) setStatus("✅ Puzzle Solved!");
-      }, 500);
+      }, 600);
       setCurrentMoveIndex(nextIndex);
     } else {
       setCurrentMoveIndex(nextIndex);
       setStatus("✅ Puzzle Solved!");
     }
-
     return true;
   };
 
-  const resetPuzzle = () => {
-    const newGame = new Chess(puzzle.fen);
-    if (lichessFormat) {
-      const opponentUci = puzzle.moves[0];
-      const from = opponentUci.slice(0, 2);
-      const to = opponentUci.slice(2, 4);
-      const promo = opponentUci.length === 5 ? opponentUci[4] : undefined;
-      try { newGame.move({ from, to, promotion: promo }); } catch {}
-      setCurrentMoveIndex(1);
-    } else {
-      setCurrentMoveIndex(0);
-    }
-    setGame(newGame);
-    setFen(newGame.fen());
-    setStatus("");
-  };
-
   return (
-    <div className="border-4 border-black p-8 bg-white shadow-[10px_10px_0px_black]">
-
-      {/* Header row */}
-      <div className="flex items-center gap-4 mb-6">
-        <button
-          onClick={onBack}
-          className="px-3 py-1 border-2 border-black font-bold text-sm bg-gray-100 hover:bg-gray-200"
-        >
-          ← Folders
+    <div className="flex flex-col gap-4 max-w-5xl mx-auto">
+      {/* Mobile-Friendly Header */}
+      <div className="flex items-center justify-between bg-white border-b-4 border-black p-4 shadow-[4px_4px_0px_black]">
+        <button onClick={onBack} className="flex items-center gap-1 font-black uppercase text-xs sm:text-sm">
+          <LayoutGrid size={16} /> <span className="hidden sm:inline">Folders</span>
         </button>
-        <h2 className="text-2xl font-black uppercase">
-          {folderLabel} — Puzzle {currentIndex + 1} / {puzzles.length}
+        <h2 className="text-sm sm:text-lg font-black uppercase truncate px-2">
+          {folderLabel} <span className="text-gray-400 font-bold ml-1">#{currentIndex + 1}</span>
         </h2>
+        <div className="text-[10px] sm:text-xs font-black bg-black text-white px-2 py-1">
+          {currentIndex + 1}/{puzzles.length}
+        </div>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-10">
-
-        {/* Board */}
-        <div className="flex justify-center">
-          <div style={{ width: "400px" }}>
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        {/* Board Section - Stacks on top on mobile */}
+        <div className="lg:col-span-7 xl:col-span-8 flex justify-center bg-white border-4 border-black p-2 sm:p-6 shadow-[8px_8px_0px_black]" ref={boardContainerRef}>
+          <div style={{ width: boardWidth }}>
             {fen && (
               <Chessboard
-                key={currentIndex + "-" + fen}
+                id="BasicBoard"
                 position={fen}
                 onPieceDrop={handleMove}
-                boardWidth={400}
+                boardWidth={boardWidth}
                 boardOrientation={boardOrientation}
+                customDarkSquareStyle={{ backgroundColor: "#779556" }}
+                customLightSquareStyle={{ backgroundColor: "#ebecd0" }}
               />
             )}
           </div>
         </div>
 
-        {/* Side panel */}
-        <div className="space-y-6">
-
-          <div className="p-4 border-2 border-dashed border-black">
-            <p className="text-xs font-bold uppercase text-yellow-600 mb-2">Instruction</p>
-            <p className="text-sm font-bold">{puzzle.instruction}</p>
+        {/* Controls Section - Below board on mobile */}
+        <div className="lg:col-span-5 xl:col-span-4 flex flex-col gap-4">
+          {/* Status Message */}
+          <div className={`p-4 border-4 border-black font-black text-center text-lg shadow-[4px_4px_0px_black] ${status.includes('❌') ? 'bg-red-100' : status.includes('✅') ? 'bg-green-100' : 'bg-yellow-100'}`}>
+            {status || "YOUR MOVE"}
           </div>
 
-          <div className="p-4 bg-black text-white text-sm font-bold">
-            {status || (lichessFormat ? "Opponent has moved — find the checkmate!" : "Make your move")}
+          {/* Instruction Box */}
+          <div className="bg-white border-4 border-black p-4 shadow-[4px_4px_0px_black]">
+            <p className="text-[10px] font-black uppercase text-gray-400 mb-1">Instruction</p>
+            <p className="text-sm font-bold leading-tight">{puzzle.instruction}</p>
           </div>
 
-          <div className="flex gap-3 flex-wrap">
+          {/* Action Buttons - Large tap targets */}
+          <div className="grid grid-cols-3 gap-2">
             <button
               onClick={() => setCurrentIndex((p) => Math.max(p - 1, 0))}
-              className="px-4 py-2 bg-gray-200 border-2 border-black font-bold"
+              disabled={currentIndex === 0}
+              className="flex flex-col items-center justify-center p-3 bg-gray-100 border-4 border-black font-black active:translate-y-1 disabled:opacity-50"
             >
-              Prev
+              <ChevronLeft /> <span className="text-[10px] mt-1">PREV</span>
+            </button>
+            <button
+              onClick={() => {
+                 const g = new Chess(puzzle.fen);
+                 if(lichessFormat) {
+                   const m = puzzle.moves[0];
+                   g.move({from: m.slice(0,2), to: m.slice(2,4)});
+                   setCurrentMoveIndex(1);
+                 } else { setCurrentMoveIndex(0); }
+                 setGame(g); setFen(g.fen()); setStatus("");
+              }}
+              className="flex flex-col items-center justify-center p-3 bg-white border-4 border-black font-black active:translate-y-1"
+            >
+              <RotateCcw /> <span className="text-[10px] mt-1">RETRY</span>
             </button>
             <button
               onClick={() => setCurrentIndex((p) => Math.min(p + 1, puzzles.length - 1))}
-              className="px-4 py-2 bg-yellow-400 border-2 border-black font-bold"
+              disabled={currentIndex === puzzles.length - 1}
+              className="flex flex-col items-center justify-center p-3 bg-yellow-400 border-4 border-black font-black active:translate-y-1 disabled:opacity-50"
             >
-              Next
-            </button>
-            <button
-              onClick={resetPuzzle}
-              className="px-4 py-2 bg-white border-2 border-black font-bold"
-            >
-              Restart
+              <ChevronRight /> <span className="text-[10px] mt-1">NEXT</span>
             </button>
           </div>
-
         </div>
       </div>
     </div>
   );
 }
 
-// ─── FOLDER CARD VIEW ────────────────────────────────────────────────────────
+// ─── FOLDER VIEW (RESPONSIVE) ────────────────────────────────────────────────
 function FolderView({ onSelect }: { onSelect: (key: string) => void }) {
   return (
-    <div className="border-4 border-black p-8 bg-white shadow-[10px_10px_0px_black]">
-      <h2 className="text-2xl font-black uppercase mb-2">Beginner Puzzles</h2>
-      <p className="text-sm text-gray-600 mb-8">Choose a puzzle category to begin.</p>
+    <div className="border-4 border-black p-4 sm:p-8 bg-white shadow-[8px_8px_0px_black] max-w-4xl mx-auto">
+      <h2 className="text-xl sm:text-3xl font-black uppercase mb-1">Beginner Puzzles</h2>
+      <p className="text-xs sm:text-sm text-gray-600 mb-6 sm:mb-8 font-bold">Improve your pattern recognition.</p>
 
-      <div className="grid sm:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {folders.map((folder) => (
           <button
             key={folder.key}
             onClick={() => onSelect(folder.key)}
-            className={`p-6 border-4 border-black shadow-[6px_6px_0px_black] text-left transition-transform hover:-translate-y-1 active:translate-y-0 ${folder.color}`}
+            className={`p-5 sm:p-6 border-4 border-black shadow-[6px_6px_0px_black] text-left transition-transform hover:-translate-y-1 active:translate-y-0 ${folder.color}`}
           >
-            <div className="text-4xl mb-3">{folder.emoji}</div>
-            <div className="text-xl font-black uppercase mb-1">{folder.label}</div>
-            <div className="text-sm font-semibold mb-3 opacity-80">{folder.description}</div>
-            <div className="inline-block px-3 py-1 bg-white text-black border-2 border-black text-xs font-black">
-              {folder.count} Puzzles
+            <div className="flex justify-between items-start mb-4">
+              <div className="text-4xl">{folder.emoji}</div>
+              <div className="bg-white text-black border-2 border-black px-2 py-1 text-[10px] font-black uppercase">
+                {folder.count} Puzzles
+              </div>
             </div>
+            <div className="text-lg sm:text-xl font-black uppercase mb-1">{folder.label}</div>
+            <div className="text-xs font-bold opacity-90 leading-tight line-clamp-2">{folder.description}</div>
           </button>
         ))}
       </div>
@@ -514,24 +502,25 @@ function FolderView({ onSelect }: { onSelect: (key: string) => void }) {
   );
 }
 
-// ─── MAIN PAGE ───────────────────────────────────────────────────────────────
+// ─── MAIN COMPONENT ──────────────────────────────────────────────────────────
 export default function BeginnerPuzzles() {
   const [activeFolder, setActiveFolder] = useState<string | null>(null);
-
   const folder = folders.find((f) => f.key === activeFolder);
 
   return (
     <PuzzlePageLayout level="Beginner" correctPassword="CHESSMATE2026">
-      {!activeFolder || !folder ? (
-        <FolderView onSelect={setActiveFolder} />
-      ) : (
-        <PuzzlePlayer
-          puzzles={folder.puzzles as typeof doubleAttackPuzzles}
-          lichessFormat={folder.lichessFormat}
-          folderLabel={folder.label}
-          onBack={() => setActiveFolder(null)}
-        />
-      )}
+      <div className="min-h-screen bg-[#f1f1f1] p-2 sm:p-6 lg:p-12">
+        {!activeFolder || !folder ? (
+          <FolderView onSelect={setActiveFolder} />
+        ) : (
+          <PuzzlePlayer
+            puzzles={folder.puzzles}
+            lichessFormat={folder.lichessFormat}
+            folderLabel={folder.label}
+            onBack={() => setActiveFolder(null)}
+          />
+        )}
+      </div>
     </PuzzlePageLayout>
   );
 }
