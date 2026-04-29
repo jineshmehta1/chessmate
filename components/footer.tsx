@@ -70,7 +70,7 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#EAB308]">Follow Our Journey</p>
               <a 
-                href="https://www.instagram.com/chessmate.in/" 
+                href="https://www.instagram.com/thechess_mate/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-12 h-12 bg-white flex items-center justify-center text-black border-2 border-black hover:bg-[#EAB308] transition-all shadow-[4px_4px_0px_0px_rgba(234,179,8,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1"

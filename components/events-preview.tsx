@@ -37,7 +37,7 @@ const COURSES = [
   },
   {
     title: "Advance",
-    image: "/adv.jpeg",
+    image: "/adv.webp",
     tag: "Phase 03",
     features: [
       "Opening Repertoire Development",
@@ -49,7 +49,7 @@ const COURSES = [
   },
   {
     title: "Master",
-    image: "/ind.avif",
+    image: "/mas.avif",
     tag: "Elite Tier",
     features: [
       "Engine & Database Support",

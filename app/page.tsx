@@ -7,6 +7,7 @@ import  FeaturesSection  from "@/components/features-section"
 import AchievementsSection from "@/components/ui/AchievementsSection"
 import WhyChooseUsSection from "@/components/why-choose"
 import DifferenceSection from "@/components/ui/diff"
+import AgeInclusiveSection from "@/components/ui/age"
 
 
 export default function HomePage() {
@@ -18,6 +19,7 @@ export default function HomePage() {
           <WhyChooseUsSection />
         </section>
         <CoursesSection />
+        <AgeInclusiveSection/>
         <TestimonialsSection />
         <DifferenceSection/>
         <section id="faq">
