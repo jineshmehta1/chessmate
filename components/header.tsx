@@ -36,7 +36,7 @@ const Header: React.FC = () => {
     {
       name: "Courses", href: "/courses"
     },
-    { name: "Achievements", href: "/achievements" },
+    // { name: "Achievements", href: "/achievements" },
     {
       name: "Puzzles",
       subItems: [
