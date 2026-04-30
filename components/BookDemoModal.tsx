@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, CheckCircle, Loader2, Zap, Star, Send, User } from "lucide-react";
+import { X, CheckCircle, Loader2, Zap, Star, Send } from "lucide-react";
 import { useDemoModal } from "@/context/DemoContext";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
@@ -19,6 +19,8 @@ export default function BookDemoModal() {
     email: "",
     phone: "",
     experience: "beginner",
+    chessPlatform: "",
+    chessUsername: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,26 +35,27 @@ export default function BookDemoModal() {
 
     try {
       await emailjs.send(
-  process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-  process.env.NEXT_PUBLIC_EMAILJS_DEMO_TEMPLATE_ID!, // ✅ FIXED
-  {
-    studentName: formData.studentName,
-    studentAge: formData.age,
-    classType: formData.classType,
-    country: formData.country,
-    timezone: formData.timezone,
-    preferredTime: formData.preferredTime,
-    email: formData.email,
-    phone: formData.phone,
-    experience: formData.experience,
-    time: new Date().toLocaleString(),
-  },
-  process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
-);
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_DEMO_TEMPLATE_ID!,
+        {
+          studentName: formData.studentName,
+          studentAge: formData.age,
+          classType: formData.classType,
+          country: formData.country,
+          timezone: formData.timezone,
+          preferredTime: formData.preferredTime,
+          email: formData.email,
+          phone: formData.phone,
+          experience: formData.experience,
+          chessPlatform: formData.chessPlatform,
+          chessUsername: formData.chessUsername,
+          time: new Date().toLocaleString(),
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
 
       setSubmitStatus("success");
 
-      // reset form
       setFormData({
         studentName: "",
         age: "",
@@ -63,9 +66,10 @@ export default function BookDemoModal() {
         email: "",
         phone: "",
         experience: "beginner",
+        chessPlatform: "",
+        chessUsername: "",
       });
 
-      // close modal after delay
       setTimeout(() => {
         closeDemoModal();
         setSubmitStatus(null);
@@ -179,6 +183,29 @@ export default function BookDemoModal() {
                 required
                 value={formData.phone}
                 onChange={(e: any) => setFormData({ ...formData, phone: e.target.value })}
+              />
+            </div>
+
+            {/* NEW CHESS FIELD */}
+            <div className="grid grid-cols-2 gap-4">
+              <select
+                value={formData.chessPlatform}
+                onChange={(e) =>
+                  setFormData({ ...formData, chessPlatform: e.target.value })
+                }
+                className="w-full px-5 py-4 border-2 border-black font-black text-[11px] uppercase bg-gray-50"
+              >
+                <option value="">PLATFORM</option>
+                <option value="Chess.com">Chess.com</option>
+                <option value="Lichess">Lichess</option>
+              </select>
+
+              <NeubrutalistInput
+                placeholder="USERNAME"
+                value={formData.chessUsername}
+                onChange={(e: any) =>
+                  setFormData({ ...formData, chessUsername: e.target.value })
+                }
               />
             </div>
 

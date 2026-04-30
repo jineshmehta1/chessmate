@@ -6,6 +6,8 @@ import {
   CreditCard, 
   DollarSign, 
   IndianRupee, 
+  Euro, // Added
+  PoundSterling, // Added
   Lock,
   Zap,
   ArrowRight,
@@ -23,7 +25,16 @@ export default function PaymentPage() {
     phone: ""
   });
 
-  // Load Razorpay Script
+  // Helper to get currency symbol
+  const getSymbol = (curr: string) => {
+    switch(curr) {
+      case "INR": return "₹";
+      case "EUR": return "€";
+      case "GBP": return "£";
+      default: return "$";
+    }
+  };
+
   const loadRazorpay = () => {
     return new Promise((resolve) => {
       if ((window as any).Razorpay) {
@@ -39,7 +50,6 @@ export default function PaymentPage() {
   };
 
   const handlePayment = async () => {
-    // 1. Validation
     if (!amount || Number(amount) <= 0) {
       alert("Please enter a valid amount.");
       return;
@@ -66,10 +76,9 @@ export default function PaymentPage() {
       return;
     }
 
-    // 2. Razorpay Configuration
     const options = {
       key: keyId,
-      amount: Math.round(parseFloat(amount) * 100), // Securely convert to cents/paise
+      amount: Math.round(parseFloat(amount) * 100), 
       currency: currency,
       name: "Chess Mate Academy",
       description: `Chess Training Fees - ${studentInfo.name}`,
@@ -84,7 +93,7 @@ export default function PaymentPage() {
         contact: studentInfo.phone,
       },
       theme: {
-        color: "#EAB308", // Brand Gold
+        color: "#EAB308", 
       },
       modal: {
         ondismiss: function() {
@@ -95,7 +104,6 @@ export default function PaymentPage() {
 
     const rzp = new (window as any).Razorpay(options);
 
-    // 3. Error Handling - This will tell us why it fails
     rzp.on('payment.failed', function (response: any) {
         setIsProcessing(false);
         alert(`PAYMENT FAILED \nReason: ${response.error.description} \nCode: ${response.error.code}`);
@@ -107,7 +115,6 @@ export default function PaymentPage() {
   return (
     <div className="min-h-screen bg-white pt-32 pb-20 selection:bg-[#EAB308]">
       
-      {/* Background Architectural Decal */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15rem] md:text-[30rem] font-[1000] text-gray-50 leading-none select-none -z-0 tracking-tighter uppercase italic opacity-80 pointer-events-none">
         PAY
       </div>
@@ -132,7 +139,6 @@ export default function PaymentPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
-          {/* --- LEFT: INPUTS --- */}
           <div className="lg:col-span-7 space-y-8">
             {/* Student Info */}
             <div className="border-4 border-black p-8 bg-white shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]">
@@ -169,24 +175,37 @@ export default function PaymentPage() {
                 <div className="w-2 h-6 bg-black"></div> 2. Selection
               </h3>
 
-              <div className="flex gap-4 mb-8">
-                <button 
+              {/* CURRENCY GRID - Updated to 4 options */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                <CurrencyButton 
+                  active={currency === "USD"} 
                   onClick={() => setCurrency("USD")}
-                  className={`flex-1 py-4 border-2 border-black font-[1000] text-[10px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-1 active:translate-y-1 ${currency === "USD" ? 'bg-black text-[#EAB308]' : 'bg-white text-gray-400 hover:bg-gray-50'}`}
-                >
-                  <DollarSign className="w-4 h-4" /> USD (Global)
-                </button>
-                <button 
+                  icon={<DollarSign className="w-4 h-4" />}
+                  label="USD"
+                />
+                <CurrencyButton 
+                  active={currency === "INR"} 
                   onClick={() => setCurrency("INR")}
-                  className={`flex-1 py-4 border-2 border-black font-[1000] text-[10px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-1 active:translate-y-1 ${currency === "INR" ? 'bg-black text-[#EAB308]' : 'bg-white text-gray-400 hover:bg-gray-50'}`}
-                >
-                  <IndianRupee className="w-4 h-4" /> INR (India)
-                </button>
+                  icon={<IndianRupee className="w-4 h-4" />}
+                  label="INR"
+                />
+                <CurrencyButton 
+                  active={currency === "EUR"} 
+                  onClick={() => setCurrency("EUR")}
+                  icon={<Euro className="w-4 h-4" />}
+                  label="EUR"
+                />
+                <CurrencyButton 
+                  active={currency === "GBP"} 
+                  onClick={() => setCurrency("GBP")}
+                  icon={<PoundSterling className="w-4 h-4" />}
+                  label="GBP"
+                />
               </div>
 
               <div className="relative group">
                 <div className="absolute left-6 top-1/2 -translate-y-1/2 font-[1000] text-2xl text-black">
-                  {currency === "USD" ? "$" : "₹"}
+                  {getSymbol(currency)}
                 </div>
                 <input 
                   type="number"
@@ -218,7 +237,7 @@ export default function PaymentPage() {
                 <div className="flex justify-between items-center pt-4">
                   <span className="text-[#EAB308] font-[1000] text-lg uppercase tracking-widest">Total Due</span>
                   <span className="text-3xl font-[1000] tracking-tighter">
-                    {currency === "USD" ? "$" : "₹"}{amount || "0"}
+                    {getSymbol(currency)}{amount || "0"}
                   </span>
                 </div>
               </div>
@@ -243,22 +262,21 @@ export default function PaymentPage() {
               </div>
             </div>
           </div>
-
-        </div>
-
-        {/* Support Bar */}
-        <div className="mt-20 pt-8 border-t-2 border-black/5 flex flex-col md:flex-row items-center justify-between gap-6 opacity-40">
-           <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black">
-              Official Billing Portal <br /> Chess Mate Academy
-           </p>
-           <p className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-500 text-center md:text-right">
-              Secured by Razorpay <br /> Global Finance
-           </p>
         </div>
       </div>
     </div>
   );
 }
+
+// Sub-component for Currency Buttons to keep code clean
+const CurrencyButton = ({ active, onClick, icon, label }: any) => (
+  <button 
+    onClick={onClick}
+    className={`flex-1 py-4 border-2 border-black font-[1000] text-[10px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-1 active:translate-y-1 ${active ? 'bg-black text-[#EAB308]' : 'bg-white text-gray-400 hover:bg-gray-50'}`}
+  >
+    {icon} {label}
+  </button>
+);
 
 const NeubrutalistInput = ({ ...props }: any) => (
   <input 

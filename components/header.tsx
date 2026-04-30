@@ -46,7 +46,7 @@ const Header: React.FC = () => {
       ],
     },
     // { name: "Gallery", href: "/gallery" },
-    { name: "Blogs", href: "/blog" },
+    // { name: "Blogs", href: "/blog" },
     { name: "Payments", href: "/pay" },
     { name: "Contact Us", href: "/contact" },
   ];

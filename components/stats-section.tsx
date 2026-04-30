@@ -11,6 +11,7 @@ import {
   Mail
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useDemoModal } from "@/context/DemoContext";
 
 const faqData = [
   {
@@ -40,6 +41,7 @@ const faqData = [
 ];
 
 export default function PremiumFaqSection() {
+  const { openDemoModal } = useDemoModal();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -93,7 +95,7 @@ export default function PremiumFaqSection() {
                 </div>
               </div>
               
-              <button className="w-full mt-10 py-4 bg-white text-black font-black uppercase text-[10px] tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-[#EAB308] transition-all">
+              <button onClick={openDemoModal} className="w-full mt-10 py-4 bg-white text-black font-black uppercase text-[10px] tracking-[0.2em] flex items-center justify-center gap-3 hover:bg-[#EAB308] transition-all">
                 Book a Demo <ArrowRight size={14} />
               </button>
             </div>

@@ -157,7 +157,7 @@ const ContactSection: React.FC = () => {
                 <NeubrutalistInput name="timezone" value={formData.timezone} onChange={handleChange} placeholder="TIME ZONE *" required />
 
                 <div className="md:col-span-2">
-                  <NeubrutalistInput name="preferredTime" value={formData.preferredTime} onChange={handleChange} placeholder="PREFERRED TIME *" required />
+                  <NeubrutalistInput name="preferredTime" value={formData.preferredTime} onChange={handleChange} placeholder="PREFERRED DATE & TIME *" required />
                 </div>
 
                 <NeubrutalistInput name="email" type="email" value={formData.email} onChange={handleChange} placeholder="EMAIL *" required />
@@ -169,7 +169,7 @@ const ContactSection: React.FC = () => {
                     value={formData.comment}
                     onChange={handleChange}
                     className="w-full p-5 border-2 border-black bg-gray-50 min-h-[120px]"
-                    placeholder="CHESS BACKGROUND..."
+                    placeholder="Enter your chess username and platform (Chess.com or Lichess)"
                   />
                 </div>
               </div>

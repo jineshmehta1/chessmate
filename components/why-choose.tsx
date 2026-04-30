@@ -97,7 +97,7 @@ export default function WhyChooseUsSection() {
               {/* Image Container - Square Brutalist Style */}
               <div className="relative bg-white border-4 border-black w-32 h-32 md:w-56 md:h-56 shadow-[10px_10px_0px_0px_rgba(234,179,8,1)] overflow-hidden transform group-hover:scale-105 transition-transform duration-500">
                 <img 
-                  src="/why.webp" 
+                  src="/adult1.webp" 
                   alt="Chessmate Academy Centerpiece"
                   className="w-full h-full object-cover group-hover:grayscale-0 transition-all duration-700"
                 />
