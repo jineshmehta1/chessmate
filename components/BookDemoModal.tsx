@@ -163,7 +163,7 @@ export default function BookDemoModal() {
             </div>
 
             <NeubrutalistInput
-              placeholder="PREFERRED TIME *"
+              placeholder="PREFERRED DATE AND TIME *"
               required
               value={formData.preferredTime}
               onChange={(e: any) => setFormData({ ...formData, preferredTime: e.target.value })}
