@@ -58,7 +58,7 @@ export default function RootLayout({
             "@type": "ContactPoint",
             "telephone": "+91-7990775581",
             "contactType": "customer service",
-            "email": "contact@thechessmate.org"
+            "email": "devamchess@gmail.com"
           },
           "sameAs": [
             "https://www.facebook.com/chessmate",

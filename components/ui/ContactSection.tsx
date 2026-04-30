@@ -110,7 +110,7 @@ const ContactSection: React.FC = () => {
 
               <div className="space-y-10">
                 <ContactInfoItem icon={<Phone />} label="Direct Lines" value="+91 79907 75581" subValue="+91 87330 84949" />
-                <ContactInfoItem icon={<Mail />} label="Support Email" value="contact@thechessmate.org" />
+                <ContactInfoItem icon={<Mail />} label="Support Email" value="devamchess@gmail.com" />
                 <ContactInfoItem icon={<Globe />} label="Academy Reach" value="Global Online Classes" />
               </div>
             </div>
