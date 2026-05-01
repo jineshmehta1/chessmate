@@ -15,6 +15,7 @@ const ALL_REVIEWS = [
   {
     name: "Isha Patel",
     role: "Parent",
+    country: "India",
     text: "Our daughter's creativity and time management skills have flourished since she started at Chess Mate. The video-recorded lectures are fantastic, allowing her to learn at her own pace.",
     color: "bg-white",
     textColor: "text-black",
@@ -23,6 +24,7 @@ const ALL_REVIEWS = [
   {
     name: "Cody",
     role: "Adult Student",
+    country: "USA",
     text: "Devam is a great teacher! He helped me learn novel methods to digest positions. For my first tournament, he charted out defenses step-by-step. 100% worth every penny spent!",
     color: "bg-black",
     textColor: "text-white",
@@ -31,6 +33,7 @@ const ALL_REVIEWS = [
   {
     name: "Aarav Sharma",
     role: "Parent",
+    country: "India",
     text: "Chess Mate has been a game-changer for our son. The coaches are exceptional, and the masterclasses have really boosted his confidence. We love the flexibility of recorded lectures.",
     color: "bg-[#EAB308]",
     textColor: "text-black",
@@ -38,7 +41,8 @@ const ALL_REVIEWS = [
   },
   {
     name: "Alex",
-    role: "Student",
+    role: "Adult Student",
+    country: "USA",
     text: "I’ve been taking chess classes with Devam at Chessmate for a while now. He explains concepts clearly, even those well above my level. Improved more than I expected!",
     color: "bg-white",
     textColor: "text-black",
@@ -47,6 +51,7 @@ const ALL_REVIEWS = [
   {
     name: "Ananya Rao",
     role: "Parent",
+    country: "India",
     text: "Since joining Chess Mate, our daughter's focus and problem-solving abilities have improved dramatically. The regular tournaments keep her engaged and the coaching is impactful.",
     color: "bg-black",
     textColor: "text-white",
@@ -54,7 +59,8 @@ const ALL_REVIEWS = [
   },
   {
     name: "Brad",
-    role: "Student",
+    role: "Adult Student",
+    country: "USA",
     text: "He is patient, explains concepts clearly, and tailors the lessons to what I need. I’ve noticed major improvement in how I think through positions. Highly recommended.",
     color: "bg-[#EAB308]",
     textColor: "text-black",
@@ -63,6 +69,7 @@ const ALL_REVIEWS = [
   {
     name: "Erik",
     role: "Student",
+    country: "Japan",
     text: "These classes have helped improve my skills by a ton! I went from 800 Elo to 1400 in only a few months. I know many lines and have much better board vision now.",
     color: "bg-white",
     textColor: "text-black",
@@ -175,7 +182,7 @@ export default function TestimonialSection() {
                         {review.name}
                       </h4>
                       <p className="text-[9px] font-black uppercase tracking-[0.2em] opacity-60">
-                        {review.role}
+                        {review.role} • {review.country}
                       </p>
                     </div>
                   </div>

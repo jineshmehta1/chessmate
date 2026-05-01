@@ -45,7 +45,7 @@ export default function CompactCTA() {
               </h2>
               
               <p className="text-gray-400 font-bold text-sm md:text-lg max-w-sm mx-auto lg:mx-0 leading-relaxed">
-                Join 2,500+ students globally. Start your journey from beginner to Grandmaster today.
+                Join our top students globally. Start your journey from beginner to Grandmaster today.
               </p>
             </div>
 

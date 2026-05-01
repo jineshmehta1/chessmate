@@ -66,11 +66,12 @@ export default function HeroSection() {
             </p>
 
             {/* Premium Features Row */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 py-2 md:py-4">
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 md:gap-6 py-2 md:py-4">
                {[
                  { icon: Trophy, title: "FIDE Rated", sub: "Expert Coaches" },
                  { icon: Users, title: "1:6 Ratio", sub: "Small Batches" },
                  { icon: Layout, title: "LMS Portal", sub: "Study Material" },
+                 { icon: Users, title: "Personal Classes", sub: "1-on-1 Instruction" },
                ].map((item, idx) => (
                  <div key={idx} className="flex flex-row sm:flex-col items-center sm:items-start gap-3 sm:gap-1 group">
                    <div className="flex items-center gap-3 text-black font-[900] text-xs uppercase tracking-widest">

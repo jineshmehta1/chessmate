@@ -141,9 +141,9 @@ export default function BookDemoModal() {
                 className="w-full px-5 py-4 border-2 border-black font-black text-[11px] uppercase bg-gray-50"
               >
                 <option value="">CLASS TYPE *</option>
-                <option value="Individual">1:1</option>
+                <option value="Individual">Personal</option>
                 <option value="Group">Group</option>
-                <option value="Both">Both</option>
+                <option value="Both">Open for Both</option>
               </select>
             </div>
 

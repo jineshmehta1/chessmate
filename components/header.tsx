@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { MenuIcon, XIcon, ArrowRightIcon } from "./ui/BannerIcon";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Monitor } from "lucide-react"; // Added Monitor icon for classroom
 import { useDemoModal } from "@/context/DemoContext";
 
 interface SubItem {
@@ -29,14 +29,10 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // EXACT PAGES FROM YOUR DOCUMENT
   const navItems: NavItem[] = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    {
-      name: "Courses", href: "/courses"
-    },
-    // { name: "Achievements", href: "/achievements" },
+    { name: "About Us", href: "/about" }, // Changed from "About"
+    { name: "Courses", href: "/courses" },
     {
       name: "Puzzles",
       subItems: [
@@ -45,9 +41,7 @@ const Header: React.FC = () => {
         { name: "Advanced", href: "/puzzles/advanced" },
       ],
     },
-    // { name: "Gallery", href: "/gallery" },
-    // { name: "Blogs", href: "/blog" },
-    { name: "Payments", href: "/pay" },
+    { name: "Payments", href: "/pay" }, // Highlighted in the render
     { name: "Contact Us", href: "/contact" },
   ];
 
@@ -60,7 +54,7 @@ const Header: React.FC = () => {
       <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between">
           
-          {/* Logo Section - High Contrast Yellow/Black */}
+          {/* Logo Section */}
           <a href="/" className="flex items-center gap-3 shrink-0 group">
             <img
               src="/logo.jpg"
@@ -70,12 +64,12 @@ const Header: React.FC = () => {
               }`}
             />
             <span className="text-2xl md:text-3xl font-extrabold tracking-[0.01em] text-black uppercase leading-none font-sans">
-  CHESS<span className="text-[#EAB308] ml-1">MATE</span>
-</span>
+              CHESS<span className="text-[#EAB308] ml-1">MATE</span>
+            </span>
           </a>
 
-          {/* Desktop Navigation - Brutalist Premium Style */}
-          <nav className="hidden xl:flex items-center gap-8">
+          {/* Desktop Navigation */}
+          <nav className="hidden xl:flex items-center gap-4">
             {navItems.map((item) => (
               <div key={item.name} className="relative group">
                 {item.subItems ? (
@@ -86,14 +80,19 @@ const Header: React.FC = () => {
                 ) : (
                   <a
                     href={item.href}
-                    className="text-[11px] font-black uppercase tracking-[0.25em] text-black hover:text-[#EAB308] transition-colors relative group"
+                    className={`text-[11px] font-black uppercase tracking-[0.25em] transition-all duration-300 relative group py-1 px-2 ${
+                      item.name === "Payments" 
+                        ? "bg-[#EAB308] text-black px-3 py-1.5 rounded-sm shadow-sm hover:bg-black hover:text-[#EAB308]" 
+                        : "text-black hover:text-[#EAB308]"
+                    }`}
                   >
                     {item.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#EAB308] transition-all duration-300 group-hover:w-full"></span>
+                    {item.name !== "Payments" && (
+                      <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#EAB308] transition-all duration-300 group-hover:w-full"></span>
+                    )}
                   </a>
                 )}
 
-                {/* Submenu Overlay - Sharp & Bold */}
                 {item.subItems && (
                   <div className="absolute top-full -left-4 w-56 bg-black border-t-4 border-[#EAB308] mt-4 py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-2xl">
                     {item.subItems.map((sub) => (
@@ -111,8 +110,20 @@ const Header: React.FC = () => {
             ))}
           </nav>
 
-          {/* Action Button */}
-          <div className="flex items-center gap-4">
+          {/* Action Buttons */}
+          <div className="flex items-center gap-3">
+            {/* Classroom Button */}
+            <a
+              href="https://classroom.thechessmate.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:flex items-center gap-2 px-5 py-3 bg-white text-black border-2 border-black text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 hover:bg-gray-100 shadow-sm"
+            >
+              <Monitor className="w-4 h-4" />
+              Classroom
+            </a>
+
+            {/* Book Demo Button */}
             <button
               onClick={openDemoModal}
               className="hidden md:flex items-center gap-3 px-8 py-3 bg-black text-[#EAB308] text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 border-2 border-black hover:bg-[#EAB308] hover:text-black shadow-lg"
@@ -133,7 +144,7 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu - Full Screen Brutalist */}
+      {/* Mobile Menu */}
       <div
         className={`xl:hidden fixed inset-0 top-[70px] bg-white transition-transform duration-500 ease-in-out z-40 ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
@@ -167,7 +178,9 @@ const Header: React.FC = () => {
               ) : (
                 <a
                   href={item.href}
-                  className="block py-6 text-black text-xl font-black uppercase tracking-widest hover:text-[#EAB308]"
+                  className={`block py-6 text-xl font-black uppercase tracking-widest ${
+                    item.name === "Payments" ? "text-[#EAB308]" : "text-black"
+                  }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
@@ -176,7 +189,14 @@ const Header: React.FC = () => {
             </div>
           ))}
 
-          <div className="mt-auto pb-12">
+          <div className="mt-auto pt-10 pb-12 flex flex-col gap-4">
+            <a
+              href="https://classroom.thechessmate.org"
+              target="_blank"
+              className="w-full bg-white border-2 border-black text-black py-4 text-center font-black uppercase text-sm tracking-[0.3em]"
+            >
+              Enter Classroom
+            </a>
             <button
               onClick={() => {
                 openDemoModal();
