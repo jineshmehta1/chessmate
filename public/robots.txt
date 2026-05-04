@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /pay
+
+User-agent: meta-externalagent
+Disallow: /
