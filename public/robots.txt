@@ -36,3 +36,6 @@ Disallow: /
 
 User-agent: Cohere-ai
 Disallow: /
+
+User-agent: Meta-WebIndexer
+Disallow: /
