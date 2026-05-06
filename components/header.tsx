@@ -41,6 +41,7 @@ const Header: React.FC = () => {
         { name: "Advanced", href: "/puzzles/advanced" },
       ],
     },
+    { name: "Blogs", href: "/blog" },
     { name: "Payments", href: "/pay" }, // Highlighted in the render
     { name: "Contact Us", href: "/contact" },
   ];
@@ -51,7 +52,7 @@ const Header: React.FC = () => {
         scrolled ? "shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] py-3" : "py-5 border-b border-gray-100"
       }`}
     >
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+      <div className="max-w-[1640px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between">
           
           {/* Logo Section */}
